@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        
+						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:comm/config/dubbo.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="${dubbo.application.handle.name}" />
+
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	 <!-- <dubbo:registry address="${dubbo.registry}" />  -->
+	<dubbo:registry protocol="zookeeper"  address="${dubbo.registry}" />
+	<!-- dubbo协议：用dubbo协议在20880端口暴露服务,不能与tomcat的http端口一样，否则会暴端口冲突 -->
+	<dubbo:protocol name="dubbo" port="${dubbo.protocol.handle.port}" />
+	<!-- ${dubbo.rest.protocol.cbs.port} -->
+	<dubbo:protocol name="rest" port="${dubbo.rest.protocol.handle.port}"  contextpath="handle" server="tomcat"/>
+	
+	<!-- 消费者:check=false表示启动时不检测依赖服务是否存在 -->
+	<dubbo:consumer check="false" timeout="10000" />
+	
+	<!-- 服务提供者 -->
+	<dubbo:provider delay="-1" timeout="50000" />
+
+	<!-- hessian协议：
+		将server设置为servlet
+		设置port必须与servlet容器相同，hessian协议不配置port则端口默认值为80
+		设置contextpath必须与servlet应用的上下文路径相同
+		同时将web.xml中添加hessian的DispatcherServlet配置
+		<servlet>
+			<servlet-name>hessian</servlet-name>
+			<servlet-class>com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet</servlet-class>
+			<load-on-startup>1</load-on-startup>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>hessian</servlet-name>
+			<url-pattern>/*</url-pattern>
+		</servlet-mapping>
+	-->
+	<!-- <dubbo:protocol name="hessian" server="servlet" port="9090" contextpath="provider" /> -->
+	<dubbo:monitor protocol="registry"/>  
+	<import resource="spring-dubbo-provider.xml"/>
+</beans>

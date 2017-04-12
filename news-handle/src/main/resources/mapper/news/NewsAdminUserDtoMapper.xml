@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.news.handle.dao.NewsAdminUserDtoMapper">
+	<resultMap id="BaseResultMap" type="com.news.common.project.dto.NewsAdminUserDto">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="SALT" property="salt" jdbcType="VARCHAR" />
+		<result column="ROLE" property="role" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, NAME, PASSWORD, SALT, ROLE
+	</sql>
+	<select id="getUserByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_ADMIN_USER
+		where NAME = #{username,jdbcType=VARCHAR}
+	</select>
+</mapper>

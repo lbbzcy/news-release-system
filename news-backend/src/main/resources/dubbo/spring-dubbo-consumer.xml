@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        
+						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 生成远程服务代理，可以和本地bean一样使用 -->
+	<!-- 管理员服务类 -->
+	<dubbo:reference id="newsAdminUserAppService" interface="com.news.common.project.app.NewsAdminUserAppService" />
+	<!-- 新闻类别服务类 -->
+	<dubbo:reference id="newsTypeAppService" interface="com.news.common.project.app.NewsTypeAppService" />
+	<!-- 新闻模板服务类 -->
+	<dubbo:reference id="newsTemplateAppService" interface="com.news.common.project.app.NewsTemplateAppService" />
+	<!-- 新闻编辑服务类 -->
+	<dubbo:reference id="newsDetailAppService" interface="com.news.common.project.app.NewsDetailAppService" />
+	<!-- banner服务类 -->
+	<dubbo:reference id="newsBannerAppService" interface="com.news.common.project.app.NewsBannerAppService" />
+</beans>

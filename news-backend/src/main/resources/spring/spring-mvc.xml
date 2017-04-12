@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+	<!-- 启动对@Controller注解的组件扫描 -->
+	<context:component-scan base-package="com.news.backend"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- json对象转换器 -->
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<util:list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application" />
+					<constructor-arg index="1" value="json" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text" />
+					<constructor-arg index="1" value="*" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+			</util:list>
+		</property>
+	</bean>
+
+	<bean id="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<util:list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application" />
+					<constructor-arg index="1" value="xml" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text" />
+					<constructor-arg index="1" value="*" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+			</util:list>
+		</property>
+	</bean>
+
+	<!-- org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="stringHttpMessageConverter" />
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+		<!-- 日期格式转换 -->
+		<property name="webBindingInitializer">
+			<bean
+				class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="validator" ref="validator" />
+				<property name="propertyEditorRegistrar">
+					<bean
+						class="com.news.backend.converter.DatePropertyEditorBinder" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 文件上传控制 -->
+	<bean id="multipartResolver"
+		class="com.news.backend.common.CommonsMultipartResolver">
+		<!-- maxUploadSize单位是字节 :30M -->
+		<property name="maxUploadSize" value="31457280"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
+	<!-- JPS路径映射解析器 -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="attributes" ref="systemProperties"></property>
+	</bean>
+
+	<!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+		<!-- <property name="validationMessageSource" ref="messageSource" /> -->
+	</bean>
+
+	<!-- 格式转换器，如日期，数字格式 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+
+	<!-- 开启Spring MVC注解， 会自动注册了validator ConversionService -->
+	<mvc:annotation-driven validator="validator"
+		conversion-service="conversionService" />
+
+	<!-- 自动开启一个默认的servlet处理器，所以有的地址都通过此处理器，主要为了处理静态资源 -->
+	<mvc:default-servlet-handler />
+	<!-- 当没有处理器(Controller)处理请求的URL，则跳转到对应视图的URL 此视图名称前可以加redirect：调整到指定页面 -->
+	<!-- <mvc:view-controller path="/403.html" view-name="exception/403" /> -->
+
+	<!-- 用户上下文及后台验证错误信息处理 -->
+	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**" /> <bean 
+		class="com.ylink.inetpay.mp.system.context.UserContextInterceptor" /> </mvc:interceptor> 
+		</mvc:interceptors> -->
+
+	<!-- 国际化资源文件 -->
+	<!-- <bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="messages/messages" /> -->
+
+	<!-- 全局异常处理器，如果捕获到异常，就跳转到WEB-INF/view/exception/exception.jsp页面 -->
+	<!-- <bean class="org.ylinkpay.framework.web.mvc.handler.ExceptionHandlerResolver"> 
+		视图名称 <property name="defaultErrorView" value="exception/exception" /> 异常日志级别，如果不配置，异常信息将不会记录到日志文件中 
+		<property name="warnLogCategory" value="warn" /> </bean> -->
+</beans>

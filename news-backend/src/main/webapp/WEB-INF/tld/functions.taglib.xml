@@ -1,0 +1,48 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>2.0</tlib-version>
+	<uri>http://www.longtimeit.com/taglib-elfunctions</uri>
+	<function>
+		<name>html2Text</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String html2Text(java.lang.String,int)</function-signature>
+	</function>
+	<function>
+		<name>dateLongToString</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String dateLongToString(long)</function-signature>
+	</function>
+	<function>
+		<name>dataLongToSNS</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String dataLongToSNS(long,java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>dateLongToStringFormat</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String dateLongToString(long,java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<name>numFormat</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String numFormat(double)</function-signature>
+	</function>
+	<function>
+		<name>fen2Yuan</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String fen2Yuan(int)</function-signature>
+	</function>
+	<function>
+		<name>fen2USD</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String fen2USD(int)</function-signature>
+	</function>
+	<function>
+		<name>dataNowToSNS</name>
+		<function-class>com.longtime.common.web.utils.ELFunctions</function-class>
+		<function-signature>java.lang.String dataNowToSNS()</function-signature>
+	</function>
+	
+</taglib>

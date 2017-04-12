@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!--用于连接boneCp数据源 -->
+	<bean id="commonDataSourceConfig" class="com.jolbox.bonecp.BoneCPDataSource" abstract="true" destroy-method="close">
+        <!-- 每个分区最大的连接数 -->  
+        <property name="maxConnectionsPerPartition" value="50" />  
+        <!-- 每个分区最小的连接数 -->  
+        <property name="minConnectionsPerPartition" value="10" />  
+        <!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定-->  
+        <property name="partitionCount" value="2" />  
+        <!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->  
+        <property name="acquireIncrement" value="2" />
+        <!-- 测试连接有效性的间隔时间，单位分钟   
+        <property name="idleConnectionTestPeriod" value="40" />-->
+        <!-- 连接超时时间 毫秒-->
+		<property name="connectionTimeout" value="10000"/>
+        <!-- 空闲存活时间 分钟
+        <property name="idleMaxAge" value="1"/>-->
+	</bean>
+
+	<util:properties id="dataSourceProps" location="classpath*:comm/config/database.properties"/>
+	<!-- news数据源配置 -->
+	<bean id="newsDataSource" parent="commonDataSourceConfig">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="#{dataSourceProps['news.db.host']}" />
+		<property name="username" value="#{dataSourceProps['news.db.login.name']}"/>
+		<property name="password" value="#{dataSourceProps['news.db.login.password']}"/>
+	</bean>
+	
+	<!-- ucSqlSessionFactory --> 
+  	<bean id="newsSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+    	<property name="dataSource" ref="newsDataSource" />
+    	<property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
+    	<property name="mapperLocations">
+    		<array >
+    			<value>classpath*:/mapper/news/*Mapper.xml</value>
+    		</array>
+    	</property>
+  	</bean>
+	
+  	<!-- mapper 接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.news.handle.dao" />
+		<property name="sqlSessionFactoryBeanName" value="newsSqlSessionFactory"></property>
+	</bean>
+	
+	<!-- newsTxManager -->
+	<bean id="newsTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
+		p:dataSource-ref="newsDataSource">
+		<qualifier value="newsTxManager" />
+	</bean>
+	
+	<!-- 开启事务 -->
+	<tx:annotation-driven proxy-target-class="true" order="200" />
+</beans>

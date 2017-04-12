@@ -1,0 +1,35 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>2.0</tlib-version>
+	<uri>http://www.longtimeit.com/taglib-sns</uri>
+	
+	
+	<!-- 赞数量 -->
+	<function>
+		<name>praiseTotal</name>
+		<function-class>com.longtime.sns.el.SnsELFunctions</function-class>
+		<function-signature>long praiseTotal(java.lang.String,int)</function-signature>
+	</function>
+	<!-- 用户赞的状态 -->
+	<function>
+		<name>praiseStatus</name>
+		<function-class>com.longtime.sns.el.SnsELFunctions</function-class>
+		<function-signature>int praiseStatus(java.lang.String,int,java.lang.String)</function-signature>
+	</function>
+
+	<!-- 用户是否对内容进行收藏 -->
+	<function>
+		<name>isFavorite</name>
+		<function-class>com.longtime.sns.el.SnsELFunctions</function-class>
+		<function-signature>boolean isFavorite(java.lang.String,int,java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<name>avatar</name>
+		<function-class>com.longtime.sns.el.SnsELFunctions</function-class>
+		<function-signature>java.lang.String avatar(java.lang.String)</function-signature>
+	</function>
+
+	
+</taglib>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
+	<description>Spring公共配置</description>
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.news.handle">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- log thread pool -->
+	<bean id="logTaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="20" />
+		<property name="maxPoolSize" value="50" />
+		<property name="queueCapacity" value="100" />
+	</bean>
+
+	<!-- log thread pool -->
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="20" />
+		<property name="maxPoolSize" value="50" />
+		<property name="queueCapacity" value="1000" />
+	</bean>
+	<!-- 文件上传控制 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- maxUploadSize单位是字节 :30M -->
+		<property name="maxUploadSize" value="31457280"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	
+	<!-- 引入 -->
+	<import resource="spring-datasource-bonecp.xml" />
+	<!-- <import resource="spring-scheduler.xml"/> -->
+	<!-- <import resource="classpath*:framework-hessian-client-base.xml"/> -->
+	<import resource="classpath*:dubbo/spring-dubbo.xml" />
+	<!-- <import resource="classpath*:comm/config/ips-support-redis.xml"/> -->
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        
+						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 声明需要暴露的服务接口 -->
+	<!-- 管理员信息类 -->
+	<dubbo:service interface="com.news.common.project.app.NewsAdminUserAppService" ref="newsAdminUserAppService"  protocol="dubbo"/>
+	<!-- 新闻类别服务类 -->
+	<dubbo:service interface="com.news.common.project.app.NewsTypeAppService" ref="newsTypeAppService"  protocol="dubbo"/>
+	<!-- 新闻类别服务类 -->
+	<dubbo:service interface="com.news.common.project.app.NewsTemplateAppService" ref="newsTemplateAppService"  protocol="dubbo"/>
+	<!-- 新闻编辑服务类 -->
+	<dubbo:service interface="com.news.common.project.app.NewsDetailAppService" ref="newsDetailAppService"  protocol="dubbo"/>
+	<!-- banner服务类 -->
+	<dubbo:service interface="com.news.common.project.app.NewsBannerAppService" ref="newsBannerAppService"  protocol="dubbo"/>
+</beans>

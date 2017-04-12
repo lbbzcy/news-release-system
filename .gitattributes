@@ -3,6 +3,10 @@
 
 # Custom for Visual Studio
 *.cs     diff=csharp
+*.java linguist-language=java
+*.css linguist-language=java
+*.js linguist-language=java
+*.jsp linguist-language=java
 
 # Standard to msysgit
 *.doc	 diff=astextplain
