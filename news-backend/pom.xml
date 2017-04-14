@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.news</groupId>
-    <artifactId>news-parent</artifactId>
-    <version>0.0.1-RELEASE</version>
-  </parent>
-  <artifactId>news-backend</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.news</groupId>
+		<artifactId>news-parent</artifactId>
+		<version>0.0.1-RELEASE</version>
+	</parent>
+	<artifactId>news-backend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<dependencies>
 		<!-- 系统公用接口 -->
 		<dependency>
 			<groupId>com.news</groupId>
@@ -22,7 +23,7 @@
 			</exclusions>
 		</dependency>
 		<!-- framework -->
-		
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -80,7 +81,7 @@
 			<artifactId>captcha-kaptcha</artifactId>
 		</dependency>
 
-		
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -109,12 +110,12 @@
 			<artifactId>httpcore</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>ch.qos.logback</groupId>
-		    <artifactId>logback-classic</artifactId>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>ch.qos.logback</groupId>
-		    <artifactId>logback-core</artifactId>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -123,8 +124,8 @@
 
 		<!-- apache commons -->
 		<dependency>
-		  <groupId>org.json</groupId>
-		  <artifactId>org.json</artifactId>
+			<groupId>org.json</groupId>
+			<artifactId>org.json</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -163,7 +164,7 @@
 
 		<dependency>
 			<groupId>cn.alphabets.light</groupId>
-			  <artifactId>lightcore-java</artifactId>
+			<artifactId>lightcore-java</artifactId>
 		</dependency>
 
 		<dependency>
@@ -187,7 +188,7 @@
 
 		<dependency>
 			<groupId>org.opensymphony.quartz</groupId>
-			  <artifactId>quartz-all</artifactId>
+			<artifactId>quartz-all</artifactId>
 		</dependency>
 
 		<dependency>
@@ -195,7 +196,7 @@
 			<artifactId>dom4j</artifactId>
 			<version>${dom4j.version}</version>
 		</dependency>
-		
+
 		<!-- dubbo依赖引入 -->
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
@@ -204,7 +205,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
-			<version>2.5.3</version><!--$NO-MVN-MAN-VER$-->
+			<version>2.5.3</version><!--$NO-MVN-MAN-VER$ -->
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -216,6 +217,19 @@
 			<groupId>com.101tec</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
+
+		<!--解决tomcat部署跨域问题 -->
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>java-property-utils</artifactId>
+			<version>1.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
