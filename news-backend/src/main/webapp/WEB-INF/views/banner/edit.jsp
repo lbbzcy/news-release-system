@@ -22,7 +22,7 @@
 								<div class="col-sm-10">
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#myModal">选择链接新闻</button>
-									<input type="text" class="form-control" placeholder="请填写链接"
+									<input type="text" class="form-control" readonly placeholder="新闻链接"
 										id="title" name="title" value="${entity.title}"> <input
 										type="hidden" class="form-control" id="link" name="link"
 										value="${entity.link}">
@@ -41,18 +41,18 @@
 											<div class="upload_box">
 												<div class="upload_area">
 													<input type="file" name="file" id="file_upload" /> <input
-														type="hidden" id="mimg" name="mimg" value="${entity.mimg}">
+														type="hidden" id="mimg" name="mimg" value="${entity.imgsrc}">
 													<ul class="upload_file_box" style="display: none;"
 														id="queue"></ul>
 												</div>
 											</div>
 											<div
-												style="<c:if test="${empty entity.mimg}" >display: none;</c:if>margin-bottom:20px;"
+												style="<c:if test="${empty entity.imgsrc}" >display: none;</c:if>margin-bottom:20px;"
 												id="small_prev">
 												<span id="image_cover"> <c:if
-														test="${not empty entity.mimg}">
+														test="${not empty entity.imgsrc}">
 														<img style='max-width: 100px; max-height: 200px;'
-															src='${basepath}${entity.mimg}'>
+															src='${basepath}${entity.imgsrc}'>
 													</c:if>
 												</span><a class="js_removeCover" href="javascript:void(0);"
 													onclick="deleteCover('');">删除</a>
@@ -217,8 +217,34 @@
 			});
 		});
 		function deleteCover(){
-		    $("#small_prev").hide();
-		  }
+	    	$("#small_prev").hide();
+    	}
+		function check(){
+			var link = $("input[name='link']").val();
+			var imgsrc = $("input[name='mimg']").val();
+			console.log("link:"+link+"imgsrc:"+imgsrc);
+			if (validata(link)) {
+				layer.msg('请选择链接新闻', {
+					time : 1000,
+					offset : '100px'
+				});
+				return false;
+			}
+			if (validata(imgsrc)) {
+				layer.msg('请上传图片', {
+					time : 1000,
+					offset : '100px'
+				});
+				return false;
+			}
+		}
+		function validata(name) {
+			if (name == undefined || name == null || name == "") {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>

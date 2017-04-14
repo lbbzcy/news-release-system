@@ -24,9 +24,10 @@
 								<label class="col-sm-2 control-label">新闻类别</label>
 								<div class="col-sm-10 ">
 									<select class="form-control m-b" id="typeid" name="typeid"
-										value="${entity.typeid}" onchange="change">
+										value="${entity.typeid}">
 										<c:forEach items="${newsTypeList}" var="type">
-											<option value="${type.id}" <c:if test="${type.id == entity.typeid }">selected="selected"</c:if>>
+											<option value="${type.id}"
+												<c:if test="${type.id == entity.typeid }">selected="selected"</c:if>>
 												<c:out value="${type.name}"></c:out>
 											</option>
 										</c:forEach>
@@ -36,10 +37,12 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">新闻模板</label>
 								<div class="col-sm-10 ">
-									<select class="form-control m-b" id="templateid" name="templateid"
-										value="${entity.templateid}" onchange="change">
+									<select class="form-control m-b" id="templateid"
+										name="templateid" value="${entity.templateid}"
+										onchange="change">
 										<c:forEach items="${newsTemplateList}" var="template">
-											<option value="${template.id}" <c:if test="${template.id == entity.templateid }">selected="selected"</c:if>>
+											<option value="${template.id}"
+												<c:if test="${template.id == entity.templateid }">selected="selected"</c:if>>
 												<c:out value="${template.name}"></c:out>
 											</option>
 										</c:forEach>
@@ -53,7 +56,9 @@
 									<select class="form-control m-b" name="ishot" id="ishot"
 										value="${entity.ishot}">
 										<c:forEach items="${isHotList }" var="en">
-											<option value="${en }" <c:if test="${en == entity.ishot }">selected="selected"</c:if>><c:out value="${en.displayName }" /></option>	
+											<option value="${en }"
+												<c:if test="${en == entity.ishot }">selected="selected"</c:if>><c:out
+													value="${en.displayName }" /></option>
 										</c:forEach>
 									</select>
 								</div>
@@ -71,15 +76,15 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">浏览数量</label>
 									<div class="col-sm-10 ">
-										<input type="text" class="form-control" readonly name="viewnum"
-											value="${entity.viewnum}"> </select>
+										<input type="text" class="form-control" readonly
+											name="viewnum" value="${entity.viewnum}"> </select>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">评论次数</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" readonly name="commentnum"
-											value="${entity.commentnum}">
+										<input type="text" class="form-control" readonly
+											name="commentnum" value="${entity.commentnum}">
 									</div>
 								</div>
 							</c:if>
