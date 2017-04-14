@@ -20,4 +20,6 @@ public interface NewsBannerDtoMapper {
     int updateByPrimaryKey(NewsBannerDto record);
     
     List<NewsBannerDto> queryAllData(NewsBannerDto newsBannerDto);
+
+	List<NewsBannerDto> findByNewsId(String id);
 }

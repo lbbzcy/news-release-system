@@ -59,27 +59,29 @@
 			}
 			var flag = true;
 			$.ajax({
-				async : false,
 				type : "POST",
+				async: false, 
 				url : "${basepath}/news_type/checkNewsType.html",
 				cache : false,
 				data : {
 					name : newstype
 				},
+				dataType:"json",
 				success : function(data) {
+					console.log("判断新闻类别是否可用:"+data);
 					if (data == 'failure') {
 						layer.msg("该类别名称已经存在！", {
 							icon : 1
 						});
-						flag = false;
+						flag =  false;
 					}
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown){
+					console.log(XMLHttpRequest.readyState + "," + XMLHttpRequest.status+ "," + XMLHttpRequest.responseText);
 				}
 			});
-			if (flag) {
-				return true;
-			} else {
-				return false;
-			}
+			console.log("flag:"+flag);
+			return flag;
 			layer.load(2, {
 				time : 10 * 1000
 			});

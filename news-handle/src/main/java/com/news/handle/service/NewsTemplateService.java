@@ -8,7 +8,7 @@ import com.news.common.project.dto.NewsTemplateDto;
 
 public interface NewsTemplateService {
 	//根据name查找template
-	public NewsTemplateDto findByName(String name);
+	public List<NewsTemplateDto> findByName(String name);
 	//find template by id
 	public NewsTemplateDto findById(String id);
 	//添加template

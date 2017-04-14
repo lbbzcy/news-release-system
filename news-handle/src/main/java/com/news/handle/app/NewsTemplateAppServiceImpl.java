@@ -15,7 +15,7 @@ public class NewsTemplateAppServiceImpl implements NewsTemplateAppService {
 	@Autowired
 	private NewsTemplateService newsTemplateService;
 	@Override
-	public NewsTemplateDto findByName(String name) {
+	public List<NewsTemplateDto> findByName(String name) {
 		return newsTemplateService.findByName(name);
 	}
 

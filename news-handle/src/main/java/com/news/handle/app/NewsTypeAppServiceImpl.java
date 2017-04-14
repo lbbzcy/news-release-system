@@ -40,7 +40,7 @@ public class NewsTypeAppServiceImpl implements NewsTypeAppService {
 	}
 
 	@Override
-	public NewsTypeDto findByName(String name) {
+	public List<NewsTypeDto> findByName(String name) {
 		return newsTypeService.findByName(name);
 	}
 

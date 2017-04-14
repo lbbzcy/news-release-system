@@ -11,6 +11,8 @@ public class NewsBannerDto extends IdentityDto{
 	private static final long serialVersionUID = 1L;
 
 	private String id;
+	
+	private String newsid;
 
     private String imgsrc;
 
@@ -36,7 +38,15 @@ public class NewsBannerDto extends IdentityDto{
         this.id = id == null ? null : id.trim();
     }
 
-    public String getImgsrc() {
+    public String getNewsid() {
+		return newsid;
+	}
+
+	public void setNewsid(String newsid) {
+		this.newsid = newsid;
+	}
+
+	public String getImgsrc() {
         return imgsrc;
     }
 

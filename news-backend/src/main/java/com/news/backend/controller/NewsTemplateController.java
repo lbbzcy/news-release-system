@@ -1,6 +1,7 @@
 package com.news.backend.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -69,8 +70,8 @@ public class NewsTemplateController extends BaseController{
 	@ResponseBody
 	public String checkTemplate(@RequestParam String name,HttpServletRequest request){
 		System.out.println("模板名称为："+name);
-		NewsTemplateDto entity = newsTemplateAppService.findByName(name);
-		if(null != entity){
+		List<NewsTemplateDto> entity = newsTemplateAppService.findByName(name);
+		if(!entity.isEmpty()){
 			return "failure";
 		}
 		return "success";

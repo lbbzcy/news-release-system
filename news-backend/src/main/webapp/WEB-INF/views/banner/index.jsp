@@ -89,6 +89,50 @@
 				layer.close(index);
 			});
 		}
+		function openDialog(opentype, bannerid) {
+			if (opentype == 1) {
+				window.location.href = "edit.html?id=" + bannerid;
+			} else if (opentype == 2) {
+				//删除,使用layer弹出对话框提示是否删除
+				var index = layer.confirm('您确定要删除该banner吗？', {
+					btn : [ '确定', '不要' ]
+				//按钮
+				}, function() {
+					$.ajax({
+						type : "POST",
+						url : "${basepath}/banner/delete.html",
+						cache : false,
+						data : {
+							id : bannerid
+						},
+						dataType : "json",
+						success : function(data) {
+							if (data == 'success') {
+								layer.close(index);
+								layer.msg("删除成功", {
+									icon : 1
+								});
+								window.location.reload();
+							} else {
+								layer.close(index);
+								layer.msg("删除失败", {
+									icon : 1
+								});
+							}
+						},
+						error : function() {
+							layer.msg("删除失败", {
+								icon : 1
+							});
+						}
+
+					});
+
+				}, function() {
+					layer.close(index);
+				});
+			}
+		}
 	</script>
 </body>
 </html>

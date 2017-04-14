@@ -3,6 +3,7 @@
 <mapper namespace="com.news.handle.dao.NewsBannerDtoMapper" >
   <resultMap id="BaseResultMap" type="com.news.common.project.dto.NewsBannerDto" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
+    <id column="NEWSID" property="newsid" jdbcType="VARCHAR" />
     <result column="IMGSRC" property="imgsrc" jdbcType="VARCHAR" />
     <result column="LINK" property="link" jdbcType="VARCHAR" />
     <result column="TITLE" property="title" jdbcType="VARCHAR" />
@@ -13,7 +14,7 @@
     <result column="UPDATOR" property="updator" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, IMGSRC, LINK, TITLE,CREATETIME, UPDATETIME, ISDEL, CREATOR, UPDATOR
+    ID, NEWSID,IMGSRC, LINK, TITLE,CREATETIME, UPDATETIME, ISDEL, CREATOR, UPDATOR
   </sql>
   <select id="queryAllData" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsBannerDto">
@@ -29,15 +30,21 @@
     from NEWS_BANNER
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="findByNewsId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from NEWS_BANNER
+    where NEWSID = #{newsid,jdbcType=VARCHAR}
+  </select>
   <update id="deleteByPrimaryKey" parameterType="java.lang.String" >
     update NEWS_BANNER
 	set ISDEL = 1 where ID = #{id,jdbcType=VARCHAR}
   </update>
   <insert id="insert" parameterType="com.news.common.project.dto.NewsBannerDto" >
-    insert into NEWS_BANNER (ID, IMGSRC, LINK, TITLE,
+    insert into NEWS_BANNER (ID,NEWSID, IMGSRC, LINK, TITLE,
       CREATETIME, UPDATETIME, ISDEL, 
       CREATOR, UPDATOR)
-    values (#{id,jdbcType=VARCHAR}, #{imgsrc,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{newsid,jdbcType=VARCHAR},#{imgsrc,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=CHAR}, 
       #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR})
   </insert>
@@ -46,6 +53,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
+      </if>
+      <if test="newsid != null" >
+        NEWSID,
       </if>
       <if test="imgsrc != null" >
         IMGSRC,
@@ -76,6 +86,9 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
+      <if test="newsid != null" >
+        #{newsid,jdbcType=VARCHAR},
+      </if>
       <if test="imgsrc != null" >
         #{imgsrc,jdbcType=VARCHAR},
       </if>
@@ -105,6 +118,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.news.common.project.dto.NewsBannerDto" >
     update NEWS_BANNER
     <set >
+       <if test="newsid != null" >
+        NEWSID = #{newsid,jdbcType=VARCHAR},
+      </if>
       <if test="imgsrc != null" >
         IMGSRC = #{imgsrc,jdbcType=VARCHAR},
       </if>
@@ -112,7 +128,7 @@
         LINK = #{link,jdbcType=VARCHAR},
       </if>
       <if test="title != null" >
-        LINK = #{title,jdbcType=VARCHAR},
+        TITLE = #{title,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
         CREATETIME = #{createtime,jdbcType=TIMESTAMP},
@@ -134,7 +150,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.news.common.project.dto.NewsBannerDto" >
     update NEWS_BANNER
-    set IMGSRC = #{imgsrc,jdbcType=VARCHAR},
+    set NEWSID = #{newsid,jdbcType=VARCHAR},
+      IMGSRC = #{imgsrc,jdbcType=VARCHAR},
       LINK = #{link,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
       CREATETIME = #{createtime,jdbcType=TIMESTAMP},

@@ -30,7 +30,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from NEWS_TYPE
-		where NAME = #{name,jdbcType=VARCHAR}
+		where NAME = #{name,jdbcType=VARCHAR} and ISDEL = 0
 	</select>
 
 	<select id="listAllTypes" resultMap="BaseResultMap">

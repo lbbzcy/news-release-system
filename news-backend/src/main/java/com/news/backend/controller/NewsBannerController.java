@@ -2,6 +2,7 @@ package com.news.backend.controller;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -99,6 +100,7 @@ public class NewsBannerController extends BaseController {
 		imgsrc = imgsrc.substring(imgsrc.lastIndexOf("/images/")+7);
 		System.out.println("图片地址为:"+imgsrc);
 		System.out.println("banner链接地址为:"+link);
+		String newsid = link.substring(link.lastIndexOf("=")+1);
 		HttpSession session = request.getSession();
 		NewsAdminUserDto adminuser = getCurrentUser(session);
 		System.out.println("类别的ID为："+id);
@@ -108,6 +110,7 @@ public class NewsBannerController extends BaseController {
 			//新增
 			newsEntity = new NewsBannerDto();
 			newsEntity.setId(newsEntity.getIdentity());
+			newsEntity.setNewsid(newsid);
 			newsEntity.setImgsrc(imgsrc);
 			newsEntity.setLink(link);
 			newsEntity.setTitle(title);
@@ -119,6 +122,7 @@ public class NewsBannerController extends BaseController {
 			newsBannerAppService.insertNewsBannerDto(newsEntity);
 		}else{
 			//修改
+			newsEntity.setNewsid(newsid);
 			newsEntity.setImgsrc(imgsrc);
 			newsEntity.setLink(link);
 			newsEntity.setTitle(title);
@@ -137,13 +141,13 @@ public class NewsBannerController extends BaseController {
 	@RequestMapping(value="/checkNewsBanner",method=RequestMethod.POST)
 	@ResponseBody
 	public String checkNewsBanner(@RequestParam String id,HttpServletRequest request){
-		id = request.getParameter("id");
-		NewsBannerDto entity = newsBannerAppService.findBannerById(id);
+		List<NewsBannerDto> entity = newsBannerAppService.findByNewsId(id);
 		System.out.println("idwei:"+id);
-		if(null != entity){
+		
+		if(!entity.isEmpty()){
 			System.out.println("1");
 			return "failure";
-		}
+		} 
 		System.out.println("2");
 		return "success";
 	}

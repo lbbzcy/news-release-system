@@ -1,5 +1,7 @@
 package com.news.handle.app;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,11 @@ public class NewsBannerAppServiceImpl implements NewsBannerAppService {
 	@Override
 	public int deleteNewsBannerDto(String id) {
 		return newsBannerService.deleteNewsBannerDto(id);
+	}
+
+	@Override
+	public List<NewsBannerDto> findByNewsId(String id) {
+		return newsBannerService.findByNewsId(id);
 	}
 
 }

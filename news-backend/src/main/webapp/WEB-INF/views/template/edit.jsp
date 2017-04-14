@@ -66,6 +66,7 @@
 				data : {
 					name : template
 				},
+				dataType:"json",
 				success : function(data) {
 					if (data == 'failure') {
 						layer.msg("该模板已经存在！", {

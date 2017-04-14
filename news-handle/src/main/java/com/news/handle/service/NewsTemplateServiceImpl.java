@@ -20,7 +20,7 @@ public class NewsTemplateServiceImpl implements NewsTemplateService {
 	@Autowired
 	private NewsTemplateDtoMapper newsTemplateDtoMapper;
 	@Override
-	public NewsTemplateDto findByName(String name) {
+	public List<NewsTemplateDto> findByName(String name) {
 		return newsTemplateDtoMapper.findByName(name);
 	}
 

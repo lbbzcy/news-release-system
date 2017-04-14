@@ -183,43 +183,36 @@
 				var val = $('input:radio[name="newsitem"]:checked').val();
 				var id = $('input:radio[name="newsitem"]:checked').attr("id");
 				if (val == null || id == null) {
-					layer.msg('请选择新闻类别', {
+					layer.msg('请选择新闻链接', {
 						time : 1000,
 						offset : '100px'
 					});
-					return false;
 				} else {
-					var flag = true;
 					$.ajax({
-						async : false,
 						type : "POST",
+						async : false,
 						url : "${basepath}/banner/checkNewsBanner.html",
 						cache : false,
 						data : {
 							id : id
 						},
+						dataType:"json",
 						success : function(data) {
 							console.log("返回结果为:"+data);
 							if (data == 'failure') {
 								layer.msg("该新闻已经关联,请重新选择!", {
 									icon : 1
 								});
-								flag = false;
-							} 
+							} else {
+								$('#myModal').modal('hide');
+								$('#title').val(val);
+								$('#link').val("${basepath}/news_edit?id=" + id);
+							}
 						},
-						error:function(){
-							console.log("出粗");
+						error:function(XMLHttpRequest, textStatus, errorThrown){
+							console.log(XMLHttpRequest.readyState + "," + XMLHttpRequest.status+ "," + XMLHttpRequest.responseText);
 						}
 					});
-					console.log(flag);
-					if (flag) {
-						$('#myModal').modal('hide');
-						$('#title').val(val);
-						$('#link').val("${basepath}/news_edit?id=" + id);
-						return true;
-					} else {
-						return false;
-					}
 				}
 			});
 		});

@@ -22,7 +22,7 @@ public interface NewsTemplateDtoMapper {
 
     int updateByPrimaryKey(NewsTemplateDto record);
     
-    NewsTemplateDto findByName(String name);
+    List<NewsTemplateDto> findByName(String name);
     
     List<NewsTemplateDto> queryAllData(NewsTemplateDto newsTemplateDto);
     

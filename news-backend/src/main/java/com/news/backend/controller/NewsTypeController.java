@@ -2,6 +2,7 @@ package com.news.backend.controller;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -119,8 +120,9 @@ public class NewsTypeController extends BaseController{
 	@RequestMapping(value="/checkNewsType",method=RequestMethod.POST)
 	@ResponseBody
 	public String checkNewsType(@RequestParam String name,HttpServletRequest request){
-		NewsTypeDto entity = newsTypeAppService.findByName(name);
-		if(null != entity){
+		List<NewsTypeDto> entity = newsTypeAppService.findByName(name);
+		if(entity.size()>0){
+			System.out.println("不为空");
 			return "failure";
 		}
 		return "success";

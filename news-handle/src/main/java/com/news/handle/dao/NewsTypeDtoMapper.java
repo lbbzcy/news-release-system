@@ -21,7 +21,7 @@ public interface NewsTypeDtoMapper {
 
     int updateByPrimaryKey(NewsTypeDto record);
     
-    NewsTypeDto findByName(String name);
+    List<NewsTypeDto> findByName(String name);
     
     List<NewsTypeDto> queryAllData(NewsTypeDto newsTypeDto);
     

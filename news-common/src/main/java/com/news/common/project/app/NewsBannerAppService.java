@@ -1,5 +1,7 @@
 package com.news.common.project.app;
 
+import java.util.List;
+
 import com.news.common.core.dto.PageData;
 import com.news.common.project.dto.NewsBannerDto;
 
@@ -18,4 +20,7 @@ public interface NewsBannerAppService {
 
 	// 删除banner
 	public int deleteNewsBannerDto(String id);
+	
+	//根据新闻id查找banner
+	public List<NewsBannerDto> findByNewsId(String id);
 }

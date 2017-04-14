@@ -44,4 +44,9 @@ public class NewsBannerServiceImpl implements NewsBannerService {
 		return newsBannerDtoMapper.deleteByPrimaryKey(id);
 	}
 
+	@Override
+	public List<NewsBannerDto> findByNewsId(String id) {
+		return newsBannerDtoMapper.findByNewsId(id);
+	}
+
 }

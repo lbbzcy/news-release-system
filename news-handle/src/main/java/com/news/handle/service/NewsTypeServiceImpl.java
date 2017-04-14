@@ -50,7 +50,7 @@ public class NewsTypeServiceImpl implements NewsTypeService {
 	}
 
 	@Override
-	public NewsTypeDto findByName(String name) {
+	public List<NewsTypeDto> findByName(String name) {
 		return newsTypeDtoMapper.findByName(name);
 	}
 

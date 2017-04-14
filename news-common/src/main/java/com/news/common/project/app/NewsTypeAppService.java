@@ -17,7 +17,7 @@ public interface NewsTypeAppService {
 	//删除类别
 	public int deleteNewsTypeDto(String id);
 	//根据类别名称查询类别
-	public NewsTypeDto findByName(String name);
+	public List<NewsTypeDto> findByName(String name);
 	
 	public List<NewsTypeDto> listAllTypes();
 }
