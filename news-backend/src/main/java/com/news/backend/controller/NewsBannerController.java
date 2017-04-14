@@ -64,13 +64,10 @@ public class NewsBannerController extends BaseController {
 	 */
 	@RequestMapping(value="edit")
 	public String showNewsBannerEdit(@RequestParam(value="id",required=false) String id,HttpServletRequest request,Model model,PageData<NewsDetailDto> pageData,NewsDetailDto queryParam){
-//		NewsDetailDto entity = newsDetailAppService.findNewsById(id);
-//		model.addAttribute("entity", entity);
-//		List<NewsTypeDto> newsTypeList = newsTypeAppService.listAllTypes();
-//		List<NewsTemplateDto> newsTemplateList = newsTemplateAppService.listAllTemplate();
-//		model.addAttribute("newsTypeList", newsTypeList);
-//		model.addAttribute("newsTemplateList", newsTemplateList);
-//		model.addAttribute("isHotList", EYesNo.values());
+		if(id != null && !"".equals(id)){
+			NewsBannerDto entity = 	newsBannerAppService.findBannerById(id);
+			model.addAttribute("entity",entity);
+		}
 		//获取新闻类别list和模板list
 		pageData  = newsDetailAppService.findPageWithType(pageData, queryParam);
 		model.addAttribute("pageData", pageData);
@@ -149,6 +146,25 @@ public class NewsBannerController extends BaseController {
 			return "failure";
 		} 
 		System.out.println("2");
+		return "success";
+	}
+	/**
+	 * 删除新闻banner
+	 * @param id
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete(@RequestParam String id, HttpServletRequest request){
+		try {
+			int result = newsBannerAppService.deleteNewsBannerDto(id);
+			if(result<1){
+				return "failure";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "success";
 	}
 	public String redirectToList() {

@@ -91,7 +91,7 @@
 		}
 		function openDialog(opentype, bannerid) {
 			if (opentype == 1) {
-				window.location.href = "edit.html?id=" + bannerid;
+				window.location.href = "${basepath}/banner/edit.html?id=" + bannerid;
 			} else if (opentype == 2) {
 				//删除,使用layer弹出对话框提示是否删除
 				var index = layer.confirm('您确定要删除该banner吗？', {
@@ -110,12 +110,17 @@
 							if (data == 'success') {
 								layer.close(index);
 								layer.msg("删除成功", {
+									time : 2000,
 									icon : 1
 								});
-								window.location.reload();
+								console.log("删除成功");
+								setTimeout(function () {
+									window.location.reload();
+							    }, 1000);
 							} else {
 								layer.close(index);
 								layer.msg("删除失败", {
+									time : 2000,
 									icon : 1
 								});
 							}
@@ -125,7 +130,6 @@
 								icon : 1
 							});
 						}
-
 					});
 
 				}, function() {

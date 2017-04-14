@@ -52,7 +52,7 @@
 												<span id="image_cover"> <c:if
 														test="${not empty entity.imgsrc}">
 														<img style='max-width: 100px; max-height: 200px;'
-															src='${basepath}${entity.imgsrc}'>
+															src='${bannersrc}${entity.imgsrc}'>
 													</c:if>
 												</span><a class="js_removeCover" href="javascript:void(0);"
 													onclick="deleteCover('');">删除</a>
