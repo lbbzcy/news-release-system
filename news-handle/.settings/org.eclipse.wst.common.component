@@ -7,6 +7,9 @@
         <dependent-module archiveName="news-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/news-common/news-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="comm-conf-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/comm-conf/comm-conf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/news-handle/target/classes"/>
         <property name="context-root" value="handle"/>
     </wb-module>

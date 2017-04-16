@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+	
+	<!-- shiroFilter 与 web.xml 对应 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login/index.html" />
+		<property name="successUrl" value="/main/index.html" />
+		<property name="filterChainDefinitions">
+			<value>
+				/=anon
+				/js/** =anon
+	        	/css/** =anon
+	        	/images/** =anon
+	        	/validateCode/** =anon
+	        	/ajaxcheck/** =anon
+	        	/exception/** =anon
+	        	/hessian/** =anon
+	        	/test/** =anon
+	        	/dwr/** =anon
+	        	/ocx/** =anon
+	        	/helpcenter/** =anon
+	        	/resourceNotFound* =anon
+				/login/logout* =anon
+				/suc/toSuccess* =anon
+				/sso/validate** =anon
+				#需要登录才能访问地址
+	            /sso/login.html* =authc
+	            /login/** =authc
+	            /main/** =authc
+	            /transfer/** =authc
+	            /recharge/** =authc
+	            /withdraw/** =authc
+	            /account/base/** =authc
+	            /account/info/** =authc
+	            /account/authentication/** =authc
+	            /record/** =authc
+	            /person/**=authc
+	            /account/editmobile/callback* =authc
+	            /account/openact/** =authc
+	            /account/recharge/** =authc
+	            /checkMessage/** =authc
+	            /contact/** =authc
+	            #密码找回
+	            /account/pwdreset/** =anon
+	            #访客查询
+	            /policysearch/**=anon
+	            #访客注册
+	            /register/**=anon
+			</value>
+		</property>
+		 <!-- <property name="filters">
+			<util:map>
+				<entry key="authc" value-ref="shieFormAuthenticationFilter"/>
+			</util:map>
+		</property> -->
+	</bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shieShiroRealm"/>
+	</bean>
+	<!-- 用户校验 -->
+	<!-- <bean id="shieFormAuthenticationFilter" class="com.ylink.inetpay.portal.shie.web.shiro.ShieFormAuthenticationFilter">
+		<property name="usernameParam" value="loginId"/>
+		<property name="passwordParam" value="password"/>
+		<property name="checkCodeParam" value="checkCode"/>
+		<property name="loginTypeParam" value="loginType" />
+	</bean> -->
+	<bean id="shieShiroRealm" class="com.news.frontend.shiro.ShieShiroRealm">		
+		<property name="cachingEnabled" value="false" />
+	</bean>
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="cacheManager"/>
+	</bean>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    	<property name="configLocation">  
+        	<value>classpath:/cache/ehcache-shiro.xml</value>  
+      	</property> 
+    </bean>
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	 <!-- AOP式方法级权限检查  -->
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"> 
+        <property name="proxyTargetClass" value="true" /> 
+    </bean> 
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"> 
+       <property name="securityManager" ref="securityManager"/> 
+    </bean> 
+
+</beans>
