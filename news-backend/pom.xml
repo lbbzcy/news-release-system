@@ -163,11 +163,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>cn.alphabets.light</groupId>
-			<artifactId>lightcore-java</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
