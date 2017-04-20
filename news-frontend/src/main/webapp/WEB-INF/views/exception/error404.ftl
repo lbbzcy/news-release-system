@@ -46,6 +46,5 @@
 			
 			</div>
 		</div>
-		<#include "../template/bottom.ftl">
 	</body>
 </html>

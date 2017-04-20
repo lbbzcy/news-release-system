@@ -20,7 +20,7 @@
 		<property name="queueCapacity" value="150" />
 	</bean>
 	<!-- 其他文件引入 -->
-	<import resource="spring-security.xml" />
+	<!-- <import resource="spring-security.xml" /> -->
 	<import resource="classpath*:dubbo/spring-dubbo.xml"/>
 	<!-- <import resource="classpath*:comm/config/ips-support-redis.xml"/>	 -->
 </beans>
