@@ -5,7 +5,6 @@
 						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-	<!-- 支付系统充值服务类 -->
-	<!-- <dubbo:reference id="payRechargeAppService" interface="com.ylink.inetpay.common.project.pay.app.PayRechargeAppService" 
-		retries="0" timeout="60000" /> -->
+	<!-- 新闻类别服务类 -->
+	<dubbo:reference id="newsTypeAppService" interface="com.news.common.project.app.NewsTypeAppService" />
 </beans>

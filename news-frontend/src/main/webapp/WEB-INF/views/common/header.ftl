@@ -63,22 +63,22 @@
 			<div class="inner">
 				<nav class="main_menu">
 					<ul>
-						<li><a href="${rca.contextPath}/newstype/index.html">娱乐</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">热点</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">科技</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">体育</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">汽车</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">财经</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">搞笑</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">娱乐</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">热点</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">科技</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">体育</a></li>
-						<li><a href="${rca.contextPath}/newstype/index.html">更多</a>
+						<#list data as item>
+							<#if item_index lt 11>
+								<li><a href="${rca.contextPath}/newstype/index.html">${item.name}</a></li>
+							</#if>
+						</#list>
+						<#if (data?size > 11)>
+						<li><a href="">更多</a>
 							<ul>
-								<li><a href="${rca.contextPath}/newstype/index.html">段子</a></li>
-								<li><a href="${rca.contextPath}/newstype/index.html">视频</a></li>
-							</ul></li>
+								<#list data as item>
+									<#if item_index gte 11>
+										<li><a href="${rca.contextPath}/newstype/index.html">${item.name}</a></li>
+									</#if>
+								</#list>
+							</ul>
+						</li>
+						</#if>
 					</ul>
 				</nav>
 			</div>
