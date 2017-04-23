@@ -4,14 +4,6 @@
 
 <link rel="stylesheet" href="${rca.contextPath}/layout/style.css"
 	type="text/css" />
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic"
-	rel="stylesheet" type="text/css" />
 
 <script type="text/javascript"
 	src="${rca.contextPath}/layout/js/jquery.js"></script>
@@ -30,11 +22,11 @@
 <!-- jQuery tools end -->
 
 <!-- Calendar start -->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="${rca.contextPath}/layout/plugins/calendar/calendar.css"
 	type="text/css" />
 <script type="text/javascript"
-	src="${rca.contextPath}/layout/plugins/calendar/calendar.js"></script>
+	src="${rca.contextPath}/layout/plugins/calendar/calendar.js"></script> -->
 <!-- Calendar end -->
 
 <!-- ScrollTo start -->
@@ -72,7 +64,8 @@
 
 <script type="text/javascript"
 	src="${rca.contextPath}/layout/js/main.js" charset="utf-8"></script>
-
+<!-- jQuery Form Validation -->
+<script type="text/javascript" src="${rca.contextPath}/layout/plugins/validation/jquery.validate.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	jQuery(function() {
 	});

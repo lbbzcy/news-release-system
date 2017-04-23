@@ -1723,10 +1723,10 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 
 .block_registration {width:745px; margin:0px auto 0px;}
 .block_registration p {padding-bottom:0px;}
-.block_registration .col_1 {width:378px; float:left;}
-.block_registration .col_2 {width:332px; float:right;}
+.block_registration .col_1 {/* width:378px; float:left; */}
+.block_registration .col_2 {/* width:332px; float:right; */}
 .block_registration .label {height:29px; float:left;}
-.block_registration .label p {font-size:11px; color:#676767; line-height:29px;}
+.block_registration .label p {font-size:11px; color:#676767; line-height:29px;width:60px;text-align:right;padding-right:10px;}
 .block_registration .label span {color:#e50303;}
 .block_registration .field {
 	width:261px;
@@ -1744,7 +1744,10 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 	
 	behavior:url(js/PIE.htc);
 }
-.block_registration .field input {width:241px; height:14px; line-height:14px; margin-left:10px; padding:6px 0px; display:block; background-color:transparent; border:0px; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#676767;}
+.block_registration .col_1 input {width:200px; height:27px; float:left; line-height:27px; padding-left:10px; display:block; background-color:#ffffff; border:1px solid #e6e6e6; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#676767;}
+.block_registration .col_2 input {width:200px; height:27px; float:left; line-height:27px; padding-left:10px; display:block; background-color:#ffffff; border:1px solid #e6e6e6; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#676767;}
+.block_registration .col_1 .error{color:red;line-height:27px;padding-left:10px;}
+.block_registration .col_2 .error{color:red;line-height:27px;padding-left:10px;}
 .block_registration .errored {border:1px solid #f2d3ce;}
 .block_registration .select {
 	width:210px;

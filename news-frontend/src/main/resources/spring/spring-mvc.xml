@@ -2,10 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
 	<!-- 自动扫描且只扫描@Controller -->
 	<context:component-scan base-package="com.news.frontend"
@@ -23,8 +24,7 @@
 		登录的用户不存在账户信息时，输入非法地址拦截处理器 <bean class="com.ylink.inetpay.portal.shie.web.interceptor.HasAccountInterceptor"/> 
 		</mvc:interceptors> -->
 	<!--4.2使用 -->
-	<mvc:annotation-driven
-		content-negotiation-manager="contentNegotiationManager" />
+	<mvc:annotation-driven />
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="favorPathExtension" value="true" />
@@ -42,6 +42,7 @@
 		</property>
 	</bean>
 
+	<!-- json对象转换器 -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes">
@@ -50,6 +51,23 @@
 			</list>
 		</property>
 	</bean>
+	<!-- <bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<util:list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application" />
+					<constructor-arg index="1" value="json" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text" />
+					<constructor-arg index="1" value="*" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+			</util:list>
+		</property>
+	</bean> -->
 
 
 	<!-- 根据客户端的不同的请求决定不同的view进行响应 -->

@@ -27,22 +27,6 @@
 					<a href="index.html"><img src="${rca.contextPath}/images/logo_top.png"
 						alt="BusinessNews" title="BusinessNews" /></a>
 				</div>
-				<div class="block_today_date">
-					<div class="num">
-						<p id="num_top" />
-					</div>
-					<div class="other">
-						<p class="month_year">
-							<span id="month_top"></span>, <span id="year_top"></span>
-						</p>
-						<p id="day_top" class="day" />
-					</div>
-					<div class="block_clock">
-						<p>
-							时间: <span id="time"></span>
-						</p>
-					</div>
-				</div>
 				<div class="fr">
 					<div class="block_languages"></div>
 					<div class="block_search_top">
