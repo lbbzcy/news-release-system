@@ -13,6 +13,28 @@
   <sql id="Base_Column_List" >
     ID, USERNAME, PASSWORD, MOBILE, EMAIL, ISDEL, NICKNAME
   </sql>
+  
+  <select id="getUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+	select
+	<include refid="Base_Column_List" />
+	from NEWS_USER
+	where USERNAME = #{username,jdbcType=VARCHAR}  and ISDEL = '0'
+  </select>
+  
+  <select id="getUserByMobile" resultMap="BaseResultMap" parameterType="java.lang.String">
+	select
+	<include refid="Base_Column_List" />
+	from NEWS_USER
+	where MOBILE = #{mobile,jdbcType=VARCHAR}  and ISDEL = '0'
+  </select>
+  
+  <select id="getUserByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
+	select
+	<include refid="Base_Column_List" />
+	from NEWS_USER
+	where EMAIL = #{email,jdbcType=VARCHAR}  and ISDEL = '0'
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

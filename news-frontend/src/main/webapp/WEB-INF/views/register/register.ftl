@@ -34,10 +34,10 @@
 						<p class="general_title">
 							<span>加入我们</span>
 						</p>
-						<div class="separator" style="height: 39px;"></div>
+						<div id="error_message" class="separator" style="height: 39px;color:red;text-align:center;line-height:39px;font-size:18px;">${register_error}</div>
 
 						<div class="block_registration">
-							<form action="#" id="w_validation" method="post"/>
+							<form action="${rca.contextPath}/register/register.html" id="w_validation" method="post"/>
 							<div class="col_1">
 								<div style="margin:0px 205px;width:450px;">
 									<div class="label">
@@ -81,7 +81,8 @@
 											密码<span>*</span>:
 										</p>
 									</div>
-									<input name="password" id="password" type="password" />
+									<input name="password1" id="password1" type="password" />
+									<input name="password" id="password" type="hidden" />
 									<div class="clearboth"></div>
 									<div class="separator" style="height: 12px;"></div>
 									
@@ -124,6 +125,10 @@
 	<#include "/common/popup.ftl"> 
 	<script type="text/javascript">
     	$(function(){
+    		setTimeout(function(){
+    			$("#error_message").html("");
+    			},2000);
+    		
     		// 手机号码验证
     		jQuery.validator.addMethod("isMobile", function(value, element) {
     		    var length = value.length;
@@ -152,20 +157,40 @@
     	   			},
     	   			mobile:{
     	   				required:true,
-    	   				isMobile:true
+    	   				isMobile:true,
+    	   				remote:{
+        	   				//验证手机号码是否已经使用  
+         	                   type:"POST",  
+         	                   url:"${rca.contextPath}/register/checkMobile.html",
+         	                   data:{
+         	                	  mobile:function(){
+         	                		   return $("#mobile").val();
+         	                	   }
+         	                   }
+        	   				}
     	   			},
     	   			email:{
     	   				required:true,
-    	   				email:true
+    	   				email:true,
+    	   				remote:{
+        	   				//验证邮箱是否已经绑定  
+         	                   type:"POST",  
+         	                   url:"${rca.contextPath}/register/checkEmail.html",
+         	                   data:{
+         	                	  email:function(){
+         	                		   return $("#email").val();
+         	                	   }
+         	                   }
+        	   				}
     	   			},
-    	   			password:{
+    	   			password1:{
     	   				required:true,
     	   				rangelength:[6,20]
     	   			},
     	   			confirmpwd:{
     	   				required:true,
     	   				rangelength:[6,20],
-    	   				equalTo:"#password"
+    	   				equalTo:"#password1"
     	   			}
     	   			
     			},  
@@ -180,13 +205,15 @@
     	        		rangelength:"昵称长度在{0}-{1}之间"
     	        	},
     	        	mobile:{
-    	        		required:"请输入手机号码"
+    	        		required:"请输入手机号码",
+    	        		remote:"手机号已经绑定"
     	        	},
     	        	email:{
     	        		required:"请输入邮箱",
-    	        		email:"邮箱格式不正确"
+    	        		email:"邮箱格式不正确",
+    	        		remote:"邮箱已经被绑定"
     	        	},
-    	        	password:{
+    	        	password1:{
     	        		required:"请输入密码",
     	        		rangelength:"密码长度在{0}-{1}之间"
     	        	},
@@ -199,6 +226,7 @@
     	    });  
     	});
     	function register(){
+    		$("#password").val($.md5($.trim($("#password1").val())));
     		$("#w_validation").submit();
     	}
     </script>

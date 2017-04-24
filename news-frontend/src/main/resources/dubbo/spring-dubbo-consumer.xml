@@ -7,4 +7,6 @@
 
 	<!-- 新闻类别服务类 -->
 	<dubbo:reference id="newsTypeAppService" interface="com.news.common.project.app.NewsTypeAppService" />
+	<!-- 用户服务类 -->
+	<dubbo:reference id="newsUserAppService" interface="com.news.common.project.app.NewsUserAppService" />
 </beans>

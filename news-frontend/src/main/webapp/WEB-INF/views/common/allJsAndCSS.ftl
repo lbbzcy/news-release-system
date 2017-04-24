@@ -1,12 +1,16 @@
 <!--[if lt IE 9]>
     <script type="text/javascript" src="${rca.contextPath}/layout/plugins/html5.js"></script>
-    <![endif]-->
+<![endif]-->
 
-<link rel="stylesheet" href="${rca.contextPath}/layout/style.css"
-	type="text/css" />
+<link rel="stylesheet" href="${rca.contextPath}/layout/style.css" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript"
 	src="${rca.contextPath}/layout/js/jquery.js"></script>
+<script type="text/javascript"
+src="${rca.contextPath}/layout/js/jquery.md5.js"></script>
 
 <!-- PrettyPhoto start -->
 <link rel="stylesheet"

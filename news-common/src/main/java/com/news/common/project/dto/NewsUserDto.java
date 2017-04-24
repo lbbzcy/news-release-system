@@ -1,7 +1,14 @@
 package com.news.common.project.dto;
 
-public class NewsUserDto {
-    private String id;
+import com.news.common.core.dto.IdentityDto;
+
+public class NewsUserDto extends IdentityDto{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String id;
 
     private String username;
 
