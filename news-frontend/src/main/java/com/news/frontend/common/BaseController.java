@@ -1,5 +1,6 @@
 package com.news.frontend.common;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,21 +15,13 @@ import com.news.common.project.dto.NewsTypeDto;
 import com.news.common.project.dto.NewsUserDto;
 
 public class BaseController {
+	
 	@Autowired 
 	private NewsTypeAppService newsTypeAppService;
 	
 	protected void getAllNewsType(Model model) {
 		List<NewsTypeDto> list = newsTypeAppService.listAllTypes();
 		model.addAttribute("data", list);
-	}
-	
-	/**
-	 * 将用户写入Session
-	 * @param user
-	 * @param request
-	 */
-	protected void writeUserToSession(NewsUserDto user, HttpServletRequest request) {
-		request.getSession().setAttribute(SessionKey.LOGIN_USER, user);
 	}
 	
 	protected NewsUserDto getCurrentUser(HttpSession session) {

@@ -12,7 +12,7 @@
             <div class="form">
                 <form id="loginForm" />
                 <div class="column">
-                    <p class="label">用户名</p>
+                    <p class="label">用户名/手机号/邮箱</p>
                     <div class="field"><input id="username" name="username" type="text" /></div>
                 </div>
 
@@ -59,7 +59,7 @@
             					$('#login_error').html("用户名或密码出错,请稍后再试!");
             					setTimeout(function(){
             						$('#login_error').html("");
-            					},5000);
+            					},3000);
             				}
             			},
             			error: function(XMLHttpRequest, textStatus, errorThrown) {

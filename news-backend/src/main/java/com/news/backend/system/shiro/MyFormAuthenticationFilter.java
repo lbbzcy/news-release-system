@@ -31,7 +31,7 @@ import com.news.common.project.exception.CheckedException;
 
 public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
 	private static Logger log = LoggerFactory.getLogger(MyFormAuthenticationFilter.class);
-	public static final String NEW_SESSION_INDICATOR = "com.news.backend.system.shiro.CaptchaFormAuthenticationFilter"; 
+	public static final String NEW_SESSION_INDICATOR = "com.news.backend.system.shiro.MyFormAuthenticationFilter"; 
 	public static final String DEFAULT_CAPTCHA_PARAM = "captcha";
 	protected String captchaParam = DEFAULT_CAPTCHA_PARAM;
 	

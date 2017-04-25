@@ -14,15 +14,6 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<!-- <mvc:interceptors> <mvc:interceptor> 防止重复提交的地址 <mvc:mapping path="/account/base/editalias/edit.html"/> 
-		<mvc:mapping path="/account/base/editemail/sendmail.html"/> <mvc:mapping 
-		path="/account/base/editmobile/sendemail.html"/> <mvc:mapping path="/portal/account/base/addmobile/add.html"/> 
-		<mvc:mapping path="/account/pwdreset/sendemail.html"/> <mvc:mapping path="/account/base/password/editpasswordfinish.html"/> 
-		<mvc:mapping path="/account/info/person/edit.html"/> <mvc:mapping path="/account/info/organ/edit.html"/> 
-		防止重复提交的拦截处理器 <bean class="com.ylink.inetpay.portal.shie.web.interceptor.TokenInterceptor"/> 
-		</mvc:interceptor> TODO定义拦截器，目前使用在开发者拦截器，上线可以删除掉 <bean class="com.ylink.inetpay.portal.shie.web.interceptor.DeveloperInterceptor"/> 
-		登录的用户不存在账户信息时，输入非法地址拦截处理器 <bean class="com.ylink.inetpay.portal.shie.web.interceptor.HasAccountInterceptor"/> 
-		</mvc:interceptors> -->
 	<!--4.2使用 -->
 	<mvc:annotation-driven />
 	<bean id="contentNegotiationManager"
@@ -51,24 +42,6 @@
 			</list>
 		</property>
 	</bean>
-	<!-- <bean id="mappingJacksonHttpMessageConverter"
-		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<util:list>
-				<bean class="org.springframework.http.MediaType">
-					<constructor-arg index="0" value="application" />
-					<constructor-arg index="1" value="json" />
-					<constructor-arg index="2" value="UTF-8" />
-				</bean>
-				<bean class="org.springframework.http.MediaType">
-					<constructor-arg index="0" value="text" />
-					<constructor-arg index="1" value="*" />
-					<constructor-arg index="2" value="UTF-8" />
-				</bean>
-			</util:list>
-		</property>
-	</bean> -->
-
 
 	<!-- 根据客户端的不同的请求决定不同的view进行响应 -->
 	<bean
@@ -109,14 +82,6 @@
 		<property name="requestContextAttribute" value="rca" />
 	</bean>
 
-
-	<!-- 异常处理 -->
-	<!-- <bean class="com.ylink.inetpay.portal.shie.web.controller.exception.ExceptionResolver"> 
-		视图名称 <property name="exceptionMappings"> <props> <prop key="org.ylinkpay.framework.core.exception.BusinessRuntimeException"> 
-		exception/bussinessException </prop> </props> </property> <property name="defaultErrorView" 
-		value="/exception/error" /> </bean> -->
-
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 设置上传文件的最大尺寸为6MB -->
@@ -127,6 +92,10 @@
 			<value>UTF-8</value>
 		</property>
 	</bean>
+
+	<!-- spring session -->
+	
+
 
 	<!-- 定义首页 -->
 	<mvc:view-controller path="/" view-name="/index.html" />

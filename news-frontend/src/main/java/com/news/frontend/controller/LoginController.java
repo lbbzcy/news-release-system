@@ -10,27 +10,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.news.common.core.utils.SessionKey;
 import com.news.common.project.app.NewsUserAppService;
 import com.news.common.project.dto.NewsUserDto;
 import com.news.frontend.common.BaseController;
 
 @Controller
 @RequestMapping("/login")
-public class LoginController extends BaseController{
+public class LoginController extends BaseController {
 	@Autowired
 	private NewsUserAppService newsUserAppService;
-	@RequestMapping(value="/handleLogin",method={RequestMethod.POST,RequestMethod.GET})
+
+	@RequestMapping(value = "/handleLogin", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
-	public String handleLogin(@RequestParam(value="username") String username,
-			@RequestParam(value="password") String password,
-			HttpServletRequest request,
-			HttpSession session){
-		System.out.println("authc:"+username);
-		NewsUserDto user = newsUserAppService.getUserByAuth(username);
-		if(null != user){
-			writeUserToSession(user, request);
+	public String handleLogin(@RequestParam(value = "username") String username,
+			@RequestParam(value = "password") String password, HttpServletRequest request) {
+		NewsUserDto user = newsUserAppService.getUserByAuth(username,password);
+		if (null != user) {
+			HttpSession session = request.getSession();
+			session.setAttribute(SessionKey.LOGIN_USER, user);
 			return "success";
-		}else{
+		} else {
 			return "error";
 		}
 	}

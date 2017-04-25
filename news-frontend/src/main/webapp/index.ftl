@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div id="messageDiv">
-			<img src="${Request["contextPath"]}/images/loading.gif" alt="" />请稍候...
+			<div style="margin:0px auto;"><img src="${Request["contextPath"]}/images/loading.gif" alt="" /></div>
 		</div>
 	</body>
 </html>

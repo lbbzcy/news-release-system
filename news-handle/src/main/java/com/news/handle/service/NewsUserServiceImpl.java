@@ -37,8 +37,8 @@ public class NewsUserServiceImpl implements NewsUserService {
 	}
 
 	@Override
-	public NewsUserDto getUserByAuth(String auth) {
-		return newsUserDtoMapper.getUserByAuth(auth);
+	public NewsUserDto getUserByAuth(String auth,String password) {
+		return newsUserDtoMapper.getUserByAuth(auth,password);
 	}
 
 	@Override

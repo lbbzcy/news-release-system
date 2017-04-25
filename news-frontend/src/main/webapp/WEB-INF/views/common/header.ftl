@@ -13,7 +13,12 @@
 				<div class="fr">
 					<div class="block_top_menu">
 						<ul>
-							<li class="current"><a href="#login" class="open_popup">登录</a></li>
+							<#if Session["login_user"]?exists>
+								<li class="current"><a>欢迎您! ${Session["login_user"].username}</a></li>
+								<li><a href="#login" class="open_popup">个人中心</a></li>
+							<#else>
+								<li class="current"><a href="#login" class="open_popup">登录</a></li>
+							</#if>
 							<li><a href="${rca.contextPath}/register/index.html">注册</a></li>
 						</ul>
 					</div>

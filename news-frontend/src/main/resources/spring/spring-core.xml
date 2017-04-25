@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:cache="http://www.springframework.org/schema/cache"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
@@ -10,17 +10,33 @@
 
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
 	<context:component-scan base-package="com.news.frontend">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
 	<!-- thread pool -->
-	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="100" />
 		<property name="maxPoolSize" value="200" />
 		<property name="queueCapacity" value="150" />
 	</bean>
+
+	<!-- 将session放入redis -->
+	<context:annotation-config />
+	<bean id="redisHttpSessionConfiguration"
+		class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+		<property name="maxInactiveIntervalInSeconds" value="1800" />
+	</bean>
+	<bean
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<!-- redis 配置 -->
+		<property name="hostName" value="127.0.0.1" />
+		<property name="port" value="6379" />
+	</bean>
+
 	<!-- 其他文件引入 -->
 	<!-- <import resource="spring-security.xml" /> -->
-	<import resource="classpath*:dubbo/spring-dubbo.xml"/>
-	<!-- <import resource="classpath*:comm/config/ips-support-redis.xml"/>	 -->
+	<import resource="classpath*:dubbo/spring-dubbo.xml" />
+
 </beans>

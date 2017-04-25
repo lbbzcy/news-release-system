@@ -58,7 +58,8 @@
       select
       <include refid="Base_Column_List" />
       from NEWS_USER
-      where (USERNAME = #{auth,jdbcType=VARCHAR} or MOBILE = #{auth,jdbcType=VARCHAR} or EMAIL = #{auth,jdbcType=VARCHAR}) 
+      where (USERNAME = #{auth,jdbcType=VARCHAR} or MOBILE = #{auth,jdbcType=VARCHAR} or EMAIL = #{auth,jdbcType=VARCHAR})
+      and  PASSWORD = #{password,jdbcType=VARCHAR}
       and isdel = '0'
   </select>
   

@@ -27,7 +27,7 @@ public class RegisterController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public String toIndex(Model model){
+	public String toIndex(Model model,HttpServletRequest request){
 		getAllNewsType(model);
 		return "/register/register";
 	}

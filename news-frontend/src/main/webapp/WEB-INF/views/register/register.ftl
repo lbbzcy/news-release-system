@@ -35,7 +35,7 @@
 							<span>加入我们</span>
 						</p>
 						<div id="error_message" class="separator" style="height: 39px;color:red;text-align:center;line-height:39px;font-size:18px;">${register_error}</div>
-
+						${user}
 						<div class="block_registration">
 							<form action="${rca.contextPath}/register/register.html" id="w_validation" method="post"/>
 							<div class="col_1">

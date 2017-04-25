@@ -14,63 +14,13 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/=anon
-				/js/** =anon
-	        	/css/** =anon
-	        	/images/** =anon
-	        	/validateCode/** =anon
-	        	/ajaxcheck/** =anon
-	        	/exception/** =anon
-	        	/hessian/** =anon
-	        	/test/** =anon
-	        	/dwr/** =anon
-	        	/ocx/** =anon
-	        	/helpcenter/** =anon
-	        	/resourceNotFound* =anon
-				/login/logout* =anon
-				/suc/toSuccess* =anon
-				/sso/validate** =anon
-				#需要登录才能访问地址
-	            /sso/login.html* =authc
-	            /login/** =authc
-	            /main/** =authc
-	            /transfer/** =authc
-	            /recharge/** =authc
-	            /withdraw/** =authc
-	            /account/base/** =authc
-	            /account/info/** =authc
-	            /account/authentication/** =authc
-	            /record/** =authc
-	            /person/**=authc
-	            /account/editmobile/callback* =authc
-	            /account/openact/** =authc
-	            /account/recharge/** =authc
-	            /checkMessage/** =authc
-	            /contact/** =authc
-	            #密码找回
-	            /account/pwdreset/** =anon
-	            #访客查询
-	            /policysearch/**=anon
-	            #访客注册
-	            /register/**=anon
 			</value>
 		</property>
-		 <!-- <property name="filters">
-			<util:map>
-				<entry key="authc" value-ref="shieFormAuthenticationFilter"/>
-			</util:map>
-		</property> -->
 	</bean>
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shieShiroRealm"/>
 	</bean>
-	<!-- 用户校验 -->
-	<!-- <bean id="shieFormAuthenticationFilter" class="com.ylink.inetpay.portal.shie.web.shiro.ShieFormAuthenticationFilter">
-		<property name="usernameParam" value="loginId"/>
-		<property name="passwordParam" value="password"/>
-		<property name="checkCodeParam" value="checkCode"/>
-		<property name="loginTypeParam" value="loginType" />
-	</bean> -->
 	<bean id="shieShiroRealm" class="com.news.frontend.shiro.ShieShiroRealm">		
 		<property name="cachingEnabled" value="false" />
 	</bean>

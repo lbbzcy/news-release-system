@@ -14,8 +14,9 @@ public interface NewsUserAppService {
 	
 	public int insertNewsUserDto(NewsUserDto newsUserDto);
 	
-	public NewsUserDto getUserByAuth(String auth);
 
 	public PageData<NewsUserDto> findPageWithUser(PageData<NewsUserDto> pageData, NewsUserDto queryParam);
+
+	public NewsUserDto getUserByAuth(String username, String password);
 
 }

@@ -98,6 +98,7 @@ public class NewsDetailController extends BaseController{
 	public String addNewsDetail(@RequestParam(value="id",required=false) String id,HttpServletRequest request,NewsDetailDto newsDetailDto){
 		HttpSession session = request.getSession();
 		NewsAdminUserDto adminuser = getCurrentUser(session);
+		System.out.println(JsonUtils.objectToJson(adminuser));
 		System.out.println(JsonUtils.objectToJson(newsDetailDto));
 		System.out.println("类别的ID为："+id);
 		//判断为新增还是修改
