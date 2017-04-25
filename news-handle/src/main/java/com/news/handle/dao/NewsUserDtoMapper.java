@@ -25,4 +25,8 @@ public interface NewsUserDtoMapper {
     List<NewsUserDto> getUserByMobile(String mobile);
     
     List<NewsUserDto> getUserByEmail(String email);
+
+	NewsUserDto getUserByAuth(String auth);
+
+	List<NewsUserDto> queryAllData(NewsUserDto queryParam);
 }

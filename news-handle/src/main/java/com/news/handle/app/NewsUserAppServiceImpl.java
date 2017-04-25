@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.news.common.core.dto.PageData;
 import com.news.common.project.app.NewsUserAppService;
 import com.news.common.project.dto.NewsUserDto;
 import com.news.handle.service.NewsUserService;
@@ -32,6 +33,16 @@ public class NewsUserAppServiceImpl implements NewsUserAppService {
 	@Override
 	public int insertNewsUserDto(NewsUserDto newsUserDto) {
 		return newsUserService.insertNewsUserDto(newsUserDto);
+	}
+
+	@Override
+	public NewsUserDto getUserByAuth(String auth) {
+		return newsUserService.getUserByAuth(auth);
+	}
+
+	@Override
+	public PageData<NewsUserDto> findPageWithUser(PageData<NewsUserDto> pageData, NewsUserDto queryParam) {
+		return newsUserService.findPageWithUser(pageData,queryParam);
 	}
 
 }

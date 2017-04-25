@@ -14,6 +14,26 @@
     ID, USERNAME, PASSWORD, MOBILE, EMAIL, ISDEL, NICKNAME
   </sql>
   
+  <select id="queryAllData" resultMap="BaseResultMap"
+		parameterType="com.news.common.project.dto.NewsUserDto">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_USER
+		where ISDEL = 0
+		<if test="username != null and username !=''">
+			and instr(USERNAME,#{username,jdbcType=VARCHAR}) > 0
+		</if>
+		<if test="nickname != null and nickname !=''">
+			and instr(NICKNAME,#{nickname,jdbcType=VARCHAR}) > 0
+		</if>
+		<if test="mobile != null and mobile !=''">
+			and instr(MOBILE,#{mobile,jdbcType=VARCHAR}) > 0
+		</if>
+		<if test="email != null and email !=''">
+			and instr(EMAIL,#{email,jdbcType=VARCHAR}) > 0
+		</if>
+	</select>
+  
   <select id="getUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
 	select
 	<include refid="Base_Column_List" />
@@ -33,6 +53,13 @@
 	<include refid="Base_Column_List" />
 	from NEWS_USER
 	where EMAIL = #{email,jdbcType=VARCHAR}  and ISDEL = '0'
+  </select>
+  <select id="getUserByAuth" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select
+      <include refid="Base_Column_List" />
+      from NEWS_USER
+      where (USERNAME = #{auth,jdbcType=VARCHAR} or MOBILE = #{auth,jdbcType=VARCHAR} or EMAIL = #{auth,jdbcType=VARCHAR}) 
+      and isdel = '0'
   </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >

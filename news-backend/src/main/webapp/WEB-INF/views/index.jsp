@@ -45,7 +45,7 @@
 							<li><a class="J_menuItem" href="comment/index.html">评论管理</a>
 							</li>
 						</ul></li>
-					<li><a class="J_menuItem" href="user/index.html"><i
+					<li><a class="J_menuItem" href="${basepath}/user/list.html"><i
 							class="fa fa-columns"></i> <span class="nav-label">用户管理</span></a></li>
 					<li><a class="J_menuItem" href="${basepath}/banner/list.html"><i
 							class="fa fa-columns"></i> <span class="nav-label">banner管理</span></a>
