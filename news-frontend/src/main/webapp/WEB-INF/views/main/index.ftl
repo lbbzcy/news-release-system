@@ -65,273 +65,50 @@
 						</div>
 
 						<div class="line_2" style="margin: 34px 0px 28px;"></div>
-
-						<div class="block_home_col_1">
-							<div class="block_home_post">
-								<div class="pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="w_hover"> <img
-										src="${rca.contextPath}/images/pic_home_news_1.jpg" alt="" /> <span></span>
-									</a>
-								</div>
-
-								<div class="text">
-									<p class="title">
-										<a href="${rca.contextPath}/newsdetail/index.html">There are many variations of of
-											available, but the majority.</a>
-									</p>
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-									<div class="icons">
-										<ul>
-											<li><a href="#" class="views">56</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="line_3" style="margin: 14px 0px 17px;"></div>
-
-							<div class="block_home_post">
-								<div class="pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="w_hover"> <img
-										src="${rca.contextPath}/images/pic_home_news_2.jpg" alt="" /> <span></span>
-									</a>
-								</div>
-
-								<div class="text">
-									<p class="title">
-										<a href="${rca.contextPath}/newsdetail/index.html">Variations of of available, but
-											the majority have suffered.</a>
-									</p>
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-									<div class="icons">
-										<ul>
-											<li><a href="#" class="views">74</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="line_3" style="margin: 14px 0px 17px;"></div>
-
-							<div class="block_home_post">
-								<div class="pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="w_hover"> <img
-										src="${rca.contextPath}/images/pic_home_news_3.jpg" alt="" /> <span></span>
-									</a>
-								</div>
-
-								<div class="text">
-									<p class="title">
-										<a href="${rca.contextPath}/newsdetail/index.html">Majority alteration in some form,
-											by injected humour.</a>
-									</p>
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-									<div class="icons">
-										<ul>
-											<li><a href="#" class="views">88</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-						<div class="block_home_col_2">
-							<div class="line_3 first" style="margin: 14px 0px 17px;"></div>
-							<div class="block_home_post">
-								<div class="pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="w_hover"> <img
-										src="${rca.contextPath}/images/pic_home_news_4.jpg" alt="" /> <span></span>
-									</a>
-								</div>
-
-								<div class="text">
-									<p class="title">
-										<a href="${rca.contextPath}/newsdetail/index.html">Many variations of of available,
-											but the majority.</a>
-									</p>
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-									<div class="icons">
-										<ul>
-											<li><a href="#" class="views">56</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="line_3" style="margin: 14px 0px 17px;"></div>
-
-							<div class="block_home_post">
-								<div class="pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="w_hover"> <img
-										src="${rca.contextPath}/images/pic_home_news_5.jpg" alt="" /> <span></span>
-									</a>
-								</div>
-
-								<div class="text">
-									<p class="title">
-										<a href="${rca.contextPath}/newsdetail/index.html">Readable content of a page when
-											looking readable content.</a>
-									</p>
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-									<div class="icons">
-										<ul>
-											<li><a href="#" class="views">74</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="line_3" style="margin: 14px 0px 17px;"></div>
-
-							<div class="block_home_post">
-								<div class="pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="w_hover"> <img
-										src="${rca.contextPath}/images/pic_home_news_6.jpg" alt="" /> <span></span>
-									</a>
-								</div>
-
-								<div class="text">
-									<p class="title">
-										<a href="${rca.contextPath}/newsdetail/index.html">Randomised words which don't look
-											even slightly believable.</a>
-									</p>
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-									<div class="icons">
-										<ul>
-											<li><a href="#" class="views">88</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-
-						</div>
 						<div class="clearboth"></div>
 
-						<div class="line_3" style="margin: 14px 0px 13px;"></div>
-						<a href="${rca.contextPath}/main/main_news.html" class="lnk_all_news fl">所有新闻</a>
-						<div class="clearboth"></div>
-						<div class="line_3" style="margin: 13px 0px 35px;"></div>
-
-						<h3 style="font-size: 16px;">主要新闻</h3>
+						<h3 style="font-size: 16px;">主要新闻<a href="${rca.contextPath}/main/main_news.html" class="lnk_all_news fr">所有新闻</a></h3>
 						<div class="line_4" style="margin: -4px 0px 18px;"></div>
 
 						<div class="block_topic_news">
-							<article class="block_topic_post">
-								<p class="title">
-									<a href="${rca.contextPath}/newsdetail/index.html">Many desktop publishing packages
-										and web page editors now use.</a>
-								</p>
-								<div class="f_pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="general_pic_hover scale"><img
-										src="${rca.contextPath}/images/pic_home_main_news_1.jpg" alt="" /></a>
-								</div>
-								<p class="text">There are many variations of passages of
-									available, but the majority have alteration.</p>
-								<div class="info">
-									<div class="date">
-										<p>11 July, 2012</p>
+							<#list newsDetailList as item>
+								<article class="block_topic_post">
+									<p class="title">
+										<a href="${rca.contextPath}/newsdetail/index.html">
+											<#if item.title?length lt 18>
+												${item.title}
+											<#else>
+												${item.title[0..18]}...
+											</#if>
+										</a>
+									</p>
+									<div class="f_pic">
+										<a href="${rca.contextPath}/newsdetail/index.html" class="general_pic_hover scale"><img
+											src="${rca.contextPath}/images/pic_home_main_news_1.jpg" alt="" /></a>
 									</div>
-
-									<div class="r_part">
-										<div class="category">
-											<p>
-												<a href="#">Business</a>
-											</p>
+									<p class="text">
+										<#if item.brief?length lt 40>
+											${item.brief}
+										<#else>
+											${item.brief[0..41]}...
+										</#if>
+									</p>
+									<div class="info">
+										<div class="date">
+											<p>${item.createtime?date}</p>
 										</div>
-										<a href="#" class="views">183</a>
-									</div>
-								</div>
-							</article>
-
-							<article class="block_topic_post">
-								<p class="title">
-									<a href="${rca.contextPath}/newsdetail/index.html">Many desktop publishing packages
-										and web page editors now use.</a>
-								</p>
-								<div class="f_pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="general_pic_hover scale"><img
-										src="${rca.contextPath}/images/pic_home_main_news_2.jpg" alt="" /></a>
-								</div>
-								<p class="text">There are many variations of passages of
-									available, but the majority have alteration.</p>
-								<div class="info">
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-
-									<div class="r_part">
-										<div class="category">
-											<p>
-												<a href="#">Business</a>
-											</p>
+	
+										<div class="r_part">
+											<div class="category">
+												<p>
+													<a href="#">${item.typename}</a>
+												</p>
+											</div>
+											<a href="#" class="views">${item.viewnum}</a>
 										</div>
-										<a href="#" class="views">183</a>
 									</div>
-								</div>
-							</article>
-
-							<article class="block_topic_post">
-								<p class="title">
-									<a href="${rca.contextPath}/newsdetail/index.html">Many desktop publishing packages
-										and web page editors now use.</a>
-								</p>
-								<div class="f_pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="general_pic_hover scale"><img
-										src="${rca.contextPath}/images/pic_home_main_news_3.jpg" alt="" /></a>
-								</div>
-								<p class="text">There are many variations of passages of
-									available, but the majority have alteration.</p>
-								<div class="info">
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-
-									<div class="r_part">
-										<div class="category">
-											<p>
-												<a href="#">Business</a>
-											</p>
-										</div>
-										<a href="#" class="views">183</a>
-									</div>
-								</div>
-							</article>
-
-							<article class="block_topic_post">
-								<p class="title">
-									<a href="${rca.contextPath}/newsdetail/index.html">Many desktop publishing packages
-										and web page editors now use.</a>
-								</p>
-								<div class="f_pic">
-									<a href="${rca.contextPath}/newsdetail/index.html" class="general_pic_hover scale"><img
-										src="${rca.contextPath}/images/pic_home_main_news_4.jpg" alt="" /></a>
-								</div>
-								<p class="text">There are many variations of passages of
-									available, but the majority have alteration.</p>
-								<div class="info">
-									<div class="date">
-										<p>11 July, 2012</p>
-									</div>
-
-									<div class="r_part">
-										<div class="category">
-											<p>
-												<a href="#">Business</a>
-											</p>
-										</div>
-										<a href="#" class="views">183</a>
-									</div>
-								</div>
-							</article>
+								</article>
+							</#list>
 
 						</div>
 

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.news.common.core.dto.PageData;
 import com.news.common.project.app.NewsBannerAppService;
+import com.news.common.project.app.NewsDetailAppService;
 import com.news.common.project.dto.NewsBannerDto;
+import com.news.common.project.dto.NewsDetailDto;
 import com.news.frontend.common.BaseController;
 
 
@@ -23,6 +25,8 @@ public class MainController extends BaseController{
 	
 	@Autowired
 	private NewsBannerAppService newsBannerAppService;
+	@Autowired
+	private NewsDetailAppService newsDetailAppService;
 	@RequestMapping("/index")
 	public String toIndex(Model model,HttpServletRequest request){
 		getAllNewsType(model);
@@ -32,6 +36,12 @@ public class MainController extends BaseController{
 		pageData = newsBannerAppService.findPageWithBanner(pageData, newsBannerDto);
 		List<NewsBannerDto> bannerList = pageData.getRows();
 		model.addAttribute("bannerList", bannerList);
+		//获取新闻
+		PageData<NewsDetailDto> newsDetailPageData = new PageData<NewsDetailDto>();
+		newsDetailPageData.setPageSize(4);
+		newsDetailPageData = newsDetailAppService.findPageWithType(newsDetailPageData, new NewsDetailDto());
+		List<NewsDetailDto> newsDetailList = newsDetailPageData.getRows();
+		model.addAttribute("newsDetailList", newsDetailList);
 		return "/main/index";
 	}
 	@RequestMapping("/main_news")

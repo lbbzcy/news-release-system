@@ -41,6 +41,8 @@ public class NewsDetailDto extends IdentityDto{
 
     private String content;
     
+    private String brief;
+    
     //查询条件
     private Date startTime;
     private Date endTime;
@@ -163,6 +165,14 @@ public class NewsDetailDto extends IdentityDto{
 
 	public void setTemplatename(String templatename) {
 		this.templatename = templatename;
+	}
+
+	public String getBrief() {
+		return brief;
+	}
+
+	public void setBrief(String brief) {
+		this.brief = brief;
 	}
 
 	public Date getStartTime() {

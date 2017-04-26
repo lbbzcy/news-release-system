@@ -8,6 +8,7 @@
     <result column="TYPENAME" property="typename" jdbcType="VARCHAR" />
     <result column="TEMPLATENAME" property="templatename" jdbcType="VARCHAR" />
     <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="BRIEF" property="brief" jdbcType="VARCHAR" />
     <result column="VIEWNUM" property="viewnum" jdbcType="DECIMAL" />
     <result column="COMMENTNUM" property="commentnum" jdbcType="DECIMAL" />
     <result column="ISHOT" property="ishot" jdbcType="CHAR" />
@@ -21,7 +22,7 @@
     <result column="CONTENT" property="content" jdbcType="CLOB" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, TYPEID, TEMPLATEID,TYPENAME,TEMPLATENAME, TITLE, VIEWNUM, COMMENTNUM, ISHOT, CREATOR, UPDATOR, CREATETIME, 
+    ID, TYPEID, TEMPLATEID,TYPENAME,TEMPLATENAME, TITLE, BRIEF,VIEWNUM, COMMENTNUM, ISHOT, CREATOR, UPDATOR, CREATETIME, 
     UPDATETIME, ISDEL
   </sql>
   <sql id="Blob_Column_List" >
@@ -70,13 +71,13 @@
   </update>
   <insert id="insert" parameterType="com.news.common.project.dto.NewsDetailDto" >
     insert into NEWS_DETAIL (ID, TYPEID, TEMPLATEID, TYPENAME,TEMPLATENAME,
-      TITLE, VIEWNUM, COMMENTNUM, 
+      TITLE,BRIEF, VIEWNUM, COMMENTNUM, 
       ISHOT, CREATOR, UPDATOR, 
       CREATETIME, UPDATETIME, ISDEL, 
       CONTENT)
     values (#{id,jdbcType=VARCHAR}, #{typeid,jdbcType=VARCHAR}, #{templateid,jdbcType=VARCHAR}, 
     	#{typename,jdbcType=VARCHAR}, #{templatename,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{viewnum,jdbcType=DECIMAL}, #{commentnum,jdbcType=DECIMAL}, 
+      #{title,jdbcType=VARCHAR},#{brief,jdbcType=VARCHAR}, #{viewnum,jdbcType=DECIMAL}, #{commentnum,jdbcType=DECIMAL}, 
       #{ishot,jdbcType=CHAR}, #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=CHAR}, 
       #{content,jdbcType=CLOB})
@@ -101,6 +102,9 @@
       </if>
       <if test="title != null" >
         TITLE,
+      </if>
+       <if test="brief != null" >
+        BRIEF,
       </if>
       <if test="viewnum != null" >
         VIEWNUM,
@@ -149,6 +153,9 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=VARCHAR},
+      </if>
       <if test="viewnum != null" >
         #{viewnum,jdbcType=DECIMAL},
       </if>
@@ -196,6 +203,9 @@
       <if test="title != null" >
         TITLE = #{title,jdbcType=VARCHAR},
       </if>
+      <if test="title != null" >
+        BRIEF = #{brief,jdbcType=VARCHAR},
+      </if>
       <if test="viewnum != null" >
         VIEWNUM = #{viewnum,jdbcType=DECIMAL},
       </if>
@@ -233,6 +243,7 @@
       TYPENAME = #{typename,jdbcType=VARCHAR},
       TEMPLATENAME = #{templatename,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
+      BRIEF = #{brief,jdbcType=VARCHAR},
       VIEWNUM = #{viewnum,jdbcType=DECIMAL},
       COMMENTNUM = #{commentnum,jdbcType=DECIMAL},
       ISHOT = #{ishot,jdbcType=CHAR},
@@ -251,6 +262,7 @@
       TYPENAME = #{typename,jdbcType=VARCHAR},
       TEMPLATENAME = #{templatename,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
+      BRIEF = #{brief,jdbcType=VARCHAR},
       VIEWNUM = #{viewnum,jdbcType=DECIMAL},
       COMMENTNUM = #{commentnum,jdbcType=DECIMAL},
       ISHOT = #{ishot,jdbcType=CHAR},

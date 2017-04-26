@@ -70,6 +70,13 @@
 										name="title" value="${entity.title}">
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">新闻简介</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请填写新闻简介"
+										name="brief" value="${entity.brief}">
+								</div>
+							</div>
 							<!-- 编辑时显示 -->
 							<c:if test="${not empty entity}">
 								<div class="hr-line-dashed"></div>
