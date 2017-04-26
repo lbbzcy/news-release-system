@@ -35,57 +35,17 @@
 						<div class="block_home_slider">
 							<div id="home_slider" class="flexslider">
 								<ul class="slides">
-									<li>
-										<div class="slide">
-											<img src="${rca.contextPath}/images/pic_home_slider_1.jpg" alt="" />
-											<div class="caption">
-												<p class="title">Many desktop publishing packages and
-													web page.</p>
-												<p>There are many variations of passages of available,
-													but the majority have suffered alteration in some form, by
-													injected humour, or randomised.</p>
+									<#list bannerList as item>
+										<li>
+											<div class="slide">
+												<img style="width:610px;height:292px;" src="${BANNER_IMGSRC}${item.imgsrc}" alt="" />
+												<div class="caption">
+													<p class="title">${item.title}</p>
+													<p>${item.briefintroduction}</p>
+												</div>
 											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="slide">
-											<img src="${rca.contextPath}/images/pic_home_slider_2.jpg" alt="" />
-											<div class="caption">
-												<p class="title">Many desktop publishing packages.</p>
-												<p>There are many variations of passages of available,
-													but the majority have suffered alteration in some form, by
-													injected humour, or randomised.</p>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="slide">
-											<img src="${rca.contextPath}/images/pic_home_slider_3.jpg" alt="" />
-											<div class="caption">
-												<p class="title">Many desktop publishing packages and
-													web page.</p>
-												<p>There are many variations of passages of available,
-													but the majority.</p>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="slide">
-											<img src="${rca.contextPath}/images/pic_home_slider_4.jpg" alt="" />
-											<div class="caption">
-												<p class="title">Many desktop publishing packages and
-													web page.</p>
-												<p>There are many variations of passages of available,
-													but the majority have suffered alteration in some form, by
-													injected humour, or randomised, but the majority have
-													suffered alteration in some form, by injected humour, or
-													randomised.</p>
-											</div>
-										</div>
-									</li>
+										</li>
+									</#list>
 								</ul>
 							</div>
 

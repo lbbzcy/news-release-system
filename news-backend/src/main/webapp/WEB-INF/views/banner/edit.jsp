@@ -23,13 +23,20 @@
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#myModal">选择链接新闻</button>
 									<input type="text" class="form-control" readonly placeholder="新闻链接"
-										id="title" name="title" value="${entity.title}"> <input
-										type="hidden" class="form-control" id="link" name="link"
+										id="title" name="title" value="${entity.title}"> 
+									<input type="hidden" class="form-control" id="link" name="link"
 										value="${entity.link}">
 								</div>
 							</div>
-
+							<div class="form-group">
+								<label class="col-sm-2 control-label">新闻简介</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="新闻简介"
+										id="briefintroduction" name="briefintroduction" value="${entity.briefintroduction}"> 
+								</div>
+							</div>
 							<div class="hr-line-dashed"></div>
+							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">图片</label>
 								<div class="col-sm-10">
@@ -222,6 +229,7 @@
 		function check(){
 			var link = $("input[name='link']").val();
 			var imgsrc = $("input[name='mimg']").val();
+			var briefintroduction = $("input[name='briefintroduction']").val();
 			console.log("link:"+link+"imgsrc:"+imgsrc);
 			if (validata(link)) {
 				layer.msg('请选择链接新闻', {
@@ -232,6 +240,13 @@
 			}
 			if (validata(imgsrc)) {
 				layer.msg('请上传图片', {
+					time : 1000,
+					offset : '100px'
+				});
+				return false;
+			}
+			if (validata(briefintroduction)) {
+				layer.msg('请填写新闻简介', {
 					time : 1000,
 					offset : '100px'
 				});

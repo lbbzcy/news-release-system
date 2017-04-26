@@ -140,7 +140,7 @@ public class FtpUtil {
 	public static void main(String[] args) {
 		try {  
 	        FileInputStream in=new FileInputStream(new File("F:\\gaigeming.jpg"));  
-	        boolean flag = uploadFile("192.168.123.180", 21, "ftpuser", "ftpuser", "/home/ftpuser/www/images/","/2015/01/21", "gaigeming.jpg", in);  
+	        boolean flag = uploadFile("192.168.1.105", 21, "ftpuser", "ftpuser", "/home/ftpuser/www/images/","/2015/01/21", "gaigeming.jpg", in);  
 	        System.out.println(flag);  
 	    } catch (FileNotFoundException e) {  
 	        e.printStackTrace();  

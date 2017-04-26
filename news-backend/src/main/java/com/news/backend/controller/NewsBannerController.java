@@ -92,7 +92,12 @@ public class NewsBannerController extends BaseController {
 		return result;
 	}
 	@RequestMapping("insert")
-	public String insert(@RequestParam(value="id",required=false) String id,@RequestParam(value="mimg") String imgsrc,@RequestParam(value="link") String link,@RequestParam(value="title") String title,HttpServletRequest request){
+	public String insert(@RequestParam(value="id",required=false) String id,
+			@RequestParam(value="mimg") String imgsrc,
+			@RequestParam(value="link") String link,
+			@RequestParam(value="title") String title,
+			@RequestParam(value="briefintroduction") String briefintroduction,
+			HttpServletRequest request){
 		//http://192.168.16.248/images/2017/04/09/d82b59e21183471b8c2ab0d077e3b2be.jpg
 		imgsrc = imgsrc.substring(imgsrc.lastIndexOf("/images/")+7);
 		System.out.println("图片地址为:"+imgsrc);
@@ -111,6 +116,7 @@ public class NewsBannerController extends BaseController {
 			newsEntity.setImgsrc(imgsrc);
 			newsEntity.setLink(link);
 			newsEntity.setTitle(title);
+			newsEntity.setBriefintroduction(briefintroduction);
 			newsEntity.setCreator(adminuser.getName());
 			newsEntity.setUpdator(adminuser.getName());
 			newsEntity.setCreatetime(new Date());
@@ -123,6 +129,7 @@ public class NewsBannerController extends BaseController {
 			newsEntity.setImgsrc(imgsrc);
 			newsEntity.setLink(link);
 			newsEntity.setTitle(title);
+			newsEntity.setBriefintroduction(briefintroduction);
 			newsEntity.setUpdator(adminuser.getName());
 			newsEntity.setUpdatetime(new Date());
 			newsBannerAppService.updateNewsBannerDto(newsEntity);

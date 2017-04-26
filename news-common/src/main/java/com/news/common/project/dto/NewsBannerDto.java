@@ -29,6 +29,8 @@ public class NewsBannerDto extends IdentityDto{
     private String creator;
 
     private String updator;
+    
+    private String briefintroduction;
 
     public String getId() {
         return id;
@@ -109,4 +111,12 @@ public class NewsBannerDto extends IdentityDto{
     public void setUpdator(String updator) {
         this.updator = updator == null ? null : updator.trim();
     }
+
+	public String getBriefintroduction() {
+		return briefintroduction;
+	}
+
+	public void setBriefintroduction(String briefintroduction) {
+		this.briefintroduction = briefintroduction == null ? null : briefintroduction.trim();
+	}
 }

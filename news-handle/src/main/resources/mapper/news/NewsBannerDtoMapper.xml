@@ -12,9 +12,10 @@
     <result column="ISDEL" property="isdel" jdbcType="CHAR" />
     <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
     <result column="UPDATOR" property="updator" jdbcType="VARCHAR" />
+    <result column="BRIEFINTRODUCTION" property="briefintroduction" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, NEWSID,IMGSRC, LINK, TITLE,CREATETIME, UPDATETIME, ISDEL, CREATOR, UPDATOR
+    ID, NEWSID,IMGSRC, LINK, TITLE,CREATETIME, UPDATETIME, ISDEL, CREATOR, UPDATOR,BRIEFINTRODUCTION
   </sql>
   <select id="queryAllData" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsBannerDto">
@@ -43,10 +44,10 @@
   <insert id="insert" parameterType="com.news.common.project.dto.NewsBannerDto" >
     insert into NEWS_BANNER (ID,NEWSID, IMGSRC, LINK, TITLE,
       CREATETIME, UPDATETIME, ISDEL, 
-      CREATOR, UPDATOR)
+      CREATOR, UPDATOR,BRIEFINTRODUCTION)
     values (#{id,jdbcType=VARCHAR}, #{newsid,jdbcType=VARCHAR},#{imgsrc,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=CHAR}, 
-      #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR})
+      #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR},#{briefintroduction,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.news.common.project.dto.NewsBannerDto" >
     insert into NEWS_BANNER
@@ -81,6 +82,9 @@
       <if test="updator != null" >
         UPDATOR,
       </if>
+      <if test="briefintroduction != null" >
+        BRIEFINTRODUCTION,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -112,6 +116,9 @@
       </if>
       <if test="updator != null" >
         #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null" >
+        #{briefintroduction,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -145,6 +152,9 @@
       <if test="updator != null" >
         UPDATOR = #{updator,jdbcType=VARCHAR},
       </if>
+      <if test="briefintroduction != null" >
+        BRIEFINTRODUCTION = #{briefintroduction,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -158,7 +168,8 @@
       UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
       ISDEL = #{isdel,jdbcType=CHAR},
       CREATOR = #{creator,jdbcType=VARCHAR},
-      UPDATOR = #{updator,jdbcType=VARCHAR}
+      UPDATOR = #{updator,jdbcType=VARCHAR},
+      BRIEFINTRODUCTION = #{briefintroduction,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
