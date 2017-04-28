@@ -31,5 +31,13 @@ public class NewsDetailAppServiceImpl implements NewsDetailAppService {
 	public int deleteNewsDetailDto(String id) {
 		return newsDetailService.deleteNewsDetailDto(id);
 	}
+	@Override
+	public PageData<NewsDetailDto> getHotNews(PageData<NewsDetailDto> hotNewsList) {
+		return newsDetailService.getHotNews(hotNewsList);
+	}
+	@Override
+	public PageData<NewsDetailDto> getPicNews(PageData<NewsDetailDto> picNewsList) {
+		return newsDetailService.getPicNews(picNewsList);
+	}
 
 }

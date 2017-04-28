@@ -1192,7 +1192,6 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 }
 
 .block_topic_post {
-	width:266px;
 	padding:12px 16px 0px;
 	position:relative;
 	
@@ -1260,7 +1259,7 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 .block_topic_post_feature .text {color:#666666; line-height:18px;}
 
 .block_topic_news {margin-left:-20px; margin-bottom:-20px; overflow:hidden;}
-.block_topic_news .block_topic_post {margin-left:20px; margin-bottom:20px; float:left;}
+.block_topic_news .block_topic_post {margin-left:20px; margin-bottom:20px;}
 
 .block_home_slider {
 	width:610px;

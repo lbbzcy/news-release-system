@@ -12,6 +12,7 @@ public class NewsDetailController extends BaseController{
 	@RequestMapping("/index")
 	public String toNewsDetail(Model model){
 		getAllNewsType(model);
+		getHotAndPicNews(model);
 		return "/newsdetail/index";
 	}
 }

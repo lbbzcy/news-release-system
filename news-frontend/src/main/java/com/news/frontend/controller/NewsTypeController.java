@@ -12,6 +12,7 @@ public class NewsTypeController extends BaseController{
 	@RequestMapping("/index")
 	public String toIndex(Model model){
 		getAllNewsType(model);
+		getHotAndPicNews(model);
 		return "/newstype/news_type";
 	}
 }

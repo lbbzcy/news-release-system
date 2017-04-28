@@ -13,4 +13,8 @@ public interface NewsDetailAppService {
 	public int updateNewsDetailDto(NewsDetailDto newsEntity);
 
 	public int deleteNewsDetailDto(String id);
+	
+	public PageData<NewsDetailDto> getHotNews(PageData<NewsDetailDto> hotNewsList);
+	
+	public PageData<NewsDetailDto> getPicNews(PageData<NewsDetailDto> picNewsList);
 }

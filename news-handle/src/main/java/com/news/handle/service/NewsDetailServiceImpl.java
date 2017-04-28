@@ -97,5 +97,23 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 	public int deleteNewsDetailDto(String id) {
 		return newsDetailDtoMapper.deleteByPrimaryKey(id);
 	}
+	@Override
+	public PageData<NewsDetailDto> getHotNews(PageData<NewsDetailDto> pageData) {
+		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
+		List<NewsDetailDto> findListPage = newsDetailDtoMapper.getHotNews();
+		Page<NewsDetailDto> page = (Page<NewsDetailDto>) findListPage;
+		pageData.setTotal(page.getTotal());
+		pageData.setRows(findListPage);
+		return pageData;
+	}
+	@Override
+	public PageData<NewsDetailDto> getPicNews(PageData<NewsDetailDto> pageData) {
+		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
+		List<NewsDetailDto> findListPage = newsDetailDtoMapper.getPicNews();
+		Page<NewsDetailDto> page = (Page<NewsDetailDto>) findListPage;
+		pageData.setTotal(page.getTotal());
+		pageData.setRows(findListPage);
+		return pageData;
+	}
 
 }

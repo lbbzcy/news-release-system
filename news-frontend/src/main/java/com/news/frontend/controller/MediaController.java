@@ -12,11 +12,13 @@ public class MediaController extends BaseController{
 	@RequestMapping("/index")
 	public String toMedia(Model model){
 		getAllNewsType(model);
+		getHotAndPicNews(model);
 		return "/media/index";
 	}
 	@RequestMapping("/item")
 	public String MediaItem(Model model){
 		getAllNewsType(model);
+		getHotAndPicNews(model);
 		return "/media/item";
 	}
 }

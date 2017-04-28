@@ -41,12 +41,16 @@ public class MainController extends BaseController{
 		newsDetailPageData.setPageSize(4);
 		newsDetailPageData = newsDetailAppService.findPageWithType(newsDetailPageData, new NewsDetailDto());
 		List<NewsDetailDto> newsDetailList = newsDetailPageData.getRows();
+		setPagination(model, newsDetailPageData, request);
 		model.addAttribute("newsDetailList", newsDetailList);
+		//获取热门和图片新闻
+		getHotAndPicNews(model);
 		return "/main/index";
 	}
 	@RequestMapping("/main_news")
 	public String toMainNews(Model model){
 		getAllNewsType(model);
+		getHotAndPicNews(model);
 		return "/main/main_news";
 	}
 }

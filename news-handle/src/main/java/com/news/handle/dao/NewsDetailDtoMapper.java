@@ -22,4 +22,8 @@ public interface NewsDetailDtoMapper {
     int updateByPrimaryKey(NewsDetailDto record);
     
     List<NewsDetailDto> queryAllData(NewsDetailDto newsDetailDto);
+
+	List<NewsDetailDto> getHotNews();
+
+	List<NewsDetailDto> getPicNews();
 }
