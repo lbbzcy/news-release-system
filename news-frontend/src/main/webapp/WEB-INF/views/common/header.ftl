@@ -54,7 +54,7 @@
 					<ul>
 						<#list data as item>
 							<#if item_index lt 11>
-								<li><a href="${rca.contextPath}/newstype/index.html">${item.name}</a></li>
+								<li><a href="${rca.contextPath}/newstype/index.html?typeid=${item.id}&typename=${item.name}">${item.name}</a></li>
 							</#if>
 						</#list>
 						<#if (data?size > 11)>
@@ -62,7 +62,7 @@
 							<ul>
 								<#list data as item>
 									<#if item_index gte 11>
-										<li><a href="${rca.contextPath}/newstype/index.html">${item.name}</a></li>
+										<li><a href="${rca.contextPath}/newstype/index.html?typeid=${item.id}&typename=${item.name}">${item.name}</a></li>
 									</#if>
 								</#list>
 							</ul>

@@ -115,5 +115,14 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 		pageData.setRows(findListPage);
 		return pageData;
 	}
+	@Override
+	public PageData<NewsDetailDto> getNewsByTypeId(PageData<NewsDetailDto> pageData, String typeid) {
+		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
+		List<NewsDetailDto> findListPage = newsDetailDtoMapper.getNewsByTypeId(typeid);
+		Page<NewsDetailDto> page = (Page<NewsDetailDto>) findListPage;
+		pageData.setTotal(page.getTotal());
+		pageData.setRows(findListPage);
+		return pageData;
+	}
 
 }

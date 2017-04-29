@@ -67,7 +67,7 @@
 						<div class="line_2" style="margin: 34px 0px 28px;"></div>
 						<div class="clearboth"></div>
 
-						<h3 style="font-size: 16px;">主要新闻<a href="${rca.contextPath}/main/main_news.html" class="lnk_all_news fr">所有新闻</a></h3>
+						<h3 style="font-size: 16px;">新闻列表<a href="${rca.contextPath}/main/main_news.html" class="lnk_all_news fr">所有新闻</a></h3>
 						<div class="line_4" style="margin: -4px 0px 18px;"></div>
 
 						<div class="block_topic_news">

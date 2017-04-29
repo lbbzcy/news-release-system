@@ -17,4 +17,6 @@ public interface NewsDetailAppService {
 	public PageData<NewsDetailDto> getHotNews(PageData<NewsDetailDto> hotNewsList);
 	
 	public PageData<NewsDetailDto> getPicNews(PageData<NewsDetailDto> picNewsList);
+
+	public PageData<NewsDetailDto> getNewsByTypeId(PageData<NewsDetailDto> pageData, String typeid);
 }

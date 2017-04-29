@@ -48,9 +48,15 @@ public class MainController extends BaseController{
 		return "/main/index";
 	}
 	@RequestMapping("/main_news")
-	public String toMainNews(Model model){
+	public String toMainNews(Model model,HttpServletRequest request){
 		getAllNewsType(model);
 		getHotAndPicNews(model);
+		PageData<NewsDetailDto> newsDetailPageData = new PageData<NewsDetailDto>();
+		newsDetailPageData.setPageSize(8);
+		newsDetailPageData = newsDetailAppService.findPageWithType(newsDetailPageData, new NewsDetailDto());
+		List<NewsDetailDto> newsDetailList = newsDetailPageData.getRows();
+		setPagination(model, newsDetailPageData, request);
+		model.addAttribute("newsDetailList", newsDetailList);
 		return "/main/main_news";
 	}
 }

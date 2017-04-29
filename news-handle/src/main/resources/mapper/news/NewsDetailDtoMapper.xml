@@ -30,6 +30,15 @@
 	<sql id="Blob_Column_List">
 		CONTENT
 	</sql>
+	<select id="getNewsByTypeId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from NEWS_DETAIL
+		where ISDEL = 0 and TYPEID = #{typeid,jdbcType=VARCHAR}
+		order by CREATETIME DESC
+	</select>
 	<select id="getHotNews" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

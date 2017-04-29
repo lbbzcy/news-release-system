@@ -7,11 +7,6 @@
 		<h4>热门新闻</h4>
 		<#list hotNewsList as hot>
 			<div class="article">
-				<div class="pic">
-					<a href="#" class="w_hover"> <img
-						src="${rca.contextPath}/images/pic_popular_post_1.jpg" alt="" /> <span></span>
-					</a>
-				</div>
 	
 				<div class="text">
 					<p class="title">

@@ -39,5 +39,9 @@ public class NewsDetailAppServiceImpl implements NewsDetailAppService {
 	public PageData<NewsDetailDto> getPicNews(PageData<NewsDetailDto> picNewsList) {
 		return newsDetailService.getPicNews(picNewsList);
 	}
+	@Override
+	public PageData<NewsDetailDto> getNewsByTypeId(PageData<NewsDetailDto> pageData, String typeid) {
+		return newsDetailService.getNewsByTypeId(pageData,typeid);
+	}
 
 }
