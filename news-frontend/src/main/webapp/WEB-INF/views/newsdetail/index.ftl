@@ -28,40 +28,41 @@
                         	<div class="text"><p>您现在的位置:</p></div>
                             
                             <ul>
-                            	<li><a href="index.html">主页</a></li>
-                                <li><a href="business.html">热点</a></li>
-                                <li>新闻名称</li>
+                            	<li><a href="${rca.contextPath}/main/index.html">主页</a></li>
+                                <li><a href="${rca.contextPath}/newstype/index.html?typeid=${newsItem.typeid}&typename=${newsItem.typename}">${newsItem.typename}</a></li>
+                                <li>${newsItem.title}</li>
                             </ul>
                         </div>
                         <div class="separator" style="height:30px;"></div>
                         
                         <article class="block_single_news">
-                        	<div class="f_pic"><a href="#"><img src="${rca.contextPath}/images/pic_news_post_1.jpg" alt="" /></a></div>
-                          <p class="title"><a href="#">Words which don't look even slightly.</a></p>
-                            <p class="subtitle">Many variations of passages of available, but the majority have suffered alteration in some form. Humour, or randomised words which don't look even slightly believable.</p>
+                          <p class="title"><a href="#">${newsItem.title}</a></p>
+                            <p class="subtitle">${newsItem.brief}</p>
                             
                             <div class="info">
-                                <div class="date"><p>15 July, 2012</p></div>
-                                <div class="author"><p>By: <a href="#">John Doe</a></p></div>
+                                <div class="date"><p>${newsItem.createtime?date}</p></div>
+                                <div class="author"><p>By: <a href="#">${newsItem.creator}</a></p></div>
                                     
                             	<div class="r_part">
-                                	<div class="category"><p><a href="#">Life</a></p></div>
-                                    <a href="#" class="views">220</a>
-                                    <a href="#" class="comments">25</a>
+                                	<div class="category">
+                                		<p>
+                                			<a href="${rca.contextPath}/newstype/index.html?typeid=${newsItem.typeid}&typename=${newsItem.typename}">${newsItem.typename}</a>
+                                		</p>
+                                	</div>
+                                    <a href="#" class="views">${newsItem.viewnum}</a>
+                                    <a href="#" class="comments">${newsItem.commentnum}</a>
                                 </div>
                             </div>
                             
                             <div class="content">
-                            	<p>There are many variations of passages of available, but the majority have suffered alteration in some form, by injected humour, or <b>randomised words</b> which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't <a href="#" class="lnk_blue"><b>anything embarrassing hidden</b></a> in the middle of text. All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over words, combined with a handful of model sentence structures, to generate which looks reasonable. Theherefore <b>always free from repetition</b>, injected humour words etc.</p>
-                                <blockquote class="full">Going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. established fact that a reader will be distracted by the readable content.</blockquote>
-                                <p>Available, but the majority have suffered alteration.By injected humour, or randomised words which don't look even slightly believable. If you are <a href="#"><b>going to use a passage</b></a> of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. Established fact that a reader will be distracted by the readable content of a page when <b>looking at its layout</b>. The point of using Lorem Ipsum is that it has a more-or-less.</p>
+                            	${newsItem.content}
                             </div>
                         </article>
                         
                         <div class="separator" style="height:4px;"></div>
                         
                         <div class="block_post_tags">
-                        	<p>Tags: <a href="#">business,</a><a href="#">stock market</a></p>
+                        	<p>标签: <a href="#">${newsItem.typename},</a><a href="#">${newsItem.templatename}</a></p>
                         </div>
                         
                         <div class="line_2" style="margin:22px 0px 29px;"></div>
@@ -70,53 +71,18 @@
                         	<h3>相关新闻</h3>
                             
                             <div class="block_main_news">
-                            	<article class="block_news_post">
-                                    <div class="f_pic"><a href="#" class="general_pic_hover scale_small"><img src="${rca.contextPath}/images/pic_main_news_9.jpg" alt="" /></a></div>
-                                  <p class="category"><a href="#">photography</a></p>
-                                    <p class="title"><a href="#">Many desktop publishing packages and web page editors.</a></p>
-                                    <div class="info">
-                                        <div class="date"><p>11 July, 2012</p></div>
-                                        <a href="#" class="views">183</a>
-                                        
-                                        <div class="clearboth"></div>
-                                    </div>
-                                </article>
-                                
-                                <article class="block_news_post">
-                                    <div class="f_pic"><a href="#" class="general_pic_hover scale_small"><img src="${rca.contextPath}/images/pic_main_news_4.jpg" alt="" /></a></div>
-                                  <p class="category"><a href="#">sport</a></p>
-                                    <p class="title"><a href="#">Many desktop publishing packages and web page editors.</a></p>
-                                    <div class="info">
-                                        <div class="date"><p>11 July, 2012</p></div>
-                                        <a href="#" class="views">183</a>
-                                        
-                                        <div class="clearboth"></div>
-                                    </div>
-                                </article>
-                                
-                                <article class="block_news_post">
-                                    <div class="f_pic"><a href="#" class="general_pic_hover scale_small"><img src="${rca.contextPath}/images/pic_main_news_6.jpg" alt="" /></a></div>
-                                  <p class="category"><a href="#">business</a></p>
-                                    <p class="title"><a href="#">Many desktop publishing packages and web page editors.</a></p>
-                                    <div class="info">
-                                        <div class="date"><p>11 July, 2012</p></div>
-                                        <a href="#" class="views">183</a>
-                                        
-                                        <div class="clearboth"></div>
-                                    </div>
-                                </article>
-                                
-                                <article class="block_news_post">
-                                    <div class="f_pic"><a href="#" class="general_pic_hover scale_small"><img src="${rca.contextPath}/images/pic_main_news_13.jpg" alt="" /></a></div>
-                                  <p class="category"><a href="#">video</a></p>
-                                    <p class="title"><a href="#">Many desktop publishing packages and web page editors.</a></p>
-                                    <div class="info">
-                                        <div class="date"><p>11 July, 2012</p></div>
-                                        <a href="#" class="views">183</a>
-                                        
-                                        <div class="clearboth"></div>
-                                    </div>
-                                </article>
+                            	<#list relatedNews as item>
+	                            	<article class="block_news_post">
+	                                  <p class="category"><a href="#">${item.typename}</a></p>
+	                                    <p class="title"><a href="#">${item.title}</a></p>
+	                                    <div class="info">
+	                                        <div class="date"><p>${item.createtime?date}</p></div>
+	                                        <a href="#" class="views">${item.viewnum}</a>
+	                                        
+	                                        <div class="clearboth"></div>
+	                                    </div>
+	                                </article>
+                                </#list>
                                 
                             	<div class="clearboth"></div>
                             </div>
