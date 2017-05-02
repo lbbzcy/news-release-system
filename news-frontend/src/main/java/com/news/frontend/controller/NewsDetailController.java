@@ -2,6 +2,8 @@ package com.news.frontend.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.news.common.core.dto.PageData;
+import com.news.common.project.app.NewsCommentAppService;
 import com.news.common.project.app.NewsDetailAppService;
+import com.news.common.project.dto.NewsCommentDto;
 import com.news.common.project.dto.NewsDetailDto;
 import com.news.frontend.common.BaseController;
 
@@ -18,9 +22,14 @@ import com.news.frontend.common.BaseController;
 public class NewsDetailController extends BaseController{
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
+	@Autowired
+	private NewsCommentAppService newsCommentAppService;
 	
 	@RequestMapping("/index")
-	public String toNewsDetail(Model model,@RequestParam(value="newsid") String newsid){
+	public String toNewsDetail(Model model,
+			@RequestParam(value="newsid") String newsid,
+			HttpServletRequest request,
+			PageData<NewsCommentDto> commentPage){
 		getAllNewsType(model);
 		getHotAndPicNews(model);
 		System.out.println("新闻的ID为:"+newsid);
@@ -28,12 +37,18 @@ public class NewsDetailController extends BaseController{
 		NewsDetailDto newsDetailDto = newsDetailAppService.findNewsById(newsid);
 		model.addAttribute("newsItem",newsDetailDto);
 		//获取新闻相关评论
-		
+		commentPage.setPageSize(5);
+		commentPage = newsCommentAppService.findPage(commentPage, newsDetailDto);
+		setPagination(model, commentPage, request);
+		List<NewsCommentDto> commentList = commentPage.getRows();
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("totalComment", commentPage.getTotal());
 		//浏览数量增加
 		newsDetailDto.setViewnum(newsDetailDto.getViewnum()+1);
 		newsDetailAppService.updateNewsDetailDto(newsDetailDto);
 		//获取相关新闻
 		PageData<NewsDetailDto> pageData = new PageData<NewsDetailDto>();
+		pageData.setPageNumber(1);
 		pageData.setPageSize(4);
 		pageData = newsDetailAppService.findPageWithType(pageData, newsDetailDto);
 		List<NewsDetailDto>  relatedNews = pageData.getRows();

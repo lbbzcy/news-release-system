@@ -39,7 +39,7 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定生成的表 -->
-		<table tableName="NEWS_USER" domainObjectName="NewsUserDto"
+		<table tableName="NEWS_COMMENT" domainObjectName="NewsCommentDto"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

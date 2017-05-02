@@ -17,4 +17,6 @@
 	<dubbo:service interface="com.news.common.project.app.NewsBannerAppService" ref="newsBannerAppService"  protocol="dubbo"/>
 	<!-- 用户服务类 -->
 	<dubbo:service interface="com.news.common.project.app.NewsUserAppService" ref="newsUserAppService"  protocol="dubbo"/>
+	<!-- 新闻评论服务类 -->
+	<dubbo:service interface="com.news.common.project.app.NewsCommentAppService" ref="newsCommentAppService"  protocol="dubbo"/>
 </beans>

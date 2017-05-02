@@ -91,64 +91,82 @@
                         <div class="line_2" style="margin:5px 0px 30px;"></div>
                         
                         <div class="block_comments_type_2">
-                        	<h3>3 条评论</h3>
-                            <a href="#" class="add_new">Add new comment</a>
-                            
-                            <div class="comment">
-                            	<div class="userpic"><a href="#"><img src="${rca.contextPath}/images/ava_default_1.jpg" alt="" /></a></div>
-                                
-                                <div class="comment_wrap">
-                                    <div class="name"><p><a href="#">John Doe</a></p></div>
-                                    <div class="date"><p>Febr 16, 2012 at 4:43 pm</p></div>
-                                    <div class="content">
-                                        <p>Established fact that a reader will be distracted by the readable content of a page.</p>
-                                    </div>
-                                </div>
-                                <div class="clearboth"></div>
-                                <div class="line_3"></div>
-                            </div>
-                            
-                            <div class="comment">
-                            	<div class="userpic"><a href="#"><img src="${rca.contextPath}/images/ava_default_1.jpg" alt="" /></a></div>
-                                
-                                <div class="comment_wrap">
-                                    <div class="name"><p><a href="#">Sara Jonson</a></p></div>
-                                    <div class="date"><p>Febr 16, 2012 at 4:43 pm</p></div>
-                                    <div class="content">
-                                        <p>Established fact that a reader will be distracted by the readable content of a page. When looking at its layout. The point of using is that it has a more-or-less normal distribution of letters.</p>
-                                    </div>
-                                </div>
-                                <div class="clearboth"></div>
-                                <div class="line_3"></div>
-                            </div>
-                            
-                            <div class="comment">
-                            	<div class="userpic"><a href="#"><img src="${rca.contextPath}/images/ava_default_1.jpg" alt="" /></a></div>
-                                
-                                <div class="comment_wrap">
-                                    <div class="name"><p><a href="#">Mark Defo</a></p></div>
-                                    <div class="date"><p>Febr 16, 2012 at 4:43 pm</p></div>
-                                    <div class="content">
-                                        <p>Page when looking at its layout. The point of usinghas a more-or-less normal distribution.</p>
-                                    </div>
-                                </div>
-                                <div class="clearboth"></div>
-                                <div class="line_3"></div>
-                            </div>
-                            
+                        	<h3>${totalComment}条评论</h3>
+                            <a href="#w_validation" class="add_new">添加评论</a>
+                            <#list commentList as item>
+	                            <div class="comment">
+	                                <div class="comment_wrap">
+	                                    <div class="name"><p><a href="#">${item.username}</a></p></div>
+	                                    <div class="date">
+	                                    	<p>${item.createtime?datetime}</p>
+	                                    </div>
+	                                    <div class="content">
+	                                        <p>${item.content}</p>
+	                                    	<p><a href="javascript:void(0);" class="replayto">回复</a></p>
+	                                    	<div class="textarea" id="sidereply" style="display:none;">
+	                                    		<textarea name="recontent" id="recontent" cols="1" rows="1" style="width: 347px;height: 95px;line-height: 15px;margin-top: 5px;display: block;background-color: transparent;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+		                                    	<a class="general_button" style="float:right;margin:2px;" onclick="replay();">确定</a>
+		                                    	<a class="general_button cancel" style="float:right;margin:2px;">取消</a>
+	                                    	</div>
+	                                    </div>
+	                                </div>
+	                                <div class="clearboth"></div>
+	                                <div class="line_3"></div>
+	                            </div>
+                            </#list>
+                            <div style="margin:22px 0px 29px;"></div>
+                            <#include "/common/pagination.ftl">
                         </div>
                         
                         <div class="separator" style="height:30px;"></div>
                         
                         <div class="block_leave_reply">
                         	<h3>发表评论</h3>
-                        	<form class="w_validation" action="#" />
+                        	<form id="w_validation" action="${rca.contextPath}/comment/replay.html" />
                                 <p>评论内容</p>
-                                <div class="textarea"><textarea cols="1" rows="1"></textarea></div>
-                                <input type="submit" class="general_button" value="发表评论" />
+                                <div class="textarea"><textarea name="recontent" id="recontent" cols="1" rows="1"></textarea></div>
+                               	<input type="hidden" name="newsid" value="${newsItem.id}" />
+                                <a class="general_button" onclick="replay();">发表评论</a>
                             </form>
                         </div>
-                        
+                        <script type="text/javascript">
+                        	$(function(){
+                        		$('.replayto').click(function(){
+                        			$(this).parent().next().css("display","block");
+                        		});
+                        		$('.cancel').click(function(){
+                        			$(this).parent().css("display","none");
+                        		});
+                        	});
+                        	function replay(){
+                        		$.ajax({
+                        			type:"get",
+                        			url:"${rca.contextPath}/comment/checkIsUserLogin.html",
+                        			success:function(data){
+                        				if(data=="success"){
+                        					console.log("已经登录");
+                        					var recontent = $("#recontent").val();
+                        					if(null==recontent || "" == recontent){
+                        						layer.msg("请填写评论内容",{
+                        							icon:1
+                        						});
+                        					}else{
+	                        					console.log(recontent);
+	                        					$('#w_validation').submit();
+                        					}
+                        				}else{
+                        					console.log("还没有登录");
+                        					layer.msg("请先登录，登录后才可以发表评论！", {
+												icon : 1
+											});
+                        				}
+                        			},
+                        			error:function(XMLHttpRequest, textStatus, errorThrown){
+										console.log(XMLHttpRequest.readyState + "," + XMLHttpRequest.status+ "," + XMLHttpRequest.responseText);
+									}
+                        		});
+                        	}
+                        </script>
                     </div>
                     
                     <#include "/common/sidebar.ftl">

@@ -66,6 +66,8 @@ src="${rca.contextPath}/layout/js/jquery.md5.js"></script>
 	src="${rca.contextPath}/layout/plugins/ajaxform/jquery.form.js"></script>
 <!-- jQuery Form Plugin end -->
 
+<!-- layer.js  -->
+<script type="text/javascript" src="${rca.contextPath}/layout/plugins/layer/layer.min.js"></script>
 <script type="text/javascript"
 	src="${rca.contextPath}/layout/js/main.js" charset="utf-8"></script>
 <!-- jQuery Form Validation -->

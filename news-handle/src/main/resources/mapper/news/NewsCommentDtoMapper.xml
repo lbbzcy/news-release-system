@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.news.handle.dao.NewsCommentDtoMapper">
+	<resultMap id="BaseResultMap" type="com.news.common.project.dto.NewsCommentDto">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NEWSID" property="newsid" jdbcType="VARCHAR" />
+		<result column="USERID" property="userid" jdbcType="VARCHAR" />
+		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="LIKENUM" property="likenum" jdbcType="DECIMAL" />
+		<result column="ISDEL" property="isdel" jdbcType="CHAR" />
+		<result column="REPLAYID" property="replayid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, NEWSID, USERID,USERNAME, CONTENT, CREATETIME, LIKENUM, ISDEL, REPLAYID
+	</sql>
+	<select id="findPage" resultMap="BaseResultMap"
+		parameterType="com.news.common.project.dto.NewsDetailDto">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_COMMENT
+		where ISDEL = 0 and REPLAYID = '0'
+		<if test="id != null and id !=''">
+			and NEWSID=#{id,jdbcType=VARCHAR}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	<select id="findReply" resultMap="BaseResultMap"
+		parameterType="com.news.common.project.dto.NewsCommentDto">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_COMMENT
+		where ISDEL = 0
+		<if test="id != null and id !=''">
+			and REPLAYID = #{id,jdbcType=VARCHAR}
+		</if>
+		order by CREATETIME DESC
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_COMMENT
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from NEWS_COMMENT
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.news.common.project.dto.NewsCommentDto">
+		insert into NEWS_COMMENT (ID, NEWSID, USERID,USERNAME,
+		CONTENT, CREATETIME, LIKENUM,
+		ISDEL, REPLAYID)
+		values (#{id,jdbcType=VARCHAR}, #{newsid,jdbcType=VARCHAR},
+		#{userid,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{likenum,jdbcType=DECIMAL},
+		#{isdel,jdbcType=CHAR}, #{replayid,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.news.common.project.dto.NewsCommentDto">
+		insert into NEWS_COMMENT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="newsid != null">
+				NEWSID,
+			</if>
+			<if test="userid != null">
+				USERID,
+			</if>
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="content != null">
+				CONTENT,
+			</if>
+			<if test="createtime != null">
+				CREATETIME,
+			</if>
+			<if test="likenum != null">
+				LIKENUM,
+			</if>
+			<if test="isdel != null">
+				ISDEL,
+			</if>
+			<if test="replayid != null">
+				REPLAYID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="newsid != null">
+				#{newsid,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="likenum != null">
+				#{likenum,jdbcType=DECIMAL},
+			</if>
+			<if test="isdel != null">
+				#{isdel,jdbcType=CHAR},
+			</if>
+			<if test="replayid != null">
+				#{replayid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.news.common.project.dto.NewsCommentDto">
+		update NEWS_COMMENT
+		<set>
+			<if test="newsid != null">
+				NEWSID = #{newsid,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				USERID = #{userid,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				USERNAME = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="likenum != null">
+				LIKENUM = #{likenum,jdbcType=DECIMAL},
+			</if>
+			<if test="isdel != null">
+				ISDEL = #{isdel,jdbcType=CHAR},
+			</if>
+			<if test="replayid != null">
+				REPLAYID = #{replayid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.news.common.project.dto.NewsCommentDto">
+		update NEWS_COMMENT
+		set NEWSID = #{newsid,jdbcType=VARCHAR},
+		USERID = #{userid,jdbcType=VARCHAR},
+		USERNAME = #{username,jdbcType=VARCHAR},
+		CONTENT = #{content,jdbcType=VARCHAR},
+		CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+		LIKENUM = #{likenum,jdbcType=DECIMAL},
+		ISDEL = #{isdel,jdbcType=CHAR},
+		REPLAYID = #{replayid,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
