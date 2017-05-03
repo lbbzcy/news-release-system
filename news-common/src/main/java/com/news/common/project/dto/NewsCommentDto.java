@@ -14,6 +14,8 @@ public class NewsCommentDto extends IdentityDto{
 	private String id;
 
     private String newsid;
+    
+    private String newstitle;
 
     private String userid;
     
@@ -47,7 +49,15 @@ public class NewsCommentDto extends IdentityDto{
         this.newsid = newsid == null ? null : newsid.trim();
     }
 
-    public String getUserid() {
+    public String getNewstitle() {
+		return newstitle;
+	}
+
+	public void setNewstitle(String newstitle) {
+		this.newstitle = newstitle;
+	}
+
+	public String getUserid() {
         return userid;
     }
 

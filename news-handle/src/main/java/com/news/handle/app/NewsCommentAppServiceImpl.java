@@ -22,5 +22,9 @@ public class NewsCommentAppServiceImpl implements NewsCommentAppService {
 	public PageData<NewsCommentDto> findPage(PageData<NewsCommentDto> commentPage, NewsDetailDto newsDetailDto) {
 		return newsCommentService.findPage(commentPage,newsDetailDto);
 	}
+	@Override
+	public PageData<NewsCommentDto> findCommentPage(PageData<NewsCommentDto> pageData, NewsCommentDto newsCommentDto) {
+		return newsCommentService.findCommentPage(pageData,newsCommentDto);
+	}
 
 }

@@ -1,8 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include/taglibs.jsp"%>
+<%@ include file="/WEB-INF/views/include/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
-<%@ include file="/WEB-INF/include/mgr_header.jsp"%>
+<%@ include file="/WEB-INF/views/include/mgr_header.jsp"%>
 <body class="gray-bg">
 	<div class="row  border-bottom white-bg dashboard-header">
 		<div class="col-sm-12">
@@ -27,63 +27,49 @@
 							<thead>
 								<tr>
 									<th style="text-align: center;">序号</th>
-									<th style="text-align: center;">评论新闻标题</th>
-									<th style="text-align: center;">评论时间</th>
+									<th style="text-align: center;">新闻标题</th>
 									<th style="text-align: center;">评论人</th>
+									<th style="text-align: center;">评论内容</th>
+									<th style="text-align: center;">评论时间</th>
+									<th style="text-align: center;">点赞数量</th>
 									<th style="text-align: center;">编辑</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td style="text-align: center;">01</td>
-									<td style="text-align: center;">${item.title}</td>
-									<td style="text-align: center;">
-										<%-- ${ltfun:dateLongToStringFormat(item.createtime,'yyyy-MM-dd HH:mm')} --%>
-									</td>
-									<td style="text-align: center;">commentuser</td>
-									<td style="text-align: center;"><a
-										class="btn btn-success btn-bitbucket btn-xs" href="edit.html">查看详情</a>
-										<a class="btn btn-danger btn-bitbucket btn-xs"
-										onclick="deletebanner(1);">删除</a></td>
-								</tr>
+								<c:if test="${empty pageData.rows}">
+									<tr>
+										<td colspan="7" class="text-center">暂无数据</td>
+									</tr>
+								</c:if>
+								<c:forEach items="${pageData.rows}" var="row" varStatus="vs">
+									<tr class="${vs.count%2 == 0?'gray':''}">
+										<td style="text-align: center;"><c:out
+												value="${vs.count + (pageData.pageNumber-1)*pageData.pageSize}" /></td>
+										<td style="text-align: center;">${row.newstitle}</td>
+										<td style="text-align: center;">${row.username}</td>
+										<td style="text-align: center;">${row.content}</td>
+										<td style="text-align: center;"><fmt:formatDate value="${row.createtime}" type="both" /></td>
+										<td style="text-align: center;">${row.likenum}</td>
+										<td id="icon_btn" style="text-align: center;"><a
+											class="btn btn-danger btn-bitbucket btn-xs"
+											onclick="openDialog(1,'${row.id}');"> <i
+												class="fa fa-edit"></i>修改
+										</a> <a class="btn btn-danger btn-bitbucket btn-xs"
+											onclick="openDialog(2,'${row.id}');"> <i
+												class="fa fa-edit"></i>删除
+										</a></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 
 					</div>
-					<!--分页-->
-					<div class="col-sm-6">
-						<div class="dataTables_info" id="editable_info" role="alert"
-							aria-live="polite" aria-relevant="all">显示 1 到 10 项，共 57 项</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="dataTables_paginate paging_simple_numbers"
-							id="editable_paginate">
-							<ul class="pagination">
-								<li class="paginate_button previous disabled"
-									aria-controls="editable" tabindex="0" id="editable_previous"><a
-									href="#">上一页</a></li>
-								<li class="paginate_button active" aria-controls="editable"
-									tabindex="0"><a href="#">1</a></li>
-								<li class="paginate_button " aria-controls="editable"
-									tabindex="0"><a href="#">2</a></li>
-								<li class="paginate_button " aria-controls="editable"
-									tabindex="0"><a href="#">3</a></li>
-								<li class="paginate_button " aria-controls="editable"
-									tabindex="0"><a href="#">4</a></li>
-								<li class="paginate_button " aria-controls="editable"
-									tabindex="0"><a href="#">5</a></li>
-								<li class="paginate_button " aria-controls="editable"
-									tabindex="0"><a href="#">6</a></li>
-								<li class="paginate_button next" aria-controls="editable"
-									tabindex="0" id="editable_next"><a href="#">下一页</a></li>
-							</ul>
-						</div>
-					</div>
+					<%@ include file="/WEB-INF/views/include/pagination.jsp" %>
 				</div>
 			</div>
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/include/mgr_script.jsp"%>
+	<%@ include file="/WEB-INF/views/include/mgr_script.jsp"%>
 	<script>
 		$(function() {
 			$("#btn_add").bind("click", function() {

@@ -50,7 +50,7 @@
                                 		</p>
                                 	</div>
                                     <a href="#" class="views">${newsItem.viewnum}</a>
-                                    <a href="#" class="comments">${newsItem.commentnum}</a>
+                                    <a href="#" class="comments">${totalComment}</a>
                                 </div>
                             </div>
                             
@@ -96,33 +96,94 @@
                             <#list commentList as item>
 	                            <div class="comment">
 	                                <div class="comment_wrap">
-	                                    <div class="name"><p><a href="#">${item.username}</a></p></div>
-	                                    <div class="date">
-	                                    	<p>${item.createtime?datetime}</p>
+	                                    <div class="name">
+	                                    	<p><a href="#">${item.username}&nbsp;&nbsp;${item.createtime?datetime}</a></p>
 	                                    </div>
+	                                    <div style="margin-top:10px;"></div>
 	                                    <div class="content">
 	                                        <p>${item.content}</p>
 	                                    	<p><a href="javascript:void(0);" class="replayto">回复</a></p>
 	                                    	<div class="textarea" id="sidereply" style="display:none;">
-	                                    		<textarea name="recontent" id="recontent" cols="1" rows="1" style="width: 347px;height: 95px;line-height: 15px;margin-top: 5px;display: block;background-color: transparent;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
-		                                    	<a class="general_button" style="float:right;margin:2px;" onclick="replay();">确定</a>
+	                                    		<textarea name="recontent" cols="1" rows="1" style="width: 614px;height: 95px;line-height: 15px;margin-top: 5px;display: block;background-color: transparent;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+		                                    	<a class="general_button replyconfirm" style="float:right;margin:2px;">确定</a>
+		                                    	<input type="hidden" value="${item.id}">
+										        <input type="hidden" value="${newsItem.id}">
 		                                    	<a class="general_button cancel" style="float:right;margin:2px;">取消</a>
 	                                    	</div>
+	                                    	<#if item.children??>
+	                                    		<#list item.children as child>
+			                                    	<div class="line_3"></div>
+			                                    	<div style="margin-left:50px;" class="comment_wrap">
+					                                    <div class="name">
+					                                    	<p><a href="#">${child.username}&nbsp;&nbsp;${child.createtime?datetime}</a></p>
+					                                    </div>
+					                                    <div style="margin-top:10px;"></div>
+					                                    <div class="content">
+					                                        <p>${child.content}</p>
+					                                    	<p><a href="javascript:void(0);" class="replayto">回复</a></p>
+					                                    	<div class="textarea" id="sidereply" style="display:none;">
+					                                    		<textarea name="recontent" cols="1" rows="1" style="width: 564px;height: 95px;line-height: 15px;margin-top: 5px;display: block;background-color: transparent;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+						                                    	<a class="general_button replyconfirm " style="float:right;margin:2px;">确定</a>
+						                                    	<input type="hidden" value="${child.id}">
+										                        <input type="hidden" value="${newsItem.id}">
+						                                    	<a class="general_button cancel" style="float:right;margin:2px;">取消</a>
+					                                    	</div>
+					                                    	<#if child.children??>
+					                                    		<#list child.children as grandson>
+							                                    	<div class="line_3"></div>
+							                                    	<div style="margin-left:50px;" class="comment_wrap">
+									                                    <div class="name">
+									                                    	<p><a href="#">${grandson.username}&nbsp;&nbsp;${grandson.createtime?datetime}</a></p>
+									                                    </div>
+									                                    <div style="margin-top:10px;"></div>
+									                                    <div class="content">
+									                                        <p>${grandson.content}</p>
+									                                    	<p><a href="javascript:void(0);" class="replayto">回复</a></p>
+									                                    	<div class="textarea" id="sidereply" style="display:none;">
+									                                    		<textarea name="recontent" cols="1" rows="1" style="width: 514px;height: 95px;line-height: 15px;margin-top: 5px;display: block;background-color: transparent;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+										                                    	<a class="general_button replyconfirm" style="float:right;margin:2px;">确定</a>
+										                                    	<input type="hidden" value="${grandson.id}">
+										                                    	<input type="hidden" value="${newsItem.id}">
+										                                    	<a class="general_button cancel" style="float:right;margin:2px;">取消</a>
+									                                    	</div>
+									                                    	<#if grandson.children??>
+									                                    		<#list grandson.children as greatgrandson>
+											                                    	<div class="line_3"></div>
+											                                    	<div style="margin-left:50px;" class="comment_wrap">
+													                                    <div class="name">
+													                                    	<p><a href="#">${greatgrandson.username}&nbsp;&nbsp;${greatgrandson.createtime?datetime}</a></p>
+													                                    </div>
+													                                    <div style="margin-top:10px;"></div>
+													                                    <div class="content">
+													                                        <p>${greatgrandson.content}</p>
+													                                    </div>
+													                                </div>
+													                            </#list>
+												                             </#if>
+									                                    </div>
+									                                </div>
+									                            </#list>
+								                             </#if>
+					                                    </div>
+					                                </div>
+					                            </#list>
+				                             </#if>
+			                                <div class="clearboth"></div>
 	                                    </div>
 	                                </div>
 	                                <div class="clearboth"></div>
 	                                <div class="line_3"></div>
 	                            </div>
+	                            <div style="margin:22px 0px 29px;"></div>
+                            	<#include "/common/pagination.ftl">
                             </#list>
-                            <div style="margin:22px 0px 29px;"></div>
-                            <#include "/common/pagination.ftl">
                         </div>
                         
                         <div class="separator" style="height:30px;"></div>
                         
                         <div class="block_leave_reply">
                         	<h3>发表评论</h3>
-                        	<form id="w_validation" action="${rca.contextPath}/comment/replay.html" />
+                        	<form id="w_validation" action="${rca.contextPath}/comment/replay.html"/>
                                 <p>评论内容</p>
                                 <div class="textarea"><textarea name="recontent" id="recontent" cols="1" rows="1"></textarea></div>
                                	<input type="hidden" name="newsid" value="${newsItem.id}" />
@@ -136,6 +197,37 @@
                         		});
                         		$('.cancel').click(function(){
                         			$(this).parent().css("display","none");
+                        		});
+                        		$('.replyconfirm').click(function(){
+                        			var replycontent = $(this).prev().val();
+                        			var replayid = $(this).next().val();
+                        			var newsid = $(this).next().next().val();
+                        			if(null == replycontent || "" == replycontent){
+                        				layer.msg("请填写评论内容",{
+                							icon:1
+                						});
+                        			}else{
+                        				$.ajax({
+                        					type:"post",
+                        					url:"${rca.contextPath}/comment/replay.html",
+                        					data:{
+                        						recontent:replycontent,
+                        						replayid:replayid,
+                        						newsid:newsid
+                        					},
+                        					success:function(){
+                        						layer.msg("评论成功",{
+                									icon:1
+                								});
+                								setTimeout(function(){
+                									window.location.reload();
+                								},1000);
+                        					},
+                        					error:function(XMLHttpRequest, textStatus, errorThrown){
+												console.log(XMLHttpRequest.readyState + "," + XMLHttpRequest.status+ "," + XMLHttpRequest.responseText);
+											}
+                        				});
+                        			}
                         		});
                         	});
                         	function replay(){

@@ -43,5 +43,15 @@ public class NewsCommentServiceImpl implements NewsCommentService {
 			}
 		}
 	}
+	@Override
+	
+	public PageData<NewsCommentDto> findCommentPage(PageData<NewsCommentDto> pageData, NewsCommentDto newsCommentDto) {
+		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
+		List<NewsCommentDto> findPage = newsCommentDtoMapper.findCommentPage(newsCommentDto);
+		Page<NewsCommentDto> page = (Page<NewsCommentDto>) findPage;
+		pageData.setTotal(page.getTotal());
+		pageData.setRows(findPage);
+		return pageData;
+	}
 
 }

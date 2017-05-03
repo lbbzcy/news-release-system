@@ -237,6 +237,8 @@
 				<groupId>com.google.code</groupId>
 				<artifactId>captcha-kaptcha</artifactId>
 				<version>2.3.2</version>
+				<scope>system</scope>
+				<systemPath>D:/maven/com/google/code/captcha-kaptcha/2.3.2/captcha-kaptcha-2.3.2.jar</systemPath>
 			</dependency>
 			<dependency>
 			  <groupId>org.opensymphony.quartz</groupId>
@@ -263,6 +265,8 @@
 				<groupId>oracle</groupId>
 				<artifactId>oracle-jdbc6</artifactId>
 				<version>11.2.0.3.0</version>
+				<scope>system</scope>
+				<systemPath>D:/maven/oracle/oracle-jdbc6/11.2.0.3.0/oracle-jdbc6-11.2.0.3.0.jar</systemPath>
 			</dependency>
 			<!-- optional datasource pool -->
 			<dependency>

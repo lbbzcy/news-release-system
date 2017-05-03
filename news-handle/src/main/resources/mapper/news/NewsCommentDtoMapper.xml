@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.news.common.project.dto.NewsCommentDto">
 		<id column="ID" property="id" jdbcType="VARCHAR" />
 		<result column="NEWSID" property="newsid" jdbcType="VARCHAR" />
+		<result column="NEWSTITLE" property="newstitle" jdbcType="VARCHAR" />
 		<result column="USERID" property="userid" jdbcType="VARCHAR" />
 		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
 		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
@@ -13,8 +14,16 @@
 		<result column="REPLAYID" property="replayid" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, NEWSID, USERID,USERNAME, CONTENT, CREATETIME, LIKENUM, ISDEL, REPLAYID
+		ID, NEWSID,NEWSTITLE, USERID,USERNAME, CONTENT, CREATETIME, LIKENUM, ISDEL, REPLAYID
 	</sql>
+	<select id="findCommentPage" resultMap="BaseResultMap"
+		parameterType="com.news.common.project.dto.NewsDetailDto">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_COMMENT
+		where ISDEL = 0 and REPLAYID = '0'
+		order by CREATETIME DESC
+	</select>
 	<select id="findPage" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsDetailDto">
 		select
@@ -50,10 +59,10 @@
 		where ID = #{id,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insert" parameterType="com.news.common.project.dto.NewsCommentDto">
-		insert into NEWS_COMMENT (ID, NEWSID, USERID,USERNAME,
+		insert into NEWS_COMMENT (ID, NEWSID,NEWSTITLE, USERID,USERNAME,
 		CONTENT, CREATETIME, LIKENUM,
 		ISDEL, REPLAYID)
-		values (#{id,jdbcType=VARCHAR}, #{newsid,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR}, #{newsid,jdbcType=VARCHAR},#{newstitle,jdbcType=VARCHAR},
 		#{userid,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},
 		#{content,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{likenum,jdbcType=DECIMAL},
 		#{isdel,jdbcType=CHAR}, #{replayid,jdbcType=VARCHAR})
@@ -66,6 +75,9 @@
 			</if>
 			<if test="newsid != null">
 				NEWSID,
+			</if>
+			<if test="newstitle != null">
+				NEWSTITLE,
 			</if>
 			<if test="userid != null">
 				USERID,
@@ -96,6 +108,9 @@
 			<if test="newsid != null">
 				#{newsid,jdbcType=VARCHAR},
 			</if>
+			<if test="newstitle != null">
+				#{newstitle,jdbcType=VARCHAR},
+			</if>
 			<if test="userid != null">
 				#{userid,jdbcType=VARCHAR},
 			</if>
@@ -125,6 +140,9 @@
 			<if test="newsid != null">
 				NEWSID = #{newsid,jdbcType=VARCHAR},
 			</if>
+			<if test="newstitle != null">
+				NEWSTITLE = #{newstitle,jdbcType=VARCHAR},
+			</if>
 			<if test="userid != null">
 				USERID = #{userid,jdbcType=VARCHAR},
 			</if>
@@ -152,6 +170,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.news.common.project.dto.NewsCommentDto">
 		update NEWS_COMMENT
 		set NEWSID = #{newsid,jdbcType=VARCHAR},
+		NEWSTITLE = #{newstitle,jdbcType=VARCHAR},
 		USERID = #{userid,jdbcType=VARCHAR},
 		USERNAME = #{username,jdbcType=VARCHAR},
 		CONTENT = #{content,jdbcType=VARCHAR},

@@ -8,4 +8,6 @@ public interface NewsCommentService {
 	public int insertComment(NewsCommentDto record);
 	
 	public PageData<NewsCommentDto> findPage(PageData<NewsCommentDto> commentPage, NewsDetailDto newsDetailDto);
+
+	public PageData<NewsCommentDto> findCommentPage(PageData<NewsCommentDto> pageData, NewsCommentDto newsCommentDto);
 }

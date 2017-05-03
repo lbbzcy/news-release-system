@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,14 +41,18 @@ public class NewsCommentController extends BaseController {
 		}
 		return "success";
 	}
-	@RequestMapping("/replay")
+	@RequestMapping(value="/replay",method={RequestMethod.GET,RequestMethod.POST})
 	public String replay(HttpServletRequest request
 			,@RequestParam(value="recontent") String recontent
 			,@RequestParam(value="replayid",required=false) String replyid
 			,@RequestParam(value="newsid") String newsid) throws UnsupportedEncodingException{
 		HttpSession session = request.getSession();
 		NewsUserDto user = getCurrentUser(session);
-		recontent = new String(recontent.getBytes("ISO-8859-1"), "UTF-8");
+		String method = request.getMethod();
+		System.out.println("Method："+method);
+		if("get".equals(method)||"GET".equals(method)){
+			recontent = new String(recontent.getBytes("ISO-8859-1"), "UTF-8");
+		}
 		System.out.println("评论的内容为："+recontent+"新闻ID为："+newsid);
 		if(null == replyid || "".equals(replyid)){
 			replyid = "0";
@@ -60,6 +65,7 @@ public class NewsCommentController extends BaseController {
 		commentDto.setIsdel("0");
 		commentDto.setLikenum(0L);
 		commentDto.setNewsid(newsid);
+		commentDto.setNewstitle(newsDetailAppService.findNewsById(newsid).getTitle());
 		commentDto.setContent(recontent);
 		commentDto.setCreatetime(new Date());
 		newsCommentAppService.insertComment(commentDto);

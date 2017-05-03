@@ -91,10 +91,10 @@
 			<artifactId>ehcache-core</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.google.code</groupId>
 			<artifactId>captcha-kaptcha</artifactId>
-		</dependency>
+		</dependency> -->
 
 
 

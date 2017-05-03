@@ -21,4 +21,6 @@ public interface NewsCommentDtoMapper {
 	List<NewsCommentDto> findPage(NewsDetailDto newsDetailDto);
 
 	List<NewsCommentDto> findReply(NewsCommentDto dto);
+
+	List<NewsCommentDto> findCommentPage(NewsCommentDto newsCommentDto);
 }

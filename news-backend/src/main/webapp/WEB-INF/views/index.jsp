@@ -42,7 +42,7 @@
 							</li>
 							<li><a class="J_menuItem" href="${basepath}/news_edit/list.html">新闻编辑</a>
 							</li>
-							<li><a class="J_menuItem" href="comment/index.html">评论管理</a>
+							<li><a class="J_menuItem" href="${basepath}/comment/list.html">评论管理</a>
 							</li>
 						</ul></li>
 					<li><a class="J_menuItem" href="${basepath}/user/list.html"><i

@@ -920,7 +920,7 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 .block_comments_type_2 .comment .line_3 {margin-top:13px;}
 .block_comments_type_2 .comment .userpic {margin-right:12px; padding:4px 0px 4px; float:left; line-height:0px;}
 .block_comments_type_2 .comment_wrap {overflow:hidden;}
-.block_comments_type_2 .comment .name {width:100px; margin-right:12px; padding-top:1px; float:left;}
+.block_comments_type_2 .comment .name { margin-right:12px; padding-top:1px; }
 .block_comments_type_2 .comment .name p {color:#383838; font-weight:bold; line-height:normal;}
 .block_comments_type_2 .comment .name a {color:#383838; font-weight:bold;}
 .block_comments_type_2 .comment .name a:hover {color:#f24024; text-decoration:none;}
