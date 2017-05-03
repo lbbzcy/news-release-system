@@ -10,4 +10,6 @@ public interface NewsCommentService {
 	public PageData<NewsCommentDto> findPage(PageData<NewsCommentDto> commentPage, NewsDetailDto newsDetailDto);
 
 	public PageData<NewsCommentDto> findCommentPage(PageData<NewsCommentDto> pageData, NewsCommentDto newsCommentDto);
+
+	public int deleteNewsComment(String id);
 }

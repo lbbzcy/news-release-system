@@ -11,5 +11,7 @@ public interface NewsCommentAppService {
 	public PageData<NewsCommentDto> findPage(PageData<NewsCommentDto> commentPage, NewsDetailDto newsDetailDto);
 
 	public PageData<NewsCommentDto> findCommentPage(PageData<NewsCommentDto> pageData, NewsCommentDto queryParam);
+
+	public int deleteNewsCommentDto(String id);
 	
 }

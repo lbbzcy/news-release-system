@@ -17,11 +17,14 @@
 		ID, NEWSID,NEWSTITLE, USERID,USERNAME, CONTENT, CREATETIME, LIKENUM, ISDEL, REPLAYID
 	</sql>
 	<select id="findCommentPage" resultMap="BaseResultMap"
-		parameterType="com.news.common.project.dto.NewsDetailDto">
+		parameterType="com.news.common.project.dto.NewsCommentDto">
 		select
 		<include refid="Base_Column_List" />
 		from NEWS_COMMENT
 		where ISDEL = 0 and REPLAYID = '0'
+		<if test="newstitle !=null and newstitle != ''">
+			and instr(NEWSTITLE,#{newstitle,jdbcType=VARCHAR}) > 0		    
+		</if>
 		order by CREATETIME DESC
 	</select>
 	<select id="findPage" resultMap="BaseResultMap"
@@ -54,10 +57,10 @@
 		from NEWS_COMMENT
 		where ID = #{id,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from NEWS_COMMENT
-		where ID = #{id,jdbcType=VARCHAR}
-	</delete>
+	<update id="deleteByPrimaryKey" parameterType="java.lang.String">
+		update NEWS_COMMENT
+		set ISDEL = 1 where ID = #{id,jdbcType=VARCHAR}  	      
+	</update>
 	<insert id="insert" parameterType="com.news.common.project.dto.NewsCommentDto">
 		insert into NEWS_COMMENT (ID, NEWSID,NEWSTITLE, USERID,USERNAME,
 		CONTENT, CREATETIME, LIKENUM,

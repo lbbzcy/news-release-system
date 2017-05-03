@@ -53,5 +53,9 @@ public class NewsCommentServiceImpl implements NewsCommentService {
 		pageData.setRows(findPage);
 		return pageData;
 	}
+	@Override
+	public int deleteNewsComment(String id) {
+		return newsCommentDtoMapper.deleteByPrimaryKey(id);
+	}
 
 }

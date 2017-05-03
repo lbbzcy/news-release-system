@@ -26,5 +26,9 @@ public class NewsCommentAppServiceImpl implements NewsCommentAppService {
 	public PageData<NewsCommentDto> findCommentPage(PageData<NewsCommentDto> pageData, NewsCommentDto newsCommentDto) {
 		return newsCommentService.findCommentPage(pageData,newsCommentDto);
 	}
+	@Override
+	public int deleteNewsCommentDto(String id) {
+		return newsCommentService.deleteNewsComment(id);
+	}
 
 }

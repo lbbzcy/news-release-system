@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.news.backend.common.BaseController;
 import com.news.common.core.dto.PageData;
@@ -29,5 +32,14 @@ public class NewsCommentController extends BaseController {
 		// 分页显示
 		setPagination(model, pageData, request);
 		return NEWS_DETAIL_LIST_PATH;
+	}
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete(@RequestParam String id, HttpServletRequest request){
+		int result = newsCommentAppService.deleteNewsCommentDto(id);
+		if(result<1){
+			return "failure";
+		}
+		return "success";
 	}
 }
