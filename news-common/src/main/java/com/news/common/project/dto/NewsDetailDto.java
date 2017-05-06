@@ -2,6 +2,8 @@ package com.news.common.project.dto;
 
 import java.util.Date;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import com.news.common.core.constant.EYesNo;
 import com.news.common.core.dto.IdentityDto;
 
@@ -11,36 +13,37 @@ public class NewsDetailDto extends IdentityDto{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Field("id")
 	private String id;
-
+	@Field("typeid")
     private String typeid;
-
+	@Field("templateid")
     private String templateid;
-    
+	@Field("typename")
     private String typename;
-    
+	@Field("templatename")
     private String templatename;
-
+	@Field("newstitle")
     private String title;
-
+	@Field("viewnum")
     private Long viewnum;
-
+    @Field("commentnum")
     private Long commentnum;
-
+   
     private EYesNo ishot;
-
+    @Field("creator")
     private String creator;
-
+    @Field("updator")
     private String updator;
-
+    @Field("createtime")
     private Date createtime;
-
+    @Field("updatetime")
     private Date updatetime;
-
+    @Field("isdel")
     private String isdel;
-
+	@Field("newscontent")
     private String content;
-    
+	@Field("brief")
     private String brief;
     
     //查询条件

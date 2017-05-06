@@ -49,10 +49,10 @@
                                 	<#list mideaNewsList as pic>
 	                                	<article class="block_media_post_all">
 	                                    	<div class="f_pic">
-	                                            <a href="${rca.contextPath}/media/item.html"><img src="${rca.contextPath}/images/pic_media_tabs_1.jpg" alt="" /><span class="hover"></span></a>
+	                                            <a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}"><img src="${rca.contextPath}/images/pic_media_tabs_1.jpg" alt="" /><span class="hover"></span></a>
 	                                        </div>
 	                                        <div style="float:right;width:440px;height:86px;line-height:86px;">
-		                                      	<p class="title"><a href="${rca.contextPath}/media/item.html">${pic.title}</a></p>
+		                                      	<p class="title"><a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}">${pic.title}</a></p>
 		                                        <p class="date">${pic.createtime?date}</p>
 		                                    </div>
 	                                    </article>
@@ -72,10 +72,10 @@
                                 	<#list mideaNewsList as pic>
 	                                	<article class="block_media_post_all">
 	                                    	<div class="f_pic">
-	                                            <a href="${rca.contextPath}/media/item.html"><img src="${rca.contextPath}/images/pic_media_tabs_1.jpg" alt="" /><span class="hover"></span></a>
+	                                            <a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}"><img src="${rca.contextPath}/images/pic_media_tabs_1.jpg" alt="" /><span class="hover"></span></a>
 	                                        </div>
 	                                        <div style="float:right;width:440px;height:86px;line-height:86px;">
-		                                      	<p class="title"><a href="${rca.contextPath}/media/item.html">${pic.title}</a></p>
+		                                      	<p class="title"><a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}">${pic.title}</a></p>
 		                                        <p class="date">${pic.createtime?date}</p>
 	                                        </div>
 	                                    </article>

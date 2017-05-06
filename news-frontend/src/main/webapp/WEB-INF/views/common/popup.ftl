@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="column_2">
-                    <p class="forgot_pass"><a href="#">忘记密码?</a></p>
+                    <p class="forgot_pass"><a href="${rca.contextPath}/retrievepwd/step1.html">忘记密码?</a></p>
                 </div>
 
                 <div class="column button">

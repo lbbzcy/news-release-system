@@ -37,13 +37,15 @@
 								<ul class="slides">
 									<#list bannerList as item>
 										<li>
-											<div class="slide">
-												<img style="width:610px;height:292px;" src="${BANNER_IMGSRC}${item.imgsrc}" alt="" />
-												<div class="caption">
-													<p class="title">${item.title}</p>
-													<p>${item.briefintroduction}</p>
+											<a href="${rca.contextPath}/newsdetail/index.html?newsid=${item.newsid}">
+												<div class="slide">
+													<img style="width:610px;height:292px;" src="${BANNER_IMGSRC}${item.imgsrc}" alt="" />
+													<div class="caption">
+														<p class="title">${item.title}</p>
+														<p>${item.briefintroduction}</p>
+													</div>
 												</div>
-											</div>
+											</a>
 										</li>
 									</#list>
 								</ul>

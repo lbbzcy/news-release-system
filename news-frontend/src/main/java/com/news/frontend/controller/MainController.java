@@ -28,7 +28,9 @@ public class MainController extends BaseController{
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
 	@RequestMapping("/index")
-	public String toIndex(Model model,HttpServletRequest request){
+	public String toIndex(Model model,
+			HttpServletRequest request,
+			PageData<NewsDetailDto> newsDetailPageData){
 		getAllNewsType(model);
 		//获取所有的banner
 		PageData<NewsBannerDto> pageData = new PageData<NewsBannerDto>();
@@ -37,21 +39,21 @@ public class MainController extends BaseController{
 		List<NewsBannerDto> bannerList = pageData.getRows();
 		model.addAttribute("bannerList", bannerList);
 		//获取新闻
-		PageData<NewsDetailDto> newsDetailPageData = new PageData<NewsDetailDto>();
 		newsDetailPageData.setPageSize(4);
 		newsDetailPageData = newsDetailAppService.findPageWithType(newsDetailPageData, new NewsDetailDto());
-		List<NewsDetailDto> newsDetailList = newsDetailPageData.getRows();
 		setPagination(model, newsDetailPageData, request);
+		List<NewsDetailDto> newsDetailList = newsDetailPageData.getRows();
 		model.addAttribute("newsDetailList", newsDetailList);
 		//获取热门和图片新闻
 		getHotAndPicNews(model);
 		return "/main/index";
 	}
 	@RequestMapping("/main_news")
-	public String toMainNews(Model model,HttpServletRequest request){
+	public String toMainNews(Model model,
+			HttpServletRequest request,
+			PageData<NewsDetailDto> newsDetailPageData){
 		getAllNewsType(model);
 		getHotAndPicNews(model);
-		PageData<NewsDetailDto> newsDetailPageData = new PageData<NewsDetailDto>();
 		newsDetailPageData.setPageSize(8);
 		newsDetailPageData = newsDetailAppService.findPageWithType(newsDetailPageData, new NewsDetailDto());
 		List<NewsDetailDto> newsDetailList = newsDetailPageData.getRows();

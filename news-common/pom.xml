@@ -105,5 +105,11 @@
 			<groupId>commons-net</groupId>
 			<artifactId>commons-net</artifactId>
 		</dependency>
+		<!-- solrj -->
+		<dependency>
+		  <groupId>org.apache.solr</groupId>
+		  <artifactId>solr-solrj</artifactId>
+		  <version>6.5.1</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -257,7 +257,12 @@
 			<artifactId>java-property-utils</artifactId>
 			<version>1.9.1</version>
 		</dependency>
-
+		<!-- solrj -->
+		<dependency>
+		  <groupId>org.apache.solr</groupId>
+		  <artifactId>solr-solrj</artifactId>
+		  <version>6.5.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -35,14 +35,33 @@
 				<div class="fr">
 					<div class="block_languages"></div>
 					<div class="block_search_top">
-						<form action="#" />
-						<div class="field">
-							<input type="text" class="w_def_text" title="搜索" />
-						</div>
-						<input type="submit" class="button" value="Search" />
-						<div class="clearboth"></div>
+						<form action="${rca.contextPath}/solr/search.html" onsubmit="return checkQuery();"/>
+							<div class="field">
+								<input name="queryParam" type="text" class="w_def_text" placeholder="输入搜索内容" />
+							</div>
+							<input type="submit" class="button" value="Search" />
+							<div class="clearboth"></div>
 						</form>
 					</div>
+					<script>
+						function checkQuery(){
+							var inputQuery = $('.w_def_text').val();
+							if (validata(inputQuery)) {
+								layer.msg('请输入搜索的内容', {
+									time : 2000,
+									offset : '100px'
+								});
+								return false;
+							}
+						}
+						function validata(name) {
+							if (name == undefined || name == null || name == "") {
+								return true;
+							} else {
+								return false;
+							}
+						}
+					</script>
 				</div>
 				<div class="clearboth"></div>
 			</div>

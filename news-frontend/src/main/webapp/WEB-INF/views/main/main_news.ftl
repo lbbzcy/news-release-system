@@ -43,7 +43,7 @@
                         <div class="block_main_news">
                         	<#list newsDetailList as item>
 	                            <article class="block_news_post">
-	                                <p class="title"><a href="${rca.contextPath}/newsdetail/index.html">${item.title}</a></p>
+	                                <p class="title"><a href="${rca.contextPath}/newsdetail/index.html?newsid=${item.id}">${item.title}</a></p>
 	                                <p class="text">${item.brief}</p>
 	                                <p class="category"><a href="#">${item.typename}</a></p>
 	                                <div class="info">

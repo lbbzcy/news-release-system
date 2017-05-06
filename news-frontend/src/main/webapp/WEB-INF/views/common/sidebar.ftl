@@ -10,7 +10,7 @@
 	
 				<div class="text">
 					<p class="title">
-						<a href="#">${hot.title}</a>
+						<a href="${rca.contextPath}/newsdetail/index.html?newsid=${hot.id}">${hot.title}</a>
 					</p>
 					<div class="date">
 						<p>${hot.createtime?date}</p>
@@ -82,7 +82,7 @@
 						alt="" /></a>
 				</div>
 				<p>
-					<a href="blog_post_w_slider.html">${pic.title}</a> <img
+					<a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}">${pic.title}</a> <img
 						src="${rca.contextPath}/images/icon_photo.gif" alt="" />
 				</p>
 				<p class="date">${pic.createtime?date}</p>
