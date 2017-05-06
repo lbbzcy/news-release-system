@@ -22,7 +22,15 @@ public class NewsTypeController extends BaseController{
 	
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
-	
+	/**
+	 * 类别页面
+	 * @param model
+	 * @param typeid
+	 * @param typename
+	 * @param request
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping("/index")
 	public String toIndex(Model model
 			,@RequestParam (value="typeid") String typeid

@@ -18,7 +18,12 @@ public class MediaController extends BaseController{
 	
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
-	
+	/**
+	 * 图片新闻显示
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/index")
 	public String toMedia(Model model,HttpServletRequest request){
 		getAllNewsType(model);

@@ -28,7 +28,11 @@ public class NewsCommentController extends BaseController {
 	private NewsCommentAppService newsCommentAppService;
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
-	
+	/**
+	 * 验证用户是否登录
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/checkIsUserLogin")
 	@ResponseBody
 	public String checkIsUserLogin(HttpServletRequest request){
@@ -41,6 +45,15 @@ public class NewsCommentController extends BaseController {
 		}
 		return "success";
 	}
+	/**
+	 * 回复评论功能
+	 * @param request
+	 * @param recontent
+	 * @param replyid
+	 * @param newsid
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value="/replay",method={RequestMethod.GET,RequestMethod.POST})
 	public String replay(HttpServletRequest request
 			,@RequestParam(value="recontent") String recontent

@@ -565,3 +565,10 @@ $(function() {
 	init_menu();
 	init_pretty_photo();
 });
+function validata(name) {
+	if (name == undefined || name == null || name == "") {
+		return true;
+	} else {
+		return false;
+	}
+}

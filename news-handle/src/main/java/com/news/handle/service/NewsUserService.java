@@ -18,4 +18,6 @@ public interface NewsUserService {
 	public PageData<NewsUserDto> findPageWithUser(PageData<NewsUserDto> pageData, NewsUserDto queryParam);
 
 	public NewsUserDto getUserByAuth(String auth, String password);
+
+	public NewsUserDto getUserById(String id);
 }

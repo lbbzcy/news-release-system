@@ -51,4 +51,9 @@ public class NewsUserServiceImpl implements NewsUserService {
 		return pageData;
 	}
 
+	@Override
+	public NewsUserDto getUserById(String id) {
+		return newsUserDtoMapper.selectByPrimaryKey(id);
+	}
+
 }

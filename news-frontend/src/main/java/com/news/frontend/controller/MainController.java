@@ -27,6 +27,13 @@ public class MainController extends BaseController{
 	private NewsBannerAppService newsBannerAppService;
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
+	/**
+	 * 首页显示
+	 * @param model
+	 * @param request
+	 * @param newsDetailPageData
+	 * @return
+	 */
 	@RequestMapping("/index")
 	public String toIndex(Model model,
 			HttpServletRequest request,
@@ -48,6 +55,13 @@ public class MainController extends BaseController{
 		getHotAndPicNews(model);
 		return "/main/index";
 	}
+	/**
+	 * 所有新闻显示
+	 * @param model
+	 * @param request
+	 * @param newsDetailPageData
+	 * @return
+	 */
 	@RequestMapping("/main_news")
 	public String toMainNews(Model model,
 			HttpServletRequest request,

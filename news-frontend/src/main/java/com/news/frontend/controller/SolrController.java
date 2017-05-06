@@ -17,6 +17,15 @@ import com.news.frontend.common.BaseController;
 @Controller
 @RequestMapping("/solr")
 public class SolrController extends BaseController {
+	/**
+	 * 全文检索
+	 * @param queryParam
+	 * @param request
+	 * @param model
+	 * @param pageData
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/search")
 	public String search(@RequestParam(value="queryParam") String queryParam 
 			,HttpServletRequest request

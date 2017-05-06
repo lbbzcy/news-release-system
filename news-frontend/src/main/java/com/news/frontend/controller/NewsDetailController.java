@@ -24,7 +24,14 @@ public class NewsDetailController extends BaseController{
 	private NewsDetailAppService newsDetailAppService;
 	@Autowired
 	private NewsCommentAppService newsCommentAppService;
-	
+	/**
+	 * 新闻详情页面
+	 * @param model
+	 * @param newsid
+	 * @param request
+	 * @param commentPage
+	 * @return
+	 */
 	@RequestMapping("/index")
 	public String toNewsDetail(Model model,
 			@RequestParam(value="newsid") String newsid,
@@ -32,7 +39,6 @@ public class NewsDetailController extends BaseController{
 			PageData<NewsCommentDto> commentPage){
 		getAllNewsType(model);
 		getHotAndPicNews(model);
-		System.out.println("新闻的ID为:"+newsid);
 		//获取新闻详情
 		NewsDetailDto newsDetailDto = newsDetailAppService.findNewsById(newsid);
 		model.addAttribute("newsItem",newsDetailDto);

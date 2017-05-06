@@ -107,9 +107,19 @@
 		</dependency>
 		<!-- solrj -->
 		<dependency>
-		  <groupId>org.apache.solr</groupId>
-		  <artifactId>solr-solrj</artifactId>
-		  <version>6.5.1</version>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>6.5.1</version>
+		</dependency>
+		<!-- 邮件 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.9</version>
 		</dependency>
 	</dependencies>
 </project>

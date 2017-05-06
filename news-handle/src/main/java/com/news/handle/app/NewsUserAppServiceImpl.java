@@ -45,4 +45,9 @@ public class NewsUserAppServiceImpl implements NewsUserAppService {
 		return newsUserService.findPageWithUser(pageData,queryParam);
 	}
 
+	@Override
+	public NewsUserDto getUserById(String id) {
+		return newsUserService.getUserById(id);
+	}
+
 }

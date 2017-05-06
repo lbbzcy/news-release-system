@@ -20,7 +20,13 @@ import com.news.frontend.common.BaseController;
 public class LoginController extends BaseController {
 	@Autowired
 	private NewsUserAppService newsUserAppService;
-
+	/**
+	 * 处理登录
+	 * @param username
+	 * @param password
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/handleLogin", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String handleLogin(@RequestParam(value = "username") String username,
