@@ -54,7 +54,7 @@
             			success:function(data){
             				if(data=="success"){
             					console.log("登录成功");
-            					window.location.href="${rca.contextPath}/main/index.html";
+            					window.location.reload();
             				}else{
             					$('#login_error').html("用户名或密码出错,请稍后再试!");
             					setTimeout(function(){

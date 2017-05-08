@@ -22,18 +22,7 @@
             <div class="inner">
                 <div class="line_1"></div>
 
-                <div class="fr">
-                    <div class="block_menu_footer">
-                        <ul>
-                            <li><a href="business.html">Business</a></li>
-                            <li><a href="technology.html">Technology</a></li>
-                            <li><a href="education.html">Education</a></li>
-                            <li><a href="media.html">Media</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="block_copyrights"><p>&copy; 2011 Business Press. All rights reserved.</p></div>
+                <div class="block_copyrights"><p>&copy; 2017 极速新闻.</p></div>
             </div>
         </section>
     </div>

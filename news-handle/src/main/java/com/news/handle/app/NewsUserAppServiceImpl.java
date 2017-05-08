@@ -50,4 +50,9 @@ public class NewsUserAppServiceImpl implements NewsUserAppService {
 		return newsUserService.getUserById(id);
 	}
 
+	@Override
+	public int updateUser(NewsUserDto user) {
+		return newsUserService.updateUser(user);
+	}
+
 }

@@ -162,8 +162,8 @@ ol li {margin-left:32px; padding-left:2px; padding-bottom:19px; font-family:Aria
 header {}
 #header {}
 #header .top {height:37px; background:url(images/bg_header_section_top.jpg) repeat-x;}
-#header .bottom {height:148px;}
-#header .bottom .inner {height:148px; background:url(images/bg_header.png) no-repeat 230px 0px;}
+#header .bottom {padding:10px;}
+#header .bottom .inner {}
 #header .section_main_menu {height:43px; background:url(images/bg_main_menu.jpg) repeat-x;}
 #header .section_big_dropdown {}
 #header .section_big_dropdown .inner {position:relative;}
@@ -172,7 +172,7 @@ header {}
 .block_top_menu {padding-top:13px; float:left;}
 .block_top_menu li {height:12px; margin-left:12px; padding-left:12px; display:block; float:left; border-left:1px solid #424242;}
 .block_top_menu li:first-child {margin-left:0px; padding-left:0px; border:0px;}
-.block_top_menu li a {font-size:11px; color:#cccccc;}
+.block_top_menu li a {font-size:14px; color:#cccccc;}
 .block_top_menu li a:hover {color:#ffffff; text-decoration:none;}
 .block_top_menu li.current a {color:#ffffff; font-weight:bold;}
 
@@ -190,7 +190,7 @@ header {}
 .block_social_top li a.rss {background-position:-44px 0px;}
 .block_social_top li a.rss:hover {background-position:-44px -16px;}
 
-#logo_top {padding-top:52px; float:left;}
+#logo_top {float:left;}
 
 .block_today_date {margin-left:10px; padding-top:53px; float:left;}
 .block_today_date .num {width:37px; height:31px; float:left; background:url(images/bg_date_header.png) no-repeat;}
@@ -213,7 +213,7 @@ header {}
 .block_languages li a.french {background-position:0px -11px;}
 .block_languages li a.ger {background-position:0px -22px;}
 
-.block_search_top {}
+.block_search_top {padding-top:10px;}
 .block_search_top .field {width:268px; height:30px; float:left; overflow:hidden; background:url(images/bg_field_search.png) no-repeat;}
 .block_search_top .field input {width:250px; height:14px; margin-left:10px; padding:8px 0px; display:block; background-color:transparent; border:0px; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#b5b5b5; line-height:14px;}
 .block_search_top .button {width:31px; height:30px; margin-left:1px; display:block; float:left; background-repeat:no-repeat; background-image:url(images/button_search.png); background-color:transparent; border:0px; font-size:0px; text-indent:-9000px; cursor:pointer;}
@@ -341,7 +341,7 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 
 
 
-#content {padding:18px 0px 64px;}
+#content {padding:18px 0px 64px;background-color:#f4f5f6}
 .general_content {}
 .general_content p {color:#666666; line-height:18px;}
 
@@ -853,9 +853,17 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 .block_single_post .about_author .bio .name a:hover {color:#f24024; text-decoration:none;}
 
 .block_post_tags {padding:13px 0px; border-top:1px solid #f0f0f0;}
-.block_post_tags p {padding-bottom:0px; font-size:11px; color:#4e4e4e; font-weight:bold; line-height:normal;}
+.block_post_tags p {padding-bottom:0px; font-size:14px; color:#4e4e4e; font-weight:bold; line-height:normal;}
 .block_post_tags a {font-size:11px; color:#818181; font-weight:normal;}
 .block_post_tags a:hover {color:#f24024; text-decoration:none;}
+.block_post_tags span{float:right;cursor:pointer;}
+.block_post_tags span i{padding-right:4px;}
+
+.collect-i{
+	color:red;
+}
+
+
 
 .block_post_social {border-top:1px solid #f0f0f0;}
 .block_post_social h4 {margin-top:-8px; padding-bottom:33px; text-align:center;}
@@ -3569,3 +3577,27 @@ input.general_button {margin:0px; padding:0px 15px 4px; border:0px; cursor:point
 /* styles for boxed version */
 body.boxed {background:url(images/bg_boxed.jpg);}
 body.boxed .wrapper {max-width:1008px; margin:0px auto; border-left:1px solid #eeeeee; border-right:1px solid #eeeeee;}
+/*自定義css*/
+.user-layer {
+	   	display:none;
+	    position: absolute;
+	    top: 37px;
+	    border: 1px solid #d9d9d9;
+	    background: #fff;
+	    z-index: 22;
+	    font-size: 14px;
+	    width: 130px;
+	}
+	.user-layer > ul > li{
+	    float: none;
+	    height: 36px;
+	    text-align: center;
+	    line-height: 36px;
+	    border:none;
+	    margin:0px;
+	    padding:0px;
+	}
+	.block_top_menu .user-layer > ul > li > a{
+		color:#999;
+		font-size:14px;
+	}

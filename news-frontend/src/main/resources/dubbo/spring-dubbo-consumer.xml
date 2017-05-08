@@ -15,4 +15,6 @@
 	<dubbo:reference id="newsDetailAppService" interface="com.news.common.project.app.NewsDetailAppService" />
 	<!-- 新闻评论服务类 -->
 	<dubbo:reference id="newsCommentAppService" interface="com.news.common.project.app.NewsCommentAppService" />
+	<!-- 新闻收藏服务类 -->
+	<dubbo:reference id="newsCollectAppService" interface="com.news.common.project.app.NewsCollectAppService" />
 </beans>

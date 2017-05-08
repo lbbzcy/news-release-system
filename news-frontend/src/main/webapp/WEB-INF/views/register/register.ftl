@@ -126,8 +126,8 @@
 	<script type="text/javascript">
     	$(function(){
     		setTimeout(function(){
-    			$("#error_message").html("");
-    			},2000);
+				$("#error_message").html("");
+			},2000);
     		
     		// 手机号码验证
     		jQuery.validator.addMethod("isMobile", function(value, element) {

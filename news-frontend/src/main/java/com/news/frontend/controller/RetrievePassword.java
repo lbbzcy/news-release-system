@@ -65,9 +65,24 @@ public class RetrievePassword extends BaseController {
 		return "/retrievepwd/step3";
 	}
 	@RequestMapping("/step4")
-	public String step4(Model model){
+	public String step4(Model model,
+			@RequestParam(value="password") String password,
+			@RequestParam(value="userid") String userid){
 		getAllNewsType(model);
-		return "/retrievepwd/step4";
+		System.out.println("密码为："+password);
+		NewsUserDto  dto = newsUserAppService.getUserById(userid);
+		if(null != dto){
+			dto.setPassword(password);
+			int result = newsUserAppService.updateUser(dto);
+			if(result>0){
+				return "/retrievepwd/step4";
+			}else{
+				model.addAttribute("user", dto);
+				model.addAttribute("errormsg", "找回密码失败，请稍后再试！");
+				return "/retrievepwd/step3";
+			}
+		}
+		return null;
 	}
 	/**
 	 * 验证验证码的正确性

@@ -9,9 +9,6 @@
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
-
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <#include "/common/allJsAndCSS.ftl">
 </head>
@@ -41,7 +38,7 @@
                             
                             <div class="info">
                                 <div class="date"><p>${newsItem.createtime?date}</p></div>
-                                <div class="author"><p>By: <a href="#">${newsItem.creator}</a></p></div>
+                                <div class="author"><p>作者: <a href="#">${newsItem.creator}</a></p></div>
                                     
                             	<div class="r_part">
                                 	<div class="category">
@@ -62,7 +59,17 @@
                         <div class="separator" style="height:4px;"></div>
                         
                         <div class="block_post_tags">
-                        	<p>标签: <a href="#">${newsItem.typename},</a><a href="#">${newsItem.templatename}</a></p>
+                        	<p>标签: <a href="#">${newsItem.typename},</a>
+                        	<a href="#">${newsItem.templatename}</a>
+                        	<span id="collect">
+                        		<#if isCollect == true>
+                        			<i id="collect-success" class="fa fa-star-o collect-i" aria-hidden="true"></i>
+                        		<#else>
+                        			<i id="collect-success" class="fa fa-star-o" aria-hidden="true"></i>
+                        		</#if>收藏
+                        		
+                        	</span>
+                        	</p>
                         </div>
                         
                         <div class="line_2" style="margin:22px 0px 29px;"></div>
@@ -192,12 +199,58 @@
                         </div>
                         <script type="text/javascript">
                         	$(function(){
+                        		//收藏功能
+                        		$('#collect').click(function(){
+                        			var username = "${Session["login_user"].username}";
+                        			var isCollect = $('#collect-success').hasClass("collect-i");
+                        			console.log(isCollect);
+                        			console.log(username);
+                        			if(validata(username)){
+                        				layer.msg('用户未登录，登录后才可以收藏！', {
+											time : 2000,
+											offset : '100px'
+										});
+                        			}else if(isCollect){
+                        				layer.msg('已经收藏过！', {
+											time : 2000,
+											offset : '100px'
+										});
+                        			}else{
+	                        			var newsid = "${newsItem.id}";
+	                        			console.log(newsid);
+	                        			$.ajax({
+	                        				type:"post",
+	                        				url:"${rca.contextPath}/personal/collect.html",
+	                        				data:{
+	                        					newsid:newsid
+	                        				},
+	                        				success:function(data){
+	                        					if("success" == data){
+	                        						//收藏成功
+	                        						$('#collect-success').addClass("collect-i");
+	                        						layer.msg('收藏成功', {
+														time : 2000,
+														offset : '100px'
+													});
+	                        					}else{
+	                        						//收藏失败
+	                        						layer.msg('收藏失败', {
+														time : 2000,
+														offset : '100px'
+													});
+	                        					}
+	                        				}
+	                        			});
+	                        		}
+                        		});
+                        		//回复和取消显示
                         		$('.replayto').click(function(){
                         			$(this).parent().next().css("display","block");
                         		});
                         		$('.cancel').click(function(){
                         			$(this).parent().css("display","none");
                         		});
+                        		//消息评论
                         		$('.replyconfirm').click(function(){
                         			var replycontent = $(this).prev().val();
                         			var replayid = $(this).next().val();
@@ -230,6 +283,7 @@
                         			}
                         		});
                         	});
+                        	//消息回复
                         	function replay(){
                         		$.ajax({
                         			type:"get",

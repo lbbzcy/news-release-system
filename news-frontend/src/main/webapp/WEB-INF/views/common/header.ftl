@@ -14,12 +14,19 @@
 					<div class="block_top_menu">
 						<ul>
 							<#if Session["login_user"]?exists>
-								<li class="current"><a>欢迎您! ${Session["login_user"].username}</a></li>
-								<li><a href="#login" class="open_popup">个人中心</a></li>
+								<li class="current" style="width:130px;text-align:center;">
+									<a class="personal">${Session["login_user"].username}</a>
+									<div class="user-layer"> 
+										<ul> 
+											<li><a class="layer-item" rel="nofollow" href="${rca.contextPath}/personal/index.html">个人中心</a></li> 
+											<li><a href="${rca.contextPath}/login/logout.html" class="layer-item" rel="nofollow">退出</a> </li> 
+										</ul> 
+									</div>
+								</li>
 							<#else>
 								<li class="current"><a href="#login" class="open_popup">登录</a></li>
 							</#if>
-							<li><a href="${rca.contextPath}/register/index.html">注册</a></li>
+							<li style="border:none;"><a href="${rca.contextPath}/register/index.html">注册</a></li>
 						</ul>
 					</div>
 				</div>
@@ -33,7 +40,6 @@
 						alt="BusinessNews" title="BusinessNews" /></a>
 				</div>
 				<div class="fr">
-					<div class="block_languages"></div>
 					<div class="block_search_top">
 						<form action="${rca.contextPath}/solr/search.html" onsubmit="return checkQuery();"/>
 							<div class="field">
@@ -44,6 +50,19 @@
 						</form>
 					</div>
 					<script>
+						$(function(){
+							$(".personal").hover(function(){
+							    $(".user-layer").css("display","block");
+							},function(){
+							   
+							});
+							$(".user-layer").hover(function(){
+							    $(".user-layer").css("display","block");
+							},function(){
+							    $(".user-layer").css("display","none");
+							});
+						});
+						//检查搜索的内容是否为空
 						function checkQuery(){
 							var inputQuery = $('.w_def_text').val();
 							if (validata(inputQuery)) {
@@ -51,13 +70,6 @@
 									time : 2000,
 									offset : '100px'
 								});
-								return false;
-							}
-						}
-						function validata(name) {
-							if (name == undefined || name == null || name == "") {
-								return true;
-							} else {
 								return false;
 							}
 						}

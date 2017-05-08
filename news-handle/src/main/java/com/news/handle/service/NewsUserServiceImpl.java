@@ -56,4 +56,9 @@ public class NewsUserServiceImpl implements NewsUserService {
 		return newsUserDtoMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public int updateUser(NewsUserDto user) {
+		return newsUserDtoMapper.updateByPrimaryKeySelective(user);
+	}
+
 }

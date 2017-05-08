@@ -40,4 +40,14 @@ public class LoginController extends BaseController {
 			return "error";
 		}
 	}
+	/**
+	 * 用户退出登录
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request){
+		invalidate(request);
+		return "redirect:/main/index.html";
+	}
 }

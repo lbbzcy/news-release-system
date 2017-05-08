@@ -12,6 +12,8 @@ public interface NewsUserAppService {
 	
 	public List<NewsUserDto> getUserByEmail(String email);
 	
+	public int updateUser(NewsUserDto user);
+	
 	public int insertNewsUserDto(NewsUserDto newsUserDto);
 	
 	public NewsUserDto getUserById(String id);

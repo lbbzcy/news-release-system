@@ -3,6 +3,7 @@
 <![endif]-->
 
 <link rel="stylesheet" href="${rca.contextPath}/layout/style.css" type="text/css" />
+<link rel="stylesheet" href="${rca.contextPath}/css/font-awesome.css" type="text/css" />
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css" />
 <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css" />
 <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic" rel="stylesheet" type="text/css" />

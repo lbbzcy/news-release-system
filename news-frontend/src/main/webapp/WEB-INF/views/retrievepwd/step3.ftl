@@ -32,26 +32,71 @@
 			       <div class="liutext"><em>4</em><br /><strong>完成</strong></div>
 			      </div>
 			     </div><!--for-liucheng/-->
-			     <form action="${rca.contextPath}/retrievepwd/step4.html" method="get" class="forget-pwd">
+			     <form id="pwd_form" action="${rca.contextPath}/retrievepwd/step4.html" method="post" class="forget-pwd">
 			       <dl>
 			        <dt>用户名：</dt>
-			        <dd><input type="text" value="${user.username}"/></dd>
+			        <dd>
+			        	<input type="text" value="${user.username}"/>
+			        	<input name="userid" type="hidden" value="${user.id}"/>
+			        </dd>
 			        <div class="clears"></div>
 			       </dl> 
 			       <dl>
 			        <dt>新密码：</dt>
-			        <dd><input type="password" /></dd>
+			        <dd>
+			        	<input name="password1" id="password1" type="password" />
+			        	<input name="password" id="password" type="hidden" />
+			        </dd>
 			        <div class="clears"></div>
 			       </dl> 
 			       <dl>
 			        <dt>确认密码：</dt>
-			        <dd><input type="password" /></dd>
+			        <dd><input name="confirmpwd" id="confirmpwd" type="password" /></dd>
 			        <div class="clears"></div>
 			       </dl> 
-			       <div class="subtijiao"><input type="submit" value="提交" /></div> 
+			       <div class="subtijiao"><input type="button" id="inputpwd" value="提交" /></div> 
 			      </form><!--forget-pwd/-->
 			   </div><!--web-width/-->
 			  </div><!--content/-->
+			  <script type="text/javascript">
+			  	$(function(){
+			  		var errormsg = "${errormsg}";
+			  		if(!validata(errormsg)){
+			  			layer.msg(errormsg, {
+							time : 2000,
+							offset : '100px'
+						});
+			  		}
+			  		$('#pwd_form').validate({
+			  			rules:{
+			  				password1:{
+		    	   				required:true,
+		    	   				rangelength:[6,20]
+		    	   			},
+		    	   			confirmpwd:{
+		    	   				required:true,
+		    	   				rangelength:[6,20],
+		    	   				equalTo:"#password1"
+		    	   			}
+			  			},
+			  			messages:{
+			  				password1:{
+		    	        		required:"请输入密码",
+		    	        		rangelength:"密码长度在{0}-{1}之间"
+		    	        	},
+		    	        	confirmpwd:{
+		    	        		required:"请确认密码",
+		    	        		rangelength:"密码长度在{0}-{1}之间",
+		    	        		equalTo:"两次输入的密码不一致"
+		    	        	}
+			  			}
+			  		});
+			  	});
+			  	$('#inputpwd').click(function(){
+			  		$("#password").val($.md5($.trim($("#password1").val())));
+    				$("#pwd_form").submit();
+			  	});
+			  </script>
 		</div>
 		<!-- CONTENT END -->
 		<#include "/common/footer.ftl">

@@ -20,4 +20,6 @@ public interface NewsUserService {
 	public NewsUserDto getUserByAuth(String auth, String password);
 
 	public NewsUserDto getUserById(String id);
+
+	public int updateUser(NewsUserDto user);
 }
