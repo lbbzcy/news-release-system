@@ -1,5 +1,7 @@
 package com.news.handle.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.news.common.project.dto.NewsCollectDto;
@@ -18,4 +20,9 @@ public interface NewsCollectDtoMapper {
     int updateByPrimaryKey(NewsCollectDto record);
 
 	NewsCollectDto select(NewsCollectDto record);
+
+	List<NewsCollectDto> getByUserId(String userid);
+
+	int delete(NewsCollectDto collect);
+
 }

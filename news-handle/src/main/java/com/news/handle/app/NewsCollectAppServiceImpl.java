@@ -1,5 +1,7 @@
 package com.news.handle.app;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,14 @@ public class NewsCollectAppServiceImpl implements NewsCollectAppService {
 	@Override
 	public NewsCollectDto select(NewsCollectDto record) {
 		return newsCollectService.select(record);
+	}
+	@Override
+	public List<NewsCollectDto> getByUserId(String userid) {
+		return newsCollectService.getByUserId(userid);
+	}
+	@Override
+	public int delete(NewsCollectDto collect) {
+		return newsCollectService.delete(collect);
 	}
 
 }

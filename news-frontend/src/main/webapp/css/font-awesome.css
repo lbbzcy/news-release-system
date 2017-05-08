@@ -528,6 +528,13 @@
 }
 .fa-chevron-up:before {
   content: "\f077";
+  color: #ED4040;
+  font-size: 24px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -12px;
 }
 .fa-chevron-down:before {
   content: "\f078";

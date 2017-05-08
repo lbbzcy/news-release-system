@@ -15,7 +15,7 @@
 						<ul>
 							<#if Session["login_user"]?exists>
 								<li class="current" style="width:130px;text-align:center;">
-									<a class="personal">${Session["login_user"].username}</a>
+									<a class="personal" href="${rca.contextPath}/personal/index.html">${Session["login_user"].nickname}</a>
 									<div class="user-layer"> 
 										<ul> 
 											<li><a class="layer-item" rel="nofollow" href="${rca.contextPath}/personal/index.html">个人中心</a></li> 

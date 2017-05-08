@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.news.common.core.dto.PageData;
+import com.news.common.project.dto.NewsCollectDto;
 import com.news.common.project.dto.NewsDetailDto;
 import com.news.common.project.dto.NewsTemplateDto;
 import com.news.common.project.dto.NewsTypeDto;
@@ -27,6 +28,8 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 	private NewsTypeService newsTypeService;
 	@Autowired
 	private NewsTemplateService newsTemplateService;
+	@Autowired
+	private NewsCollectService newsCollectService;
 	@Override
 	public PageData<NewsDetailDto> findPageWithType(PageData<NewsDetailDto> pageData, NewsDetailDto newsDetailDto) {
 		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
@@ -123,6 +126,21 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 		pageData.setTotal(page.getTotal());
 		pageData.setRows(findListPage);
 		return pageData;
+	}
+	@Override
+	public List<NewsDetailDto> getAllCollectNewsByUserId(String id) {
+		List<NewsDetailDto> list = new ArrayList<NewsDetailDto>();
+		List<NewsCollectDto> collectList = newsCollectService.getByUserId(id);
+		List<String> newsIdList = new ArrayList<String>();
+		if(null!=collectList&&!collectList.isEmpty()){
+			for(NewsCollectDto dto : collectList){
+				newsIdList.add(dto.getNewsId());
+			}
+		}
+		if(newsIdList!=null && !newsIdList.isEmpty()){
+			list = newsDetailDtoMapper.getAllCollectNews(newsIdList);
+		}
+		return list;
 	}
 
 }

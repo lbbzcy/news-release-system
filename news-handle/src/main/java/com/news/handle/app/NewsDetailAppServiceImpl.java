@@ -1,5 +1,7 @@
 package com.news.handle.app;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,10 @@ public class NewsDetailAppServiceImpl implements NewsDetailAppService {
 	@Override
 	public PageData<NewsDetailDto> getNewsByTypeId(PageData<NewsDetailDto> pageData, String typeid) {
 		return newsDetailService.getNewsByTypeId(pageData,typeid);
+	}
+	@Override
+	public List<NewsDetailDto> getAllCollectNewsByUserId(String id) {
+		return newsDetailService.getAllCollectNewsByUserId(id);
 	}
 
 }

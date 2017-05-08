@@ -3601,3 +3601,14 @@ body.boxed .wrapper {max-width:1008px; margin:0px auto; border-left:1px solid #e
 		color:#999;
 		font-size:14px;
 	}
+	.to-top {
+	    width: 40px;
+	    height: 40px;
+	    position: fixed;
+	    right: 30px;
+	    bottom: 40px;
+	    background: #fff;
+	    z-index: 99;
+	    cursor: pointer;
+	    border: #e8e8e8 solid 1px;
+	}

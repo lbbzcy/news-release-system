@@ -28,4 +28,6 @@ public interface NewsDetailDtoMapper {
 	List<NewsDetailDto> getPicNews();
 
 	List<NewsDetailDto> getNewsByTypeId(String typeid);
+
+	List<NewsDetailDto> getAllCollectNews(List<String> newsIdList);
 }

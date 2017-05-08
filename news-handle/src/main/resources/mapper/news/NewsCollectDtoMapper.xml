@@ -9,6 +9,16 @@
 	<sql id="Base_Column_List">
 		ID, USER_ID, NEWS_ID
 	</sql>
+	<delete id="delete" parameterType="com.news.common.project.dto.NewsCollectDto">
+	    delete from NEWS_COLLECT
+		where USER_ID = #{userId,jdbcType=VARCHAR} and NEWS_ID = #{newsId,jdbcType=VARCHAR}
+	</delete>
+	<select id="getByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select 	 
+		<include refid="Base_Column_List" />
+		from NEWS_COLLECT
+		where USER_ID = #{userId,jdbcType=VARCHAR}
+	</select>
 	<select id="select" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsCollectDto">
 		select

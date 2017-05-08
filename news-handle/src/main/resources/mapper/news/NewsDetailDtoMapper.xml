@@ -23,20 +23,37 @@
 		<result column="CONTENT" property="content" jdbcType="CLOB" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, TYPEID, TEMPLATEID,TYPENAME,TEMPLATENAME, TITLE, BRIEF,VIEWNUM,
+		ID, TYPEID, TEMPLATEID,TYPENAME,TEMPLATENAME, TITLE,
+		BRIEF,VIEWNUM,
 		COMMENTNUM, ISHOT, CREATOR, UPDATOR, CREATETIME,
 		UPDATETIME, ISDEL
 	</sql>
 	<sql id="Blob_Column_List">
 		CONTENT
 	</sql>
-	<select id="getNewsByTypeId" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="getAllCollectNews" resultMap="BaseResultMap"
+		parameterType="java.util.List">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		FROM NEWS_DETAIL
+		WHERE ID IN
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getNewsByTypeId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		,
 		<include refid="Blob_Column_List" />
 		from NEWS_DETAIL
-		where ISDEL = 0 and TYPEID = #{typeid,jdbcType=VARCHAR}
+		where ISDEL = 0 and TYPEID =
+		#{typeid,jdbcType=VARCHAR}
 		order by CREATETIME DESC
 	</select>
 	<select id="getHotNews" resultMap="BaseResultMap">
@@ -104,20 +121,24 @@
 		set ISDEL = 1 where ID = #{id,jdbcType=VARCHAR}
 	</update>
 	<insert id="insert" parameterType="com.news.common.project.dto.NewsDetailDto">
-		insert into NEWS_DETAIL (ID, TYPEID, TEMPLATEID,
+		insert into NEWS_DETAIL (ID,
+		TYPEID, TEMPLATEID,
 		TYPENAME,TEMPLATENAME,
-		TITLE,BRIEF, VIEWNUM, COMMENTNUM,
+		TITLE,BRIEF, VIEWNUM,
+		COMMENTNUM,
 		ISHOT, CREATOR, UPDATOR,
 		CREATETIME, UPDATETIME, ISDEL,
 		CONTENT)
 		values (#{id,jdbcType=VARCHAR}, #{typeid,jdbcType=VARCHAR},
 		#{templateid,jdbcType=VARCHAR},
-		#{typename,jdbcType=VARCHAR}, #{templatename,jdbcType=VARCHAR},
+		#{typename,jdbcType=VARCHAR},
+		#{templatename,jdbcType=VARCHAR},
 		#{title,jdbcType=VARCHAR},#{brief,jdbcType=VARCHAR},
 		#{viewnum,jdbcType=DECIMAL}, #{commentnum,jdbcType=DECIMAL},
 		#{ishot,jdbcType=CHAR}, #{creator,jdbcType=VARCHAR},
 		#{updator,jdbcType=VARCHAR},
-		#{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=CHAR},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{updatetime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=CHAR},
 		#{content,jdbcType=CLOB})
 	</insert>
 	<insert id="insertSelective" parameterType="com.news.common.project.dto.NewsDetailDto">
@@ -275,20 +296,28 @@
 		where ID = #{id,jdbcType=VARCHAR}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.news.common.project.dto.NewsDetailDto">
-		update NEWS_DETAIL
+		update
+		NEWS_DETAIL
 		set TYPEID = #{typeid,jdbcType=VARCHAR},
-		TEMPLATEID = #{templateid,jdbcType=VARCHAR},
-		TYPENAME = #{typename,jdbcType=VARCHAR},
-		TEMPLATENAME = #{templatename,jdbcType=VARCHAR},
+		TEMPLATEID =
+		#{templateid,jdbcType=VARCHAR},
+		TYPENAME =
+		#{typename,jdbcType=VARCHAR},
+		TEMPLATENAME =
+		#{templatename,jdbcType=VARCHAR},
 		TITLE = #{title,jdbcType=VARCHAR},
 		BRIEF = #{brief,jdbcType=VARCHAR},
-		VIEWNUM = #{viewnum,jdbcType=DECIMAL},
-		COMMENTNUM = #{commentnum,jdbcType=DECIMAL},
+		VIEWNUM =
+		#{viewnum,jdbcType=DECIMAL},
+		COMMENTNUM =
+		#{commentnum,jdbcType=DECIMAL},
 		ISHOT = #{ishot,jdbcType=CHAR},
-		CREATOR = #{creator,jdbcType=VARCHAR},
+		CREATOR
+		= #{creator,jdbcType=VARCHAR},
 		UPDATOR = #{updator,jdbcType=VARCHAR},
 		CREATETIME = #{createtime,jdbcType=TIMESTAMP},
-		UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+		UPDATETIME =
+		#{updatetime,jdbcType=TIMESTAMP},
 		ISDEL = #{isdel,jdbcType=CHAR},
 		CONTENT = #{content,jdbcType=CLOB}
 		where ID = #{id,jdbcType=VARCHAR}
@@ -296,19 +325,27 @@
 	<update id="updateByPrimaryKey" parameterType="com.news.common.project.dto.NewsDetailDto">
 		update NEWS_DETAIL
 		set TYPEID = #{typeid,jdbcType=VARCHAR},
-		TEMPLATEID = #{templateid,jdbcType=VARCHAR},
-		TYPENAME = #{typename,jdbcType=VARCHAR},
-		TEMPLATENAME = #{templatename,jdbcType=VARCHAR},
+		TEMPLATEID =
+		#{templateid,jdbcType=VARCHAR},
+		TYPENAME =
+		#{typename,jdbcType=VARCHAR},
+		TEMPLATENAME =
+		#{templatename,jdbcType=VARCHAR},
 		TITLE = #{title,jdbcType=VARCHAR},
 		BRIEF = #{brief,jdbcType=VARCHAR},
-		VIEWNUM = #{viewnum,jdbcType=DECIMAL},
-		COMMENTNUM = #{commentnum,jdbcType=DECIMAL},
+		VIEWNUM =
+		#{viewnum,jdbcType=DECIMAL},
+		COMMENTNUM =
+		#{commentnum,jdbcType=DECIMAL},
 		ISHOT = #{ishot,jdbcType=CHAR},
-		CREATOR = #{creator,jdbcType=VARCHAR},
+		CREATOR
+		= #{creator,jdbcType=VARCHAR},
 		UPDATOR = #{updator,jdbcType=VARCHAR},
 		CREATETIME = #{createtime,jdbcType=TIMESTAMP},
-		UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+		UPDATETIME =
+		#{updatetime,jdbcType=TIMESTAMP},
 		ISDEL = #{isdel,jdbcType=CHAR}
-		where ID = #{id,jdbcType=VARCHAR}
+		where
+		ID = #{id,jdbcType=VARCHAR}
 	</update>
 </mapper>
