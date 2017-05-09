@@ -110,6 +110,7 @@
 								<tr>
 									<th style="text-align: center;">序号</th>
 									<th style="text-align: center;">用户名</th>
+									<th style="text-align: center;">头像</th>
 									<th style="text-align: center;">昵称</th>
 									<th style="text-align: center;">手机号码</th>
 									<th style="text-align: center;">邮箱</th>
@@ -128,6 +129,9 @@
 									<td style="text-align: center;"><c:out
 											value="${vs.count + (pageData.pageNumber-1)*pageData.pageSize}" /></td>
 									<td style="text-align: center;" id="name">${row.username}</td>
+									<td style="text-align: center;width:100px;" id="name">
+										<img style="height:100px;width:100px;border-radius:100px;" src="${row.header}"/>
+									</td>
 									<td style="text-align: center;" id="name">${row.nickname}</td>
 									<td style="text-align: center;">${row.mobile}</td>
 									<td style="text-align: center;" id="weixin">${row.email}</td>

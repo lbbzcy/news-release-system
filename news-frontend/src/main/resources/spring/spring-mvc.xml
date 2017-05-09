@@ -14,47 +14,66 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<!--4.2使用 -->
-	<mvc:annotation-driven />
-	<bean id="contentNegotiationManager"
-		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-		<property name="favorPathExtension" value="true" />
-		<property name="favorParameter" value="true" />
-		<property name="ignoreAcceptHeader" value="true" />
-		<property name="defaultContentType" value="text/html" />
-		<property name="mediaTypes">
-			<map>
-				<entry key="json" value="application/json" />
-				<entry key="xml" value="application/xml" />
-				<entry key="htm" value="text/htm" />
-				<entry key="file" value="application/octet-stream" />
-				<entry key="image" value="image/*" />
-			</map>
-		</property>
-	</bean>
-
 	<!-- json对象转换器 -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes">
-			<list>
-				<value>application/json;charset=UTF-8</value>
-			</list>
+			<util:list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application" />
+					<constructor-arg index="1" value="json" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text" />
+					<constructor-arg index="1" value="*" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+			</util:list>
 		</property>
 	</bean>
 
-	<!-- 根据客户端的不同的请求决定不同的view进行响应 -->
+	<bean id="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<util:list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application" />
+					<constructor-arg index="1" value="xml" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text" />
+					<constructor-arg index="1" value="*" />
+					<constructor-arg index="2" value="UTF-8" />
+				</bean>
+			</util:list>
+		</property>
+	</bean>
+
+	<!-- org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter -->
 	<bean
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="contentNegotiationManager" ref="contentNegotiationManager" />
-		<property name="defaultViews">
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
 			<list>
-				<bean
-					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+				<ref bean="stringHttpMessageConverter" />
+				<ref bean="mappingJacksonHttpMessageConverter" />
 			</list>
 		</property>
 	</bean>
-
+	<!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+		<!-- <property name="validationMessageSource" ref="messageSource" /> -->
+	</bean>
+	<!-- 格式转换器，如日期，数字格式 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+	<!-- 开启Spring MVC注解， 会自动注册了validator ConversionService -->
+	<mvc:annotation-driven validator="validator"
+		conversion-service="conversionService" />
 
 	<bean id="freemarkerConfiguration"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -65,10 +84,10 @@
 		<property name="freemarkerSettings" ref="freemarkerConfiguration"></property>
 		<property name="templateLoaderPath" value="/WEB-INF/views/" />
 		<property name="freemarkerVariables">
-          <map>
-              <entry key="BANNER_IMGSRC" value="http://192.168.1.105/images" />   
-          </map>
-        </property>
+			<map>
+				<entry key="BANNER_IMGSRC" value="http://192.168.1.105/images" />
+			</map>
+		</property>
 	</bean>
 
 	<!-- freemaker 试图支持 -->

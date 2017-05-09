@@ -1,8 +1,12 @@
 package com.news.frontend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.news.common.core.utils.SessionKey;
 import com.news.common.project.app.NewsCollectAppService;
 import com.news.common.project.app.NewsDetailAppService;
+import com.news.common.project.app.NewsUserAppService;
 import com.news.common.project.dto.NewsCollectDto;
 import com.news.common.project.dto.NewsDetailDto;
 import com.news.common.project.dto.NewsUserDto;
@@ -25,6 +31,8 @@ public class PersonalController extends BaseController {
 	private NewsCollectAppService newsCollectAppService;
 	@Autowired
 	private NewsDetailAppService newsDetailAppService;
+	@Autowired
+	private NewsUserAppService newsUserAppService;
 	@RequestMapping("/index")
 	public String index(Model model,HttpServletRequest request){
 		getAllNewsType(model);
@@ -75,5 +83,31 @@ public class PersonalController extends BaseController {
 		}else{
 			return "failure";
 		}
+	}
+	/**
+	 * 上传头像
+	 * @param file
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="upload",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,String> upload(@RequestParam String image,HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		NewsUserDto user = getCurrentUser(request.getSession());
+		System.out.println(image);
+		Map<String,String> result = new HashMap<>();
+		result.put("file", image);
+		user.setHeader(image);
+		int res = newsUserAppService.updateUser(user);
+		if(res>0){
+			result.put("result", "ok");
+			session.setAttribute(SessionKey.LOGIN_USER, user);
+		}else{
+			result.put("result", "error");
+		}
+		
+		return result;
 	}
 }

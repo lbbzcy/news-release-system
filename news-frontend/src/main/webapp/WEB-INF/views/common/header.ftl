@@ -14,6 +14,7 @@
 					<div class="block_top_menu">
 						<ul>
 							<#if Session["login_user"]?exists>
+								<img  src="" />
 								<li class="current" style="width:130px;text-align:center;">
 									<a class="personal" href="${rca.contextPath}/personal/index.html">${Session["login_user"].nickname}</a>
 									<div class="user-layer"> 

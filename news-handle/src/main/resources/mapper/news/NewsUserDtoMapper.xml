@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.news.handle.dao.NewsUserDtoMapper" >
-  <resultMap id="BaseResultMap" type="com.news.common.project.dto.NewsUserDto" >
-    <id column="ID" property="id" jdbcType="VARCHAR" />
-    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
-    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
-    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
-    <result column="ISDEL" property="isdel" jdbcType="CHAR" />
-    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    ID, USERNAME, PASSWORD, MOBILE, EMAIL, ISDEL, NICKNAME
-  </sql>
-  
-  <select id="queryAllData" resultMap="BaseResultMap"
+<mapper namespace="com.news.handle.dao.NewsUserDtoMapper">
+	<resultMap id="BaseResultMap" type="com.news.common.project.dto.NewsUserDto">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="ISDEL" property="isdel" jdbcType="CHAR" />
+		<result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.news.common.project.dto.NewsUserDto"
+		extends="BaseResultMap">
+		<result column="HEADER" property="header" jdbcType="CLOB" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, USERNAME, PASSWORD, MOBILE, EMAIL, ISDEL, NICKNAME
+	</sql>
+	<sql id="Blob_Column_List">
+		HEADER
+	</sql>
+	<select id="queryAllData" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsUserDto">
 		select
 		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
 		from NEWS_USER
 		where ISDEL = 0
 		<if test="username != null and username !=''">
@@ -33,135 +41,156 @@
 			and instr(EMAIL,#{email,jdbcType=VARCHAR}) > 0
 		</if>
 	</select>
-  
-  <select id="getUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
-	select
-	<include refid="Base_Column_List" />
-	from NEWS_USER
-	where USERNAME = #{username,jdbcType=VARCHAR}  and ISDEL = '0'
-  </select>
-  
-  <select id="getUserByMobile" resultMap="BaseResultMap" parameterType="java.lang.String">
-	select
-	<include refid="Base_Column_List" />
-	from NEWS_USER
-	where MOBILE = #{mobile,jdbcType=VARCHAR}  and ISDEL = '0'
-  </select>
-  
-  <select id="getUserByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
-	select
-	<include refid="Base_Column_List" />
-	from NEWS_USER
-	where EMAIL = #{email,jdbcType=VARCHAR}  and ISDEL = '0'
-  </select>
-  <select id="getUserByAuth" resultMap="BaseResultMap" parameterType="java.lang.String">
-      select
-      <include refid="Base_Column_List" />
-      from NEWS_USER
-      where (USERNAME = #{auth,jdbcType=VARCHAR} or MOBILE = #{auth,jdbcType=VARCHAR} or EMAIL = #{auth,jdbcType=VARCHAR})
-      and  PASSWORD = #{password,jdbcType=VARCHAR}
-      and isdel = '0'
-  </select>
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from NEWS_USER
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from NEWS_USER
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.news.common.project.dto.NewsUserDto" >
-    insert into NEWS_USER (ID, USERNAME, PASSWORD, 
-      MOBILE, EMAIL, ISDEL, 
-      NICKNAME)
-    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isdel,jdbcType=CHAR}, 
-      #{nickname,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.news.common.project.dto.NewsUserDto" >
-    insert into NEWS_USER
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="username != null" >
-        USERNAME,
-      </if>
-      <if test="password != null" >
-        PASSWORD,
-      </if>
-      <if test="mobile != null" >
-        MOBILE,
-      </if>
-      <if test="email != null" >
-        EMAIL,
-      </if>
-      <if test="isdel != null" >
-        ISDEL,
-      </if>
-      <if test="nickname != null" >
-        NICKNAME,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="isdel != null" >
-        #{isdel,jdbcType=CHAR},
-      </if>
-      <if test="nickname != null" >
-        #{nickname,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.news.common.project.dto.NewsUserDto" >
-    update NEWS_USER
-    <set >
-      <if test="username != null" >
-        USERNAME = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        PASSWORD = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        MOBILE = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        EMAIL = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="isdel != null" >
-        ISDEL = #{isdel,jdbcType=CHAR},
-      </if>
-      <if test="nickname != null" >
-        NICKNAME = #{nickname,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.news.common.project.dto.NewsUserDto" >
-    update NEWS_USER
-    set USERNAME = #{username,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR},
-      MOBILE = #{mobile,jdbcType=VARCHAR},
-      EMAIL = #{email,jdbcType=VARCHAR},
-      ISDEL = #{isdel,jdbcType=CHAR},
-      NICKNAME = #{nickname,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+
+	<select id="getUserByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_USER
+		where USERNAME = #{username,jdbcType=VARCHAR} and ISDEL = '0'
+	</select>
+
+	<select id="getUserByMobile" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_USER
+		where MOBILE = #{mobile,jdbcType=VARCHAR} and ISDEL = '0'
+	</select>
+
+	<select id="getUserByEmail" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from NEWS_USER
+		where EMAIL = #{email,jdbcType=VARCHAR} and ISDEL = '0'
+	</select>
+	<select id="getUserByAuth" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from NEWS_USER
+		where (USERNAME = #{auth,jdbcType=VARCHAR} or MOBILE =
+		#{auth,jdbcType=VARCHAR} or EMAIL = #{auth,jdbcType=VARCHAR})
+		and PASSWORD = #{password,jdbcType=VARCHAR}
+		and isdel = '0'
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from NEWS_USER
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from NEWS_USER
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.news.common.project.dto.NewsUserDto">
+		insert into NEWS_USER (ID, USERNAME, PASSWORD,
+		MOBILE, EMAIL, ISDEL,
+		NICKNAME)
+		values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isdel,jdbcType=CHAR},
+		#{nickname,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.news.common.project.dto.NewsUserDto">
+		insert into NEWS_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="mobile != null">
+				MOBILE,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="isdel != null">
+				ISDEL,
+			</if>
+			<if test="nickname != null">
+				NICKNAME,
+			</if>
+			<if test="header != null">
+				header,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="isdel != null">
+				#{isdel,jdbcType=CHAR},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="header != null">
+				#{header,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.news.common.project.dto.NewsUserDto">
+		update NEWS_USER
+		<set>
+			<if test="username != null">
+				USERNAME = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="isdel != null">
+				ISDEL = #{isdel,jdbcType=CHAR},
+			</if>
+			<if test="nickname != null">
+				NICKNAME = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="header != null">
+				HEADER = #{header,jdbcType=CLOB},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.news.common.project.dto.NewsUserDto">
+		update NEWS_USER
+		set USERNAME = #{username,jdbcType=VARCHAR},
+		PASSWORD = #{password,jdbcType=VARCHAR},
+		MOBILE = #{mobile,jdbcType=VARCHAR},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		ISDEL = #{isdel,jdbcType=CHAR},
+		NICKNAME = #{nickname,jdbcType=VARCHAR},
+		HEADER = #{header,jdbcType=CLOB}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
 </mapper>

@@ -51,6 +51,7 @@
             				username:username,
             				password:password
             			},
+            			dataType:"json",
             			success:function(data){
             				if(data=="success"){
             					console.log("登录成功");

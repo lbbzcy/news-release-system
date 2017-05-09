@@ -26,7 +26,7 @@
                         	<div class="text"><p>您现在的位置:</p></div>
                             
                             <ul>
-                            	<li><a href="index.html">主页</a></li>
+                            	<li><a href="${rca.contextPath}/main/index.html">主页</a></li>
                                 <li>${typename}</li>
                             </ul>
                         </div>

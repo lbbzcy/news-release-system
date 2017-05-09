@@ -20,7 +20,7 @@ public class NewsCommentDto extends IdentityDto{
     private String userid;
     
     private String username;
-
+    
     private String content;
 
     private Date createtime;
@@ -33,6 +33,8 @@ public class NewsCommentDto extends IdentityDto{
     
     private List<NewsCommentDto> children;
 
+    private String header;
+    
     public String getId() {
         return id;
     }
@@ -119,5 +121,13 @@ public class NewsCommentDto extends IdentityDto{
 
 	public void setChildren(List<NewsCommentDto> children) {
 		this.children = children;
+	}
+
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
 	}
 }

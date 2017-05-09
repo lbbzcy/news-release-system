@@ -10,8 +10,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="${rca.contextPath}/css/personal.css" />
 <#include "/common/allJsAndCSS.ftl">
+<link rel="stylesheet" href="${rca.contextPath}/css/personal.css" />
+<link rel="stylesheet" type="text/css" href="${rca.contextPath}/css/font-awesome.4.6.0.css">
+<link rel="stylesheet" href="${rca.contextPath}/css/amazeui.min.css">
+<link rel="stylesheet" href="${rca.contextPath}/css/amazeui.cropper.css">
+<link rel="stylesheet" href="${rca.contextPath}/css/custom_up_img.css">
+<script src="${rca.contextPath}/js/amazeui.min.js" charset="utf-8"></script>
+<script src="${rca.contextPath}/js/cropper.min.js" charset="utf-8"></script>
+<script src="${rca.contextPath}/js/custom_up_img.js" charset="utf-8"></script>
 </head>
 <body>
 	<div class="wrapper sticky_footer">
@@ -19,17 +26,17 @@
 		<div id="content">
 			<div id="wrapper">
 				<div riot-tag="yheader" class="yheader">
-					<a href="${rca.contextPath}/main/index.html"> <img class="bg-header" alt="头像"
+					<a href="${rca.contextPath}/main/index.html"> 
+						<img class="bg-header " alt="头像"
 						src="${rca.contextPath}/images/bg_profile.png">
 					</a>
 					<div>
-						<a ga_event="user_head_click" href="javascript:void(0);"> <img
-							alt="作者头像" class="avatar"
-							src="${rca.contextPath}/images/header.jpg">
+						<a class="up-img-cover"  id="up-img-touch" ga_event="user_head_click" data-am-popover="{content: '点击上传', trigger: 'hover focus'}"> 
+						<img alt="作者头像" class="avatar" src="${login_user.header}" >
 						</a>
 						<ul>
 							<li class="title"><a ga_event="user_head_click"
-								href="/c/user/2757630490/"> <span class="name">${Session["login_user"].nickname}</span>
+								href="/c/user/2757630490/"> <span class="name">${login_user.nickname}</span>
 							</a></li>
 							<li class="des"><a ga_event="user_head_click"
 								href="/c/user/2757630490/"></a></li>
@@ -51,7 +58,7 @@
 								empty="true">
 								<div class="relatedFeed">
 									<ul>
-										<#if collectList??>
+										<#if collectList??&&(collectList?size>0)>
 											<#list collectList as item>
 												<li class="item">
 												<div class="item-inner y-box">
@@ -93,6 +100,7 @@
 							data:{
 								newsid:newsid
 							},
+							dataType:"json",
 							success:function(data){
 								if(data=="success"){
 									layer.msg('取消收藏成功', {
@@ -135,6 +143,64 @@
 				</div>
 			</div>
 			<div class="clearboth"></div>
+			<!--图片上传框-->
+				<div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1">
+				  <div class="am-modal-dialog up-frame-parent up-frame-radius">
+					<div class="am-modal-hd up-frame-header">
+					   <label>修改头像</label>
+					  <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+					</div>
+					<div class="am-modal-bd  up-frame-body">
+					  <div class="am-g am-fl">
+						<div class="am-form-group am-form-file">
+						  <div class="am-fl">
+							<button type="button" class="am-btn am-btn-default am-btn-sm">
+							  <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+						  </div>
+						  <input type="file" id="inputImage">
+						</div>
+					  </div>
+					  <div class="am-g am-fl" >
+						<div class="up-pre-before up-frame-radius">
+							<img alt="" src="" id="image" >
+						</div>
+						<div class="up-pre-after up-frame-radius">
+						</div>
+					  </div>
+					  <div class="am-g am-fl">
+						<div class="up-control-btns">
+							<span class="am-icon-rotate-left"  onclick="rotateimgleft()"></span>
+							<span class="am-icon-rotate-right" onclick="rotateimgright()"></span>
+							<span class="am-icon-check" id="up-btn-ok" url="${rca.contextPath}/personal/upload.html"></span>
+						</div>
+					  </div>
+					  
+					</div>
+				  </div>
+				</div>
+				
+				<!--加载框-->
+				<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+				  <div class="am-modal-dialog">
+					<div class="am-modal-hd">正在上传...</div>
+					<div class="am-modal-bd">
+					  <span class="am-icon-spinner am-icon-spin"></span>
+					</div>
+				  </div>
+				</div>
+				
+				<!--警告框-->
+				<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+				  <div class="am-modal-dialog">
+					<div class="am-modal-hd">信息</div>
+					<div class="am-modal-bd"  id="alert_content">
+							  成功了
+					</div>
+					<div class="am-modal-footer">
+					  <span class="am-modal-btn">确定</span>
+					</div>
+				  </div>
+				</div>
 			<#include "/common/footer.ftl">
 		</div>
 		<#include "/common/popup.ftl">

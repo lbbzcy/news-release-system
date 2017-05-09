@@ -16,6 +16,8 @@ import com.news.handle.dao.NewsCommentDtoMapper;
 public class NewsCommentServiceImpl implements NewsCommentService {
 	@Autowired
 	private NewsCommentDtoMapper newsCommentDtoMapper;
+	@Autowired
+	private NewsUserService newsUserService;
 	@Override
 	public int insertComment(NewsCommentDto record) {
 		return newsCommentDtoMapper.insert(record);
@@ -26,6 +28,8 @@ public class NewsCommentServiceImpl implements NewsCommentService {
 		List<NewsCommentDto> findPage = newsCommentDtoMapper.findPage(newsDetailDto);
 		if(null!=findPage){
 			for(NewsCommentDto dto : findPage){
+				String header = newsUserService.getUserById(dto.getUserid()).getHeader();
+				dto.setHeader(header);
 				generateChildren(dto);
 			}
 		}
@@ -39,6 +43,8 @@ public class NewsCommentServiceImpl implements NewsCommentService {
 		if(null!=replyList){
 			dto.setChildren(replyList);
 			for(NewsCommentDto replyDto : replyList){
+				String header = newsUserService.getUserById(replyDto.getUserid()).getHeader();
+				replyDto.setHeader(header);
 				generateChildren(replyDto);
 			}
 		}

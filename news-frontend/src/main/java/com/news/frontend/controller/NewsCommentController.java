@@ -55,6 +55,7 @@ public class NewsCommentController extends BaseController {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping(value="/replay",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
 	public String replay(HttpServletRequest request
 			,@RequestParam(value="recontent") String recontent
 			,@RequestParam(value="replayid",required=false) String replyid
@@ -86,6 +87,6 @@ public class NewsCommentController extends BaseController {
 		NewsDetailDto newsEntity = newsDetailAppService.findNewsById(newsid);
 		newsEntity.setCommentnum(newsEntity.getCommentnum()+1);
 		newsDetailAppService.updateNewsDetailDto(newsEntity);
-		return "redirect:/newsdetail/index.html?newsid="+newsid;
+		return "success";
 	}
 }

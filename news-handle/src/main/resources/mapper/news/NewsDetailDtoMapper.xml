@@ -54,7 +54,7 @@
 		from NEWS_DETAIL
 		where ISDEL = 0 and TYPEID =
 		#{typeid,jdbcType=VARCHAR}
-		order by CREATETIME DESC
+		order by VIEWNUM DESC,CREATETIME ASC
 	</select>
 	<select id="getHotNews" resultMap="BaseResultMap">
 		select
@@ -63,7 +63,7 @@
 		<include refid="Blob_Column_List" />
 		from NEWS_DETAIL
 		where ISDEL = 0 and ISHOT = 1
-		order by CREATETIME DESC
+		order by VIEWNUM DESC,CREATETIME ASC
 	</select>
 	<select id="getPicNews" resultMap="BaseResultMap">
 		select
@@ -73,7 +73,7 @@
 		from NEWS_DETAIL
 		where ISDEL = 0 and TEMPLATENAME = '图片新闻模板'
 		order by
-		CREATETIME DESC
+		VIEWNUM DESC,CREATETIME ASC
 	</select>
 	<select id="queryAllData" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsDetailDto">
@@ -104,7 +104,7 @@
 			and to_char(CREATETIME,'YYYY-MM-DD') <![CDATA[  <=  ]]>
 			to_char(#{endTime},'YYYY-MM-DD')
 		</if>
-		order by CREATETIME DESC
+		order by VIEWNUM DESC,CREATETIME ASC
 	</select>
 
 	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"

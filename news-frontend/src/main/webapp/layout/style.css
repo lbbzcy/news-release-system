@@ -170,7 +170,7 @@ header {}
 #header .section_secondary_menu {height:39px; background:url(images/bg_secondary_menu.gif) repeat-x;}
 
 .block_top_menu {padding-top:13px; float:left;}
-.block_top_menu li {height:12px; margin-left:12px; padding-left:12px; display:block; float:left; border-left:1px solid #424242;}
+.block_top_menu li {height:12px; margin-left:12px; padding-left:12px; display:block; float:left;}
 .block_top_menu li:first-child {margin-left:0px; padding-left:0px; border:0px;}
 .block_top_menu li a {font-size:14px; color:#cccccc;}
 .block_top_menu li a:hover {color:#ffffff; text-decoration:none;}
@@ -215,7 +215,7 @@ header {}
 
 .block_search_top {padding-top:10px;}
 .block_search_top .field {width:268px; height:30px; float:left; overflow:hidden; background:url(images/bg_field_search.png) no-repeat;}
-.block_search_top .field input {width:250px; height:14px; margin-left:10px; padding:8px 0px; display:block; background-color:transparent; border:0px; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#b5b5b5; line-height:14px;}
+.block_search_top .field input {width:250px; margin-left:10px; padding:8px 0px; display:block; background-color:transparent; border:0px; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#b5b5b5; line-height:14px;}
 .block_search_top .button {width:31px; height:30px; margin-left:1px; display:block; float:left; background-repeat:no-repeat; background-image:url(images/button_search.png); background-color:transparent; border:0px; font-size:0px; text-indent:-9000px; cursor:pointer;}
 .block_search_top .button:hover {background-position:0px -30px;}
 

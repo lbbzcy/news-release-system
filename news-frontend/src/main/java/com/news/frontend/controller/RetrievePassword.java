@@ -1,11 +1,14 @@
 package com.news.frontend.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,9 +44,14 @@ public class RetrievePassword extends BaseController {
 			,@RequestParam(value="username") String username){
 		getAllNewsType(model);
 		try {
-			NewsUserDto  dto = newsUserAppService.getUserByName(username).get(0);
-			model.addAttribute("user", dto);
-			MailUtils.sendMail(dto);
+			List<NewsUserDto> list = newsUserAppService.getUserByName(username);
+			if(list==null || list.size()<=0){
+				list = newsUserAppService.getUserByMobile(username);
+			}else{
+				list = newsUserAppService.getUserByEmail(username);
+			}
+			model.addAttribute("user", list.get(0));
+			MailUtils.sendMail(list.get(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,5 +110,25 @@ public class RetrievePassword extends BaseController {
 			return "failure";
 		}
 		
+	}
+	/**
+	 * 校验用户名是否可用
+	 * @param username
+	 * @return
+	 */
+	@RequestMapping(value="/checkUser",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public String checkUserName(@RequestParam(value="username") String username){
+		List<NewsUserDto> list = newsUserAppService.getUserByName(username);
+		if(list==null || list.size()<=0){
+			list = newsUserAppService.getUserByMobile(username);
+		}else{
+			list = newsUserAppService.getUserByEmail(username);
+		}
+		if(list.size()>0){
+			return "false";
+		} else{
+			return "true";
+		}
 	}
 }

@@ -35,7 +35,7 @@
 			     </div><!--for-liucheng/-->
 			     <form id="pwd_from" action="${rca.contextPath}/retrievepwd/step2.html" method="get" class="forget-pwd" onsubmit="return check();">
 			       <dl>
-			        <dt>用户名：</dt>
+			        <dt>身份认证：</dt>
 			        <dd>
 			        	<input id="username" name="username" type="text" />
 			        	<span id="usernamemsg" style="margin-left:5px;color:#ff6600;"></span>
@@ -104,7 +104,7 @@
 			function checkusername(username){
 				var result = true;
 				if(validata(username)){
-					$('#usernamemsg').html("请填写用户名");
+					$('#usernamemsg').html("用户名、手机号、邮箱");
 					result = false;
 				}else{
 					result = isuservalid(username);
@@ -112,7 +112,7 @@
 					if(result){
 						$('#usernamemsg').html('');
 					}else{
-						$('#usernamemsg').html("用户名不存在");
+						$('#usernamemsg').html("用户不存在");
 					}
 				}
 				return result;
@@ -127,6 +127,7 @@
                     data:{
                 	   imgcode:imgcode
                     },
+                    dataType:"json",
                     success:function(data){
                     	if(data=="success"){
                     		result =  true;
@@ -139,23 +140,24 @@
 				});
 				return result;
 			}
-			//用户名是否存在
+			//用户是否存在
 			function isuservalid(username){
 			    var result = false;
 				$.ajax({
 					type:"POST",
 					async: false, 
-                    url:"${rca.contextPath}/register/checkUserName.html",
+                    url:"${rca.contextPath}/retrievepwd/checkUser.html",
                     data:{
                 	   username:username
                     },
+                     dataType:"json",
                     success:function(data){
                     	if(data=="false"){
                     		result =  true;
-                    		console.log("用户名存在");
+                    		console.log("用户存在");
                     	}else{
                     		result =  false;
-                    		console.log("用户名不存在");
+                    		console.log("用户不存在");
                     	}
                     }
 				});

@@ -94,6 +94,10 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 	}
 	@Override
 	public int updateNewsDetailDto(NewsDetailDto newsEntity) {
+		if(newsEntity != null){
+			newsEntity.setTypename(newsTypeService.findNewsById(newsEntity.getTypeid()).getName());
+			newsEntity.setTemplatename(newsTemplateService.findById(newsEntity.getTemplateid()).getName());
+		}
 		return newsDetailDtoMapper.updateByPrimaryKeySelective(newsEntity);
 	}
 	@Override

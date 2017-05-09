@@ -24,9 +24,6 @@
 							</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
-								<li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
-								</li>
-								<li class="divider"></li>
 								<li><a href="${basepath}/logout.html">安全退出</a></li>
 							</ul>
 						</div>
@@ -63,13 +60,6 @@
 						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary "
 							href="index.html#"><i class="fa fa-bars"></i> </a>
 
-						<form role="search" class="navbar-form-custom" method="post"
-							action="search_results.html">
-							<div class="form-group">
-								<input type="text" placeholder="请输入您需要查找的内容 …"
-									class="form-control" name="top-search" id="top-search">
-							</div>
-						</form>
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li><span class="m-r-sm text-muted welcome-message"><a

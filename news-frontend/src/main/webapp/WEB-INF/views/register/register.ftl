@@ -25,7 +25,7 @@
 							</div>
 
 							<ul>
-								<li><a href="index.html">主页</a></li>
+								<li><a href="${rca.contextPath}/main/index.html">主页</a></li>
 								<li>注册</li>
 							</ul>
 						</div>

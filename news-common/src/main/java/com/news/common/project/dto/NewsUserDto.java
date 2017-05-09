@@ -22,6 +22,8 @@ public class NewsUserDto extends IdentityDto{
 
     private String nickname;
 
+    private String header;
+    
     public String getId() {
         return id;
     }
@@ -77,4 +79,12 @@ public class NewsUserDto extends IdentityDto{
     public void setNickname(String nickname) {
         this.nickname = nickname == null ? null : nickname.trim();
     }
+
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
+	}
 }
