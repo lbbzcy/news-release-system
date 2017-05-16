@@ -47,8 +47,9 @@ public class RetrievePassword extends BaseController {
 			List<NewsUserDto> list = newsUserAppService.getUserByName(username);
 			if(list==null || list.size()<=0){
 				list = newsUserAppService.getUserByMobile(username);
-			}else{
-				list = newsUserAppService.getUserByEmail(username);
+				if(list==null || list.size()<=0){
+					list = newsUserAppService.getUserByEmail(username);
+				}
 			}
 			model.addAttribute("user", list.get(0));
 			MailUtils.sendMail(list.get(0));
@@ -121,9 +122,11 @@ public class RetrievePassword extends BaseController {
 	public String checkUserName(@RequestParam(value="username") String username){
 		List<NewsUserDto> list = newsUserAppService.getUserByName(username);
 		if(list==null || list.size()<=0){
+			System.out.println("该用户名不存在");
 			list = newsUserAppService.getUserByMobile(username);
-		}else{
-			list = newsUserAppService.getUserByEmail(username);
+			if(list==null || list.size()<=0){
+				list = newsUserAppService.getUserByEmail(username);
+			}
 		}
 		if(list.size()>0){
 			return "false";
