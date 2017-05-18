@@ -10,4 +10,4 @@
 <c:set var="SERVER" value="http://${pageContext.request.serverName}:${pageContext.request.serverPort}" />
 <c:set var="basepath" value="${SERVER}${pageContext.request.contextPath}" />
 <c:set var="imagepath" value="${basepath}"/>
-<c:set var="bannersrc" value="http://192.168.1.105/images"/>
+<c:set var="bannersrc" value="http://192.168.1.116/images"/>

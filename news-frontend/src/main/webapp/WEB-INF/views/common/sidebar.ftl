@@ -40,10 +40,7 @@
 			<div class="content">
 				<a href="${rca.contextPath}/media/index.html" class="view_all">显示所有图片</a>
 				<div class="media">
-					<a href="${rca.contextPath}/images/pic_pop_photo_big.jpg"
-						class="general_pic_hover zoom no_fx" data-rel="prettyPhoto"
-						title="Popular Photo"><img src="${rca.contextPath}/images/pic_pop_photo.jpg"
-						alt="" /></a>
+					<img src="${BANNER_IMGSRC}${pic.mediasrc}" alt="" />
 				</div>
 				<p>
 					<a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}">${pic.title}</a> <img

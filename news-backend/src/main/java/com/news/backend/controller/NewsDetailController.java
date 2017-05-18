@@ -20,7 +20,6 @@ import com.news.backend.util.exl.DateUtil;
 import com.news.common.core.constant.EYesNo;
 import com.news.common.core.dto.PageData;
 import com.news.common.core.dto.QueryDateDto;
-import com.news.common.core.utils.JsonUtils;
 import com.news.common.project.app.NewsDetailAppService;
 import com.news.common.project.app.NewsTemplateAppService;
 import com.news.common.project.app.NewsTypeAppService;
@@ -95,11 +94,10 @@ public class NewsDetailController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="/add")
-	public String addNewsDetail(@RequestParam(value="id",required=false) String id,HttpServletRequest request,NewsDetailDto newsDetailDto){
+	public String addNewsDetail(@RequestParam(value="id",required=false) String id,@RequestParam(value="mimg",required=false) String mediasrc,HttpServletRequest request,NewsDetailDto newsDetailDto){
 		HttpSession session = request.getSession();
 		NewsAdminUserDto adminuser = getCurrentUser(session);
-		System.out.println(JsonUtils.objectToJson(newsDetailDto));
-		System.out.println("类别的ID为："+id);
+		mediasrc = mediasrc.substring(mediasrc.lastIndexOf("/images/")+7);
 		//判断为新增还是修改
 		NewsDetailDto newsEntity = newsDetailAppService.findNewsById(id);
 		if(null==newsEntity){
@@ -107,6 +105,7 @@ public class NewsDetailController extends BaseController{
 			newsDetailDto.setId(newsDetailDto.getIdentity());
 			newsDetailDto.setCommentnum(0L);
 			newsDetailDto.setViewnum(0L);
+			newsDetailDto.setMediasrc(mediasrc);
 			newsDetailDto.setCreatetime(new Date());
 			newsDetailDto.setUpdatetime(new Date());
 			newsDetailDto.setCreator(adminuser.getName());
@@ -116,6 +115,7 @@ public class NewsDetailController extends BaseController{
 		}else{
 			//修改
 			newsDetailDto.setUpdatetime(new Date());
+			newsDetailDto.setMediasrc(mediasrc);
 			newsDetailDto.setUpdator(adminuser.getName());
 			newsDetailAppService.updateNewsDetailDto(newsDetailDto);
 		}

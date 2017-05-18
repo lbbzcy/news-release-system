@@ -39,7 +39,7 @@
                             <div class="tabs">
                                 <ul>
                                     <li><a href="#1" class="current">最新</a></li><!-- tab link -->
-                                    <li><a href="#2">流行</a></li><!-- tab link -->
+                                    <!--<li><a href="#2">流行</a></li> tab link -->
                                 </ul>
                             </div>
                                         
@@ -49,7 +49,7 @@
                                 	<#list mideaNewsList as pic>
 	                                	<article class="block_media_post_all">
 	                                    	<div class="f_pic">
-	                                            <a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}"><img src="${rca.contextPath}/images/pic_media_tabs_1.jpg" alt="" /><span class="hover"></span></a>
+	                                            <a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}"><img style="width:132px;height:86px;" src="${BANNER_IMGSRC}${pic.mediasrc}" alt="" /><span class="hover"></span></a>
 	                                        </div>
 	                                        <div style="float:right;width:440px;height:86px;line-height:86px;">
 		                                      	<p class="title"><a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}">${pic.title}</a></p>
@@ -72,7 +72,7 @@
                                 	<#list mideaNewsList as pic>
 	                                	<article class="block_media_post_all">
 	                                    	<div class="f_pic">
-	                                            <a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}"><img src="${rca.contextPath}/images/pic_media_tabs_1.jpg" alt="" /><span class="hover"></span></a>
+	                                            <a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}"><img src="${BANNER_IMGSRC}${pic.mediasrc}" alt="" /><span class="hover"></span></a>
 	                                        </div>
 	                                        <div style="float:right;width:440px;height:86px;line-height:86px;">
 		                                      	<p class="title"><a href="${rca.contextPath}/newsdetail/index.html?newsid=${pic.id}">${pic.title}</a></p>

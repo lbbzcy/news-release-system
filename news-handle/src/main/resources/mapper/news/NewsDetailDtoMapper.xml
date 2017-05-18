@@ -9,6 +9,7 @@
 		<result column="TEMPLATENAME" property="templatename" jdbcType="VARCHAR" />
 		<result column="TITLE" property="title" jdbcType="VARCHAR" />
 		<result column="BRIEF" property="brief" jdbcType="VARCHAR" />
+		<result column="MEDIASRC" property="mediasrc" jdbcType="VARCHAR" />
 		<result column="VIEWNUM" property="viewnum" jdbcType="DECIMAL" />
 		<result column="COMMENTNUM" property="commentnum" jdbcType="DECIMAL" />
 		<result column="ISHOT" property="ishot" jdbcType="CHAR" />
@@ -24,7 +25,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		ID, TYPEID, TEMPLATEID,TYPENAME,TEMPLATENAME, TITLE,
-		BRIEF,VIEWNUM,
+		BRIEF,MEDIASRC,VIEWNUM,
 		COMMENTNUM, ISHOT, CREATOR, UPDATOR, CREATETIME,
 		UPDATETIME, ISDEL
 	</sql>
@@ -71,7 +72,7 @@
 		,
 		<include refid="Blob_Column_List" />
 		from NEWS_DETAIL
-		where ISDEL = 0 and TEMPLATENAME = '图片新闻模板'
+		where ISDEL = 0 and MEDIASRC is not null
 		order by
 		VIEWNUM DESC,CREATETIME ASC
 	</select>
@@ -104,6 +105,9 @@
 			and to_char(CREATETIME,'YYYY-MM-DD') <![CDATA[  <=  ]]>
 			to_char(#{endTime},'YYYY-MM-DD')
 		</if>
+		<if test="id !=null and id !=''">
+			and ID!=#{id,jdbcType=VARCHAR}
+		</if>
 		order by VIEWNUM DESC,CREATETIME ASC
 	</select>
 
@@ -124,7 +128,7 @@
 		insert into NEWS_DETAIL (ID,
 		TYPEID, TEMPLATEID,
 		TYPENAME,TEMPLATENAME,
-		TITLE,BRIEF, VIEWNUM,
+		TITLE,BRIEF,MEDIASRC, VIEWNUM,
 		COMMENTNUM,
 		ISHOT, CREATOR, UPDATOR,
 		CREATETIME, UPDATETIME, ISDEL,
@@ -133,7 +137,7 @@
 		#{templateid,jdbcType=VARCHAR},
 		#{typename,jdbcType=VARCHAR},
 		#{templatename,jdbcType=VARCHAR},
-		#{title,jdbcType=VARCHAR},#{brief,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},#{brief,jdbcType=VARCHAR},#{mediasrc,jdbcType=VARCHAR},
 		#{viewnum,jdbcType=DECIMAL}, #{commentnum,jdbcType=DECIMAL},
 		#{ishot,jdbcType=CHAR}, #{creator,jdbcType=VARCHAR},
 		#{updator,jdbcType=VARCHAR},
@@ -164,6 +168,9 @@
 			</if>
 			<if test="brief != null">
 				BRIEF,
+			</if>
+			<if test="mediasrc != null">
+				MEDIASRC,
 			</if>
 			<if test="viewnum != null">
 				VIEWNUM,
@@ -215,6 +222,9 @@
 			<if test="brief != null">
 				#{brief,jdbcType=VARCHAR},
 			</if>
+			<if test="mediasrc != null">
+				#{mediasrc,jdbcType=VARCHAR},
+			</if>
 			<if test="viewnum != null">
 				#{viewnum,jdbcType=DECIMAL},
 			</if>
@@ -265,6 +275,9 @@
 			<if test="title != null">
 				BRIEF = #{brief,jdbcType=VARCHAR},
 			</if>
+			<if test="mediasrc != null">
+				MEDIASRC = #{mediasrc,jdbcType=VARCHAR},
+			</if>
 			<if test="viewnum != null">
 				VIEWNUM = #{viewnum,jdbcType=DECIMAL},
 			</if>
@@ -307,6 +320,7 @@
 		#{templatename,jdbcType=VARCHAR},
 		TITLE = #{title,jdbcType=VARCHAR},
 		BRIEF = #{brief,jdbcType=VARCHAR},
+		MEDIASRC = #{mediasrc,jdbcType=VARCHAR},
 		VIEWNUM =
 		#{viewnum,jdbcType=DECIMAL},
 		COMMENTNUM =
@@ -333,6 +347,7 @@
 		#{templatename,jdbcType=VARCHAR},
 		TITLE = #{title,jdbcType=VARCHAR},
 		BRIEF = #{brief,jdbcType=VARCHAR},
+		MEDIASRC = #{mediasrc,jdbcType=VARCHAR},
 		VIEWNUM =
 		#{viewnum,jdbcType=DECIMAL},
 		COMMENTNUM =

@@ -72,10 +72,10 @@ public class PasswordUtil {
 	
 	public static void main(String[] args) {
 		//dbb1c112a931eeb16299d9de1f30161d
-		System.out.println(CryptographyUtil.hashMd5Hex("root123456"));
+		System.out.println(CryptographyUtil.hashMd5Hex("testaccount2"));
 		System.out.println(encryptMd5ByMd5WithSalt("dbb1c112a931eeb16299d9de1f30161d"));
-		System.out.println(encryptMd5ByMd5WithSalt("root123456"));
-		System.out.println(encryptPlainByMd5WithSalt("root123456"));
+		System.out.println(encryptMd5ByMd5WithSalt("testaccount1"));
+		System.out.println(encryptPlainByMd5WithSalt("testaccount1"));
 	}
 
 }

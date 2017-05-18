@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/WEB-INF/views/include/mgr_header.jsp"%>
+<style type="text/css">
+	.mediasrc {
+		display:none;
+	}
+</style>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
 		<div class="row">
@@ -38,8 +43,8 @@
 								<label class="col-sm-2 control-label">新闻模板</label>
 								<div class="col-sm-10 ">
 									<select class="form-control m-b" id="templateid"
-										name="templateid" value="${entity.templateid}"
-										onchange="change">
+										name="templateid" value="${entity.templateid}" 
+										onchange="change();">
 										<c:forEach items="${newsTemplateList}" var="template">
 											<option value="${template.id}"
 												<c:if test="${template.id == entity.templateid }">selected="selected"</c:if>>
@@ -50,6 +55,39 @@
 								</div>
 							</div>
 							<div class="hr-line-dashed"></div>
+							
+							<div class="form-group mediasrc">
+								<label class="col-sm-2 control-label">图片</label>
+								<div class="col-sm-10">
+									<div class="appmsg_edit_item">
+										<label class="frm_label"> <strong class="title"
+											id="pc_img">图片分辨率：180*180</strong>
+										</label>
+										<div class="frm_input_box">
+											<div class="upload_box">
+												<div class="upload_area">
+													<input type="file" name="file" id="file_upload" /> <input
+														type="hidden" id="mimg" name="mimg" value="${bannersrc}${entity.mediasrc}">
+													<ul class="upload_file_box" style="display: none;"
+														id="queue"></ul>
+												</div>
+											</div>
+											<div
+												style="<c:if test="${empty entity.mediasrc}" >display: none;</c:if>margin-bottom:20px;"
+												id="small_prev">
+												<span id="image_cover"> <c:if
+														test="${not empty entity.mediasrc}">
+														<img style='max-width: 100px; max-height: 200px;'
+															src='${bannersrc}${entity.mediasrc}'>
+													</c:if>
+												</span><a class="js_removeCover" href="javascript:void(0);"
+													onclick="deleteCover('');">删除</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="hr-line-dashed mediasrc"></div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">是否热门</label>
 								<div class="col-sm-10 ">
@@ -130,6 +168,20 @@
 		src="${basepath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 	</script>
 	<script type="text/javascript">
+		$(function(){
+			change();
+		});
+		function change(){
+			//模板选择变化时函数
+			var checkText=$("#templateid").find("option:selected").text().trim();
+			if(checkText.indexOf("图片")!=-1){
+				//增加图片框
+				$('.mediasrc').css("display","block");
+			} else{
+				$('.mediasrc').css("display","none");
+			}
+		}
+		//新闻编辑验证
 		function check() {
 
 			var type = $("select[name='typeid']").val();
@@ -198,6 +250,46 @@
 									'simpleupload', 'emotion', 'spechars',
 									'map', 'insertvideo', 'autotypeset', ] ]
 				});
+	</script>
+	<script type="text/javascript"
+		src="${basepath}/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript">
+		var uploadurl = "${basepath}/banner/upload.html";
+		$('#file_upload')
+				.uploadify(
+						{
+							'fileObjName' : 'file',
+							//允许上传的文件后缀
+							'fileTypeExts' : '*.gif;*.jpg; *.png;*.jpeg;*.bmp',
+							//在浏览窗口底部的文件类型下拉菜单中显示的文本
+							'fileTypeDesc' : 'Image File',
+							'overrideEvents' : [ 'onDialogClose' ],
+							'onSelectError' : function(file, errorCode,
+									errorMsg) {
+								if (errorCode == -130) {
+									layer.msg('格式不支持', {
+										offset : '100px'
+									});
+									return;
+								}
+							},
+							'buttonText' : '<i class="fa fa-upload"></i>上传图片',
+							'buttonClass' : 'upload_access',
+							'swf' : '${basepath}/uploadify/uploadify.swf',
+							'multi' : false,
+							'uploader' : uploadurl,
+							'onUploadSuccess' : function(file, data, response) {
+								var result = eval("(" + data + ")");
+								$("#mimg").val(result.url);
+								$("#image_cover")
+										.html(
+												"<img style='max-width:100px;max-height:200px;' src ='"+ result.url +"'>");
+								$("#small_prev").show();
+							}
+						});
+		function deleteCover(){
+	    	$("#small_prev").hide();
+    	}
 	</script>
 </body>
 </html>

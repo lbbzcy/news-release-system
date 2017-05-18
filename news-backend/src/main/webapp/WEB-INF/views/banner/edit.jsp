@@ -48,7 +48,7 @@
 											<div class="upload_box">
 												<div class="upload_area">
 													<input type="file" name="file" id="file_upload" /> <input
-														type="hidden" id="mimg" name="mimg" value="${entity.imgsrc}">
+														type="hidden" id="mimg" name="mimg" value="${bannersrc}${entity.imgsrc}">
 													<ul class="upload_file_box" style="display: none;"
 														id="queue"></ul>
 												</div>
@@ -124,9 +124,6 @@
 								$("#small_prev").show();
 							}
 						});
-	</script>
-	<script type="text/javascript">
-		
 	</script>
 	<!-- Modal -->
 	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"

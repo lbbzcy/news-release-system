@@ -45,7 +45,8 @@ public class NewsDetailDto extends IdentityDto{
     private String content;
 	@Field("brief")
     private String brief;
-    
+	
+    private String mediasrc;
     //查询条件
     private Date startTime;
     private Date endTime;
@@ -192,5 +193,13 @@ public class NewsDetailDto extends IdentityDto{
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getMediasrc() {
+		return mediasrc;
+	}
+
+	public void setMediasrc(String mediasrc) {
+		this.mediasrc = mediasrc;
 	}
 }

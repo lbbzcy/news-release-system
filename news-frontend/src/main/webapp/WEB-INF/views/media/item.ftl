@@ -40,67 +40,7 @@
                                         	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
                                             <div class="caption"><p><b>Photo1.</b> Many desktop publishing packages and web page.</p></div>
                                         </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo2.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_3.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo3.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo4.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_3.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo5.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo6.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo7.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo8.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_3.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo9.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo10.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_3.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo11.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                        <li>
-                                        	<img src="${rca.contextPath}/images/pic_media_item_1.jpg" alt="" />
-                                            <div class="caption"><p><b>Photo12.</b> Many desktop publishing packages and web page.</p></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <div id="media_item_navigation" class="media_item_navigation flexslider">
-                                	<ul class="slides">
-                                    	<li><img src="${rca.contextPath}/images/pic_media_item_1_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_2_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_3_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_4_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_5_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_6_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_1_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_2_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_3_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_4_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_5_sm.jpg" alt="" /><span class="current"></span></li>
-                                        <li><img src="${rca.contextPath}/images/pic_media_item_6_sm.jpg" alt="" /><span class="current"></span></li>
+                                        
                                     </ul>
                                 </div>
                                 
@@ -127,21 +67,19 @@
 									});
 								</script>
                             </div>
-                          	<p class="title"><a href="#">Randomised words which don't look even slightly.</a></p>
+                          	<p class="title"><a href="#">${newsItem.title}</a></p>
                             
                             <div class="info">
-                                <div class="date"><p>15 July, 2012</p></div>
+                                <div class="date"><p>${newsItem.createtime?date}</p></div>
                                     
                             	<div class="r_part">
-                                    <a href="#" class="views">650</a>
-                                    <a href="#" class="comments">25</a>
+                                    <a href="#" class="views">${newsItem.viewnum}</a>
+                                    <a href="#" class="comments">${newsItem.commentnum}</a>
                                 </div>
                             </div>
                             
                             <div class="content">
-                            	<p>There are many <b>variations of passages</b> <a href="#" class="lnk_blue"><b>of available, but the majority have suffered</b></a> alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                            	<p>All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over words, combined with a <b>handful of model sentence</b> structures, to generate which looks reasonable.</p>
-                            	<p>The generated Lorem Ipsum is therefore always free from repetition, injected humour words etc. Available, but the majority have <b>suffered alteration</b>.By injected humour, or randomised words which don't look.</p>
+                            	${newsItem.content}
                             </div>
                         </article>
                         
@@ -150,30 +88,98 @@
                         <div class="line_2" style="margin:22px 0px 30px;"></div>
                         
                         <div class="block_comments">
-                        	<h3>2 条评论</h3>
-                            
-                            <div class="comment">
-                            	<div class="userpic"><a href="about_author.html"><img src="${rca.contextPath}/images/ava_default_1.jpg" alt="" /></a></div>
-                                <div class="content">
-                                	<p class="name"><a href="about_author.html">John Doe</a></p>
-                                    <p class="info"><span class="date">Febr 16, 2012 at 4:43 pm</span><a href="#" class="control">Reply</a></p>
-                                    <p class="text">Established fact that a reader will be distracted by the readable content of a page. When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</p>
-                                </div>
-                                <div class="clearboth"></div>
-                                <div class="line_3"></div>
-                            </div>
-                            
-                            <div class="comment">
-                            	<div class="userpic"><a href="about_author.html"><img src="${rca.contextPath}/images/ava_default_1.jpg" alt="" /></a></div>
-                                <div class="content">
-                                	<p class="name"><a href="about_author.html">Sara Gordon</a></p>
-                                    <p class="info"><span class="date">Febr 16, 2012 at 4:43 pm</span><a href="#" class="control">Reply</a></p>
-                                    <p class="text">Distracted by the readable content of a page. When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
-                                </div>
-                                <div class="clearboth"></div>
-                                <div class="line_3"></div>
-                            </div>
-                            
+                        	<h3>${totalComment}条评论</h3>
+                            <a href="#w_validation" class="add_new">添加评论</a>
+                            <#list commentList as item>
+	                            <div class="comment">
+	                            	<div style="float:left;margin-right:20px;"><img style="width:50px;height:50px;" src="${item.header}" /></div>
+	                                <div class="comment_wrap">
+	                                    <div class="name">
+	                                    	<p><a href="#">${item.username}&nbsp;&nbsp;${item.createtime?datetime}</a></p>
+	                                    </div>
+	                                    <div style="margin-top:10px;"></div>
+	                                    <div class="content">
+	                                        <p>${item.content}</p>
+	                                        <#if login_user.username != item.username>
+	                                    		<p><a href="javascript:void(0);" class="replayto">回复</a></p>
+	                                    	</#if>
+	                                    	<div class="textarea" id="sidereply" style="display:none;">
+	                                    		<textarea name="recontent" cols="1" rows="1" style="width: 541px;height: 95px;line-height: 15px;margin-top: 5px;display: block;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+		                                    	<a class="general_button replyconfirm" style="float:right;margin:2px;cursor:pointer;">确定</a>
+		                                    	<input type="hidden" value="${item.id}">
+		                                    	<a class="general_button cancel" style="float:right;margin:2px;cursor:pointer;">取消</a>
+	                                    	</div>
+	                                    	<#if item.children??>
+	                                    		<#list item.children as child>
+			                                    	<div class="line_3" style="margin-bottom: 13px"></div>
+			                                    	<div style="float:left;margin-right:20px;"><img style="width:50px;height:50px;" src="${child.header}" /></div>
+			                                    	<div style="margin-left:50px;" class="comment_wrap">
+					                                    <div class="name">
+					                                    	<p><a href="#">${child.username}&nbsp;&nbsp;${child.createtime?datetime}</a></p>
+					                                    </div>
+					                                    <div style="margin-top:10px;"></div>
+					                                    <div class="content">
+					                                        <p>${child.content}</p>
+					                                        <#if login_user.username != child.username>
+					                                    		<p><a href="javascript:void(0);" class="replayto">回复</a></p>
+					                                    	</#if>
+					                                    	<div class="textarea" id="sidereply" style="display:none;">
+					                                    		<textarea name="recontent" cols="1" rows="1" style="width: 472px;height: 95px;line-height: 15px;margin-top: 5px;display: block;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+						                                    	<a class="general_button replyconfirm " style="float:right;margin:2px;cursor:pointer;">确定</a>
+						                                    	<input type="hidden" value="${child.id}">
+						                                    	<a class="general_button cancel" style="float:right;margin:2px;cursor:pointer;">取消</a>
+					                                    	</div>
+					                                    	<#if child.children??>
+					                                    		<#list child.children as grandson>
+							                                    	<div class="line_3" style="margin-bottom: 13px"></div>
+							                                    	<div style="float:left;margin-right:20px;"><img style="width:50px;height:50px;" src="${grandson.header}" /></div>
+							                                    	<div style="margin-left:50px;" class="comment_wrap">
+									                                    <div class="name">
+									                                    	<p><a href="#">${grandson.username}&nbsp;&nbsp;${grandson.createtime?datetime}</a></p>
+									                                    </div>
+									                                    <div style="margin-top:10px;"></div>
+									                                    <div class="content">
+									                                        <p>${grandson.content}</p>
+									                                    	<#if login_user.username != grandson.username>
+									                                    		<p><a href="javascript:void(0);" class="replayto">回复</a></p>
+									                                    	</#if>
+									                                    	<div class="textarea" id="sidereply" style="display:none;">
+									                                    		<textarea name="recontent" cols="1" rows="1" style="width: 402px;height: 95px;line-height: 15px;margin-top: 5px;display: block;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #989898;"></textarea>
+										                                    	<a class="general_button replyconfirm" style="float:right;margin:2px;cursor:pointer;">确定</a>
+										                                    	<input type="hidden" value="${grandson.id}">
+										                                    	<a class="general_button cancel" style="float:right;margin:2px;cursor:pointer;">取消</a>
+									                                    	</div>
+									                                    	<#if grandson.children??>
+									                                    		<#list grandson.children as greatgrandson>
+											                                    	<div class="line_3" style="margin-bottom: 13px"></div>
+											                                    	<div style="float:left;margin-right:20px;"><img style="width:50px;height:50px;" src="${greatgrandson.header}" /></div>
+											                                    	<div style="margin-left:50px;" class="comment_wrap">
+													                                    <div class="name">
+													                                    	<p><a href="#">${greatgrandson.username}&nbsp;&nbsp;${greatgrandson.createtime?datetime}</a></p>
+													                                    </div>
+													                                    <div style="margin-top:10px;"></div>
+													                                    <div class="content">
+													                                        <p>${greatgrandson.content}</p>
+													                                    </div>
+													                                </div>
+													                            </#list>
+												                             </#if>
+									                                    </div>
+									                                </div>
+									                            </#list>
+								                             </#if>
+					                                    </div>
+					                                </div>
+					                            </#list>
+				                             </#if>
+			                                <div class="clearboth"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="clearboth"></div>
+	                                <div class="line_3"></div>
+	                            </div>
+                            </#list>
+                        	<#include "/common/pagination.ftl">
                         </div>
                         
                         <div class="separator" style="height:30px;"></div>

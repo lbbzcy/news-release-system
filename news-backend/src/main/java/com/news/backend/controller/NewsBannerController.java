@@ -98,14 +98,12 @@ public class NewsBannerController extends BaseController {
 			@RequestParam(value="title") String title,
 			@RequestParam(value="briefintroduction") String briefintroduction,
 			HttpServletRequest request){
-		//http://192.168.16.248/images/2017/04/09/d82b59e21183471b8c2ab0d077e3b2be.jpg
+		System.out.println(imgsrc);
 		imgsrc = imgsrc.substring(imgsrc.lastIndexOf("/images/")+7);
-		System.out.println("图片地址为:"+imgsrc);
-		System.out.println("banner链接地址为:"+link);
+		System.out.println(imgsrc);
 		String newsid = link.substring(link.lastIndexOf("=")+1);
 		HttpSession session = request.getSession();
 		NewsAdminUserDto adminuser = getCurrentUser(session);
-		System.out.println("类别的ID为："+id);
 		//判断为新增还是修改
 		NewsBannerDto newsEntity = newsBannerAppService.findBannerById(id);
 		if(null==newsEntity){
