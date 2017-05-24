@@ -34,47 +34,7 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 	public PageData<NewsDetailDto> findPageWithType(PageData<NewsDetailDto> pageData, NewsDetailDto newsDetailDto) {
 		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
 		List<NewsDetailDto> findListPage = newsDetailDtoMapper.queryAllData(newsDetailDto);
-		ArrayList<String> newsTypes = new ArrayList<String>();
-		ArrayList<String> templates = new ArrayList<String>();
-		for (NewsDetailDto dto : findListPage) {
-			newsTypes.add(dto.getTypeid());
-			templates.add(dto.getTemplateid());
-		}
-		List<NewsTypeDto> newsTypeDtoList = null;
-		List<NewsTemplateDto> newsTemplateDtoList = null;
-
-		if(!newsTypes.isEmpty()){
-			newsTypeDtoList=newsTypeService.getNewsByNewsTypes(newsTypes);
-		}
-		if(!templates.isEmpty()){
-			newsTemplateDtoList=newsTemplateService.getNameByTemplate(templates);
-		}
-		if(newsTypeDtoList!=null  && !newsTypeDtoList.isEmpty()){
-			HashMap<String, NewsTypeDto> newsTypeDtoMap = new HashMap<String,NewsTypeDto>();
-			for (NewsTypeDto newsTypeDto : newsTypeDtoList) {
-				newsTypeDtoMap.put(newsTypeDto.getId(), newsTypeDto);
-			}
-			for (NewsDetailDto dto : findListPage) {
-				NewsTypeDto newsTypeDto = newsTypeDtoMap.get(dto.getTypeid());
-				if(newsTypeDto!=null){
-					dto.setTypename(newsTypeDto.getName());
-				}
-			}
-		}
-		if(newsTemplateDtoList!=null  && !newsTemplateDtoList.isEmpty()){
-			HashMap<String, NewsTemplateDto> newsTemplateDtoMap = new HashMap<String,NewsTemplateDto>();
-			for (NewsTemplateDto newsTemplateDto : newsTemplateDtoList) {
-				newsTemplateDtoMap.put(newsTemplateDto.getId(), newsTemplateDto);
-			}
-			for (NewsDetailDto dto : findListPage) {
-				NewsTemplateDto newsTemplateDto = newsTemplateDtoMap.get(dto.getTemplateid());
-				if(newsTemplateDto!=null){
-					dto.setTemplatename(newsTemplateDto.getName());
-				}
-			}
-		}
-		
-		
+		getTypeAndTemplateName(findListPage);
 		Page<NewsDetailDto> page = (Page<NewsDetailDto>) findListPage;
 		pageData.setTotal(page.getTotal());
 		pageData.setRows(findListPage);
@@ -145,6 +105,57 @@ public class NewsDetailServiceImpl implements NewsDetailService {
 			list = newsDetailDtoMapper.getAllCollectNews(newsIdList);
 		}
 		return list;
+	}
+	@Override
+	public PageData<NewsDetailDto> findRelatedWithType(PageData<NewsDetailDto> pageData, NewsDetailDto newsDetailDto) {
+		PageHelper.startPage(pageData.getPageNumber(), pageData.getPageSize());
+		List<NewsDetailDto> findListPage = newsDetailDtoMapper.queryRelateData(newsDetailDto);
+		getTypeAndTemplateName(findListPage);
+		Page<NewsDetailDto> page = (Page<NewsDetailDto>) findListPage;
+		pageData.setTotal(page.getTotal());
+		pageData.setRows(findListPage);
+		return pageData;
+	}
+	public void getTypeAndTemplateName(List<NewsDetailDto> findListPage) {
+		ArrayList<String> newsTypes = new ArrayList<String>();
+		ArrayList<String> templates = new ArrayList<String>();
+		for (NewsDetailDto dto : findListPage) {
+			newsTypes.add(dto.getTypeid());
+			templates.add(dto.getTemplateid());
+		}
+		List<NewsTypeDto> newsTypeDtoList = null;
+		List<NewsTemplateDto> newsTemplateDtoList = null;
+
+		if(!newsTypes.isEmpty()){
+			newsTypeDtoList=newsTypeService.getNewsByNewsTypes(newsTypes);
+		}
+		if(!templates.isEmpty()){
+			newsTemplateDtoList=newsTemplateService.getNameByTemplate(templates);
+		}
+		if(newsTypeDtoList!=null  && !newsTypeDtoList.isEmpty()){
+			HashMap<String, NewsTypeDto> newsTypeDtoMap = new HashMap<String,NewsTypeDto>();
+			for (NewsTypeDto newsTypeDto : newsTypeDtoList) {
+				newsTypeDtoMap.put(newsTypeDto.getId(), newsTypeDto);
+			}
+			for (NewsDetailDto dto : findListPage) {
+				NewsTypeDto newsTypeDto = newsTypeDtoMap.get(dto.getTypeid());
+				if(newsTypeDto!=null){
+					dto.setTypename(newsTypeDto.getName());
+				}
+			}
+		}
+		if(newsTemplateDtoList!=null  && !newsTemplateDtoList.isEmpty()){
+			HashMap<String, NewsTemplateDto> newsTemplateDtoMap = new HashMap<String,NewsTemplateDto>();
+			for (NewsTemplateDto newsTemplateDto : newsTemplateDtoList) {
+				newsTemplateDtoMap.put(newsTemplateDto.getId(), newsTemplateDto);
+			}
+			for (NewsDetailDto dto : findListPage) {
+				NewsTemplateDto newsTemplateDto = newsTemplateDtoMap.get(dto.getTemplateid());
+				if(newsTemplateDto!=null){
+					dto.setTemplatename(newsTemplateDto.getName());
+				}
+			}
+		}
 	}
 
 }

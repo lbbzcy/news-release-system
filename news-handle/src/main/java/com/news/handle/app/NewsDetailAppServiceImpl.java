@@ -49,5 +49,9 @@ public class NewsDetailAppServiceImpl implements NewsDetailAppService {
 	public List<NewsDetailDto> getAllCollectNewsByUserId(String id) {
 		return newsDetailService.getAllCollectNewsByUserId(id);
 	}
+	@Override
+	public PageData<NewsDetailDto> findRelatedWithType(PageData<NewsDetailDto> pageData, NewsDetailDto newsDetailDto) {
+		return newsDetailService.findRelatedWithType(pageData, newsDetailDto);
+	}
 
 }

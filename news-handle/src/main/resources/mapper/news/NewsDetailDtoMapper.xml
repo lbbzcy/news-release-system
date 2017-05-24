@@ -76,6 +76,19 @@
 		order by
 		VIEWNUM DESC,CREATETIME ASC
 	</select>
+	
+	<select id="queryRelateData" resultMap="BaseResultMap"
+		parameterType="com.news.common.project.dto.NewsDetailDto">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from NEWS_DETAIL
+		where ISDEL = 0
+		and ID !=#{id,jdbcType=VARCHAR}
+		and TYPEID=#{typeid,jdbcType=VARCHAR}
+		order by VIEWNUM DESC,CREATETIME ASC
+	</select>
 	<select id="queryAllData" resultMap="BaseResultMap"
 		parameterType="com.news.common.project.dto.NewsDetailDto">
 		select
@@ -104,9 +117,6 @@
 		<if test="endTime !=null and endTime !=''">
 			and to_char(CREATETIME,'YYYY-MM-DD') <![CDATA[  <=  ]]>
 			to_char(#{endTime},'YYYY-MM-DD')
-		</if>
-		<if test="id !=null and id !=''">
-			and ID!=#{id,jdbcType=VARCHAR}
 		</if>
 		order by VIEWNUM DESC,CREATETIME ASC
 	</select>

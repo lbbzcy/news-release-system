@@ -30,4 +30,6 @@ public interface NewsDetailDtoMapper {
 	List<NewsDetailDto> getNewsByTypeId(String typeid);
 
 	List<NewsDetailDto> getAllCollectNews(List<String> newsIdList);
+
+	List<NewsDetailDto> queryRelateData(NewsDetailDto newsDetailDto);
 }

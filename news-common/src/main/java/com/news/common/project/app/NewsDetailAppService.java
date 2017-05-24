@@ -7,7 +7,9 @@ import com.news.common.project.dto.NewsDetailDto;
 
 public interface NewsDetailAppService {
 	public PageData<NewsDetailDto> findPageWithType(PageData<NewsDetailDto> pageData,NewsDetailDto newsDetailDto);
-
+	
+	public PageData<NewsDetailDto> findRelatedWithType(PageData<NewsDetailDto> pageData,NewsDetailDto newsDetailDto);
+	
 	public NewsDetailDto findNewsById(String id);
 
 	public int insertNewsDetailDto(NewsDetailDto newsEntity);

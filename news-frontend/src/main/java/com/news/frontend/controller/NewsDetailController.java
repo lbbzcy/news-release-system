@@ -73,7 +73,7 @@ public class NewsDetailController extends BaseController{
 		PageData<NewsDetailDto> pageData = new PageData<NewsDetailDto>();
 		pageData.setPageNumber(1);
 		pageData.setPageSize(4);
-		pageData = newsDetailAppService.findPageWithType(pageData, newsDetailDto);
+		pageData = newsDetailAppService.findRelatedWithType(pageData, newsDetailDto);
 		List<NewsDetailDto>  relatedNews = pageData.getRows();
 		model.addAttribute("relatedNews", relatedNews);
 		return "/newsdetail/index";

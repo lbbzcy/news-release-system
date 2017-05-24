@@ -21,4 +21,6 @@ public interface NewsDetailService {
 	public PageData<NewsDetailDto> getNewsByTypeId(PageData<NewsDetailDto> pageData, String typeid);
 	
 	public List<NewsDetailDto> getAllCollectNewsByUserId(String id);
+	
+	public PageData<NewsDetailDto> findRelatedWithType(PageData<NewsDetailDto> pageData, NewsDetailDto newsDetailDto);
 }
