@@ -341,7 +341,7 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 
 
 
-#content {padding:18px 0px 64px;background-color:#f4f5f6}
+#content {padding:18px 0px 64px;/* background-color:#f4f5f6; */}
 .general_content {}
 .general_content p {color:#666666; line-height:18px;}
 

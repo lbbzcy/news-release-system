@@ -100,23 +100,25 @@ public class NewsDetailController extends BaseController{
 		mediasrc = mediasrc.substring(mediasrc.lastIndexOf("/images/")+7);
 		//判断为新增还是修改
 		NewsDetailDto newsEntity = newsDetailAppService.findNewsById(id);
+		System.out.println("啊啊啊："+mediasrc);
+		if("/192.168.1.116/images".equals(mediasrc)){
+			newsDetailDto.setMediasrc("");
+		}else{
+			newsDetailDto.setMediasrc(mediasrc);
+		}
+		newsDetailDto.setUpdatetime(new Date());
+		newsDetailDto.setUpdator(adminuser.getName());
 		if(null==newsEntity){
 			//新增
 			newsDetailDto.setId(newsDetailDto.getIdentity());
 			newsDetailDto.setCommentnum(0L);
 			newsDetailDto.setViewnum(0L);
-			newsDetailDto.setMediasrc(mediasrc);
 			newsDetailDto.setCreatetime(new Date());
-			newsDetailDto.setUpdatetime(new Date());
 			newsDetailDto.setCreator(adminuser.getName());
-			newsDetailDto.setUpdator(adminuser.getName());
 			newsDetailDto.setIsdel("0");
 			newsDetailAppService.insertNewsDetailDto(newsDetailDto);
 		}else{
 			//修改
-			newsDetailDto.setUpdatetime(new Date());
-			newsDetailDto.setMediasrc(mediasrc);
-			newsDetailDto.setUpdator(adminuser.getName());
 			newsDetailAppService.updateNewsDetailDto(newsDetailDto);
 		}
 		return redirectToList();
