@@ -101,7 +101,7 @@ public class NewsDetailController extends BaseController{
 		//判断为新增还是修改
 		NewsDetailDto newsEntity = newsDetailAppService.findNewsById(id);
 		System.out.println("啊啊啊："+mediasrc);
-		if("/192.168.1.116/images".equals(mediasrc)){
+		if("/192.168.43.116/images".equals(mediasrc)){
 			newsDetailDto.setMediasrc("");
 		}else{
 			newsDetailDto.setMediasrc(mediasrc);
